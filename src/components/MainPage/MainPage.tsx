@@ -1,4 +1,4 @@
-import './mainPage.scss'
+import "./mainPage.scss";
 
 function MainPage() {
     return (
@@ -55,7 +55,7 @@ function MainPage() {
 				</button>
 			</div>
 		</div>
-    )
+	);
 }
 
-export default MainPage
+export default MainPage;
