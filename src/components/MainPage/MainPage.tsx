@@ -2,12 +2,11 @@ import "./mainPage.scss";
 
 function MainPage() {
     return (
-        <div className="container">
 			<div className="header__container flex">
 				<a className="header__logo" href="#" target="blank">
 					<img
 						src="../src/assets/img/Logo.png"
-						alt="Логотип сайта"
+						alt="Allin"
 						aria-label="Логотип сайта"
 					/>
 				</a>
@@ -54,7 +53,6 @@ function MainPage() {
 					</svg>
 				</button>
 			</div>
-		</div>
 	);
 }
 
