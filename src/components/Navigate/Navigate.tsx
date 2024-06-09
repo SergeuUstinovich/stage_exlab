@@ -1,29 +1,29 @@
 import { Link } from "react-router-dom"
 import style from './Navigate.module.scss'
+import { useMediaQuery } from "react-responsive"
+import { Navig } from "../../pages/HeaderNavigation";
+import PhoneSvg from "../../assets/svg/PhoneSvg/PhoneSvg";
+import { Button } from "../../utils/Button";
+import BurgerMenu from "../../assets/svg/BurgerMenu/BurgerMenu";
 
-interface navig {
-    name: string
-    path: string
+interface NavigateProps {
+    navigate: Navig[];
 }
 
-const navigate:navig[] = [
-    {
-        name: 'Услуги',
-        path: '/services'
-    },
-    {
-        name: 'О нас',
-        path: '/aboutUs'
-    },
-    {
-        name: '+375 (29) 878 87 87',
-        path: 'tel:+375298788787'
-    },
-]
+function Navigate({navigate}:NavigateProps) {
 
-function Navigate() {
+    const isMobile = useMediaQuery({ query: `(max-width: 933px)` });
+
     return (
         <nav className={style.nav}>
+            {isMobile ? (
+            <div>
+                <PhoneSvg />
+                <Button>
+                    <BurgerMenu />
+                </Button>
+            </div>
+            ) : (
             <ul className={style.list}>
                 {navigate.map(item => 
                     <li key={item.name} className={style.item}>
@@ -32,7 +32,7 @@ function Navigate() {
                         </Link>
                     </li>
                 )}
-            </ul>
+            </ul>)}
         </nav>
     )
 }
