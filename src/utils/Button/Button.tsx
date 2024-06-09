@@ -7,6 +7,7 @@ interface IButtonProps extends HTMLAttributes<HTMLButtonElement> {
   isDisabled?: boolean;
   kind?: "primary" | "secondary";
   type?: "submit" | "reset" | "button";
+  className?: string;
 }
 
 export const Button: FC<IButtonProps> = ({
@@ -22,7 +23,7 @@ export const Button: FC<IButtonProps> = ({
     <button
       disabled={isDisabled}
       type={type}
-      className="btn"
+      className={`btn ${className}`}
       data-kind={kind}
       {...props}
     >

@@ -1,6 +1,8 @@
+import './AboutPage.scss'
+
 function AboutPage() {
     return (
-        <div>Вторая</div>
+        <div className="about">Тут тоже идут работы</div>
     )
 }
 

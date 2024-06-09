@@ -5,8 +5,9 @@
   }
   // header
 
-  .red {
-    width: 100px;
-    height: 100px;
-    color: red;
+  .header__container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }

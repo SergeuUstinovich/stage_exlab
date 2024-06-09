@@ -1,11 +1,13 @@
 import './App.scss'
-import { lazy } from 'react'
+import { Suspense, lazy } from 'react'
 import HeaderNavigation from './pages/HeaderNavigation/HeaderNavigation'
-import { Button } from './utils/Button'
+import { LoaderPage } from './utils/Loader/LoaderPage'
+import { Route, Routes } from 'react-router-dom'
+import Modal from './utils/Modal/Modal'
 
 
-const MainPageAsync = lazy(()=> import('./components/MainPage/MainPage'))
-const AboutPageAsync = lazy(()=> import('./components/AboutPage/AboutPage'))
+const MainPage = lazy(()=> import('./components/MainPage/MainPage'))
+const AboutPage = lazy(()=> import('./components/AboutPage/AboutPage'))
 
 function App() {
 
@@ -18,14 +20,14 @@ function App() {
       </header>
       <main>
         <div className='container'>
-        <MainPageAsync />
-        </div>
-      {/*<Suspense fallback={<Loader />}>
+        {/* <Modal /> */}
+        <Suspense fallback={<LoaderPage />}>
         <Routes>
-            <Route path={'/'} element={<MainPageAsync />} />
-            <Route path={'/about'} element={<AboutPageAsync />} />
+            <Route path={'/'} element={<MainPage />} />
+            <Route path={'/services'} element={<AboutPage />} />
           </Routes>
-      </Suspense> */}
+      </Suspense>
+        </div>
       </main>
       <footer>
         <div className='container'>
