@@ -1,6 +1,5 @@
 .nav {
     align-items: center;
-
 }
 
 .list {
@@ -9,18 +8,14 @@
     padding-left: 200px;
 }
 
-.item {
-    font-family: var(--font-family);
+.link {
     font-weight: 400;
     font-size: 14px;
     color: var(--dark-grey);
 }
 
-.link {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 130%;
-    color: #000;
+.btn {
+    fill: var(--dark-grey);
 }
 
 
