@@ -3,7 +3,7 @@ import style from './Logo.module.scss'
 
 function Logo() {
     return (
-        <Link to={'/'}>
+        <Link className={style.link} to={'/'}>
             <img
                 className={style.logo}
                 src="../src/assets/img/Logo.png"

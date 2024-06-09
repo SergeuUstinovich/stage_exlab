@@ -1,6 +1,7 @@
 import './App.scss'
 import { lazy } from 'react'
 import HeaderNavigation from './pages/HeaderNavigation/HeaderNavigation'
+import { Button } from './utils/Button'
 
 
 const MainPageAsync = lazy(()=> import('./components/MainPage/MainPage'))
@@ -19,7 +20,6 @@ function App() {
         <div className='container'>
         <MainPageAsync />
         </div>
-      
       {/*<Suspense fallback={<Loader />}>
         <Routes>
             <Route path={'/'} element={<MainPageAsync />} />

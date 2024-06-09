@@ -1,1 +1,1 @@
-export * from "./HeaderNavigation/HeaderNavigation.tsx"
+export * from "./HeaderNavigation.tsx"
