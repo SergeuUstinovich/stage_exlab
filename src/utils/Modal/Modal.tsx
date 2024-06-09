@@ -1,23 +1,70 @@
-import { ReactNode } from 'react'
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import style from './Modal.module.scss'
+import Portal from '../Portal/Portal';
 
 interface ModalProps {
     children?: ReactNode;
+    isOpen?: boolean;
+    onClose?: () => void;
 }
 
 function Modal(props:ModalProps) {
+
     const {
-        children
+        children,
+        isOpen,
+        onClose
     } = props
+
+    const [isClosing, setIsClosing] = useState(false)
+
+    const timeRef = useRef<ReturnType<typeof setTimeout>>();
+
+    const closeHandler = useCallback(() => {
+        if(onClose) {
+            setIsClosing(true)
+            timeRef.current = setTimeout(()=> {
+                setIsClosing(false)
+                onClose()
+            }, 300)
+        }
+    }, [onClose])
+
+    const onKeyDown = useCallback((e: KeyboardEvent) => {
+        if(e.key === 'Escape') {
+            closeHandler()
+        }
+    },[closeHandler])
+
+    const onContentClick = (e:React.MouseEvent) => {
+        e.stopPropagation();
+    }
+
+    useEffect(() => {
+        if(isOpen) {
+            window.addEventListener('keydown', onKeyDown)
+        }
+
+        return () => {
+            clearTimeout(timeRef.current);
+            window.removeEventListener('keydown', onKeyDown)
+        }
+    }, [isOpen, onKeyDown])
+    
+    const modalClassName = isOpen
+        ? `${style.modal} ${style.open}${isClosing ? ` ${style.close}` : ''}`
+        : style.modal;
+
     return (
-        <div className={style.modal}>
-            <div className={style.overlay}>
-                <div className={style.content}>
+        <Portal>
+        <div className={modalClassName}>
+            <div className={style.overlay} onClick={closeHandler} >
+                <div className={style.content} onClick={onContentClick} >
                     {children}
                 </div>
             </div>
         </div>
-        
+        </Portal>   
     )
 }
 

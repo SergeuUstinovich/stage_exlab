@@ -4,7 +4,9 @@
     bottom: 0;
     right: 0;
     left: 0;
-    z-index: var(--modal-z-index);
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
 }
 
 .overlay {
@@ -19,5 +21,24 @@
 .content {
     padding: 20px;
     border-radius: 12px;
-    background: var(--background);
+    background: var(--white);
+    transition: 0.3s transform;
+    transform: scale(0.5);
+    max-width: 60%;
+}
+
+.open {
+    pointer-events: auto;
+    opacity: 1;
+    z-index: var(--modal-z-index);
+
+    .content {
+        transform: scale(1);
+    }
+}
+
+.close {
+    .content {
+        transform: scale(0.5);
+    }
 }

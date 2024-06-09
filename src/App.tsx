@@ -1,5 +1,5 @@
 import './App.scss'
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useState } from 'react'
 import HeaderNavigation from './pages/HeaderNavigation/HeaderNavigation'
 import { LoaderPage } from './utils/Loader/LoaderPage'
 import { Route, Routes } from 'react-router-dom'
@@ -11,6 +11,8 @@ const AboutPage = lazy(()=> import('./components/AboutPage/AboutPage'))
 
 function App() {
 
+  
+
   return (
     <>
       <header>
@@ -20,7 +22,6 @@ function App() {
       </header>
       <main>
         <div className='container'>
-        {/* <Modal /> */}
         <Suspense fallback={<LoaderPage />}>
         <Routes>
             <Route path={'/'} element={<MainPage />} />
