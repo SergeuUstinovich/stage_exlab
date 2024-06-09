@@ -2,7 +2,8 @@ import "./mainPage.scss";
 
 function MainPage() {
     return (
-			<div className="header__container flex">
+			<div className="header__container">
+				Технические работы, уходите...
 				{/* <button className="btn-profile btn-reset" aria-label="Профиль">
 					<svg
 						width="24"
