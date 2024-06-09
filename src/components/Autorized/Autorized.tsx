@@ -6,7 +6,7 @@ function Autorized() {
     return(
         <div>
             <Button className={style.avatar}>
-                <AvatarNoName />
+                <AvatarNoName className={style.icon} />
                 <p>Войти</p>
             </Button>
         </div>
