@@ -5,10 +5,15 @@
 
 .list {
     display: flex;
+    gap: 50px;
+    padding-left: 200px;
 }
 
 .item {
-
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--dark-grey);
 }
 
 .link {
