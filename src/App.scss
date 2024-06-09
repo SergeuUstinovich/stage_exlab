@@ -1,4 +1,8 @@
-#root {
+header {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.container {
   max-width: 1330px;
   padding: 0 15px;
   margin: 0 auto;

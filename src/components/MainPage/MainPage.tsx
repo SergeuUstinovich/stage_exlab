@@ -3,33 +3,7 @@ import "./mainPage.scss";
 function MainPage() {
     return (
 			<div className="header__container flex">
-				<a className="header__logo" href="#" target="blank">
-					<img
-						src="../src/assets/img/Logo.png"
-						alt="Allin"
-						aria-label="Логотип сайта"
-					/>
-				</a>
-				<nav className="nav header__nav flex" title="Главное меню">
-					<ul className="nav__list list-reset flex">
-						<li className="nav__item">
-							<a href="#" className="nav__link">
-								Минск
-							</a>
-						</li>
-						<li className="nav__item">
-							<a href="#" className="nav__link">
-								Брест
-							</a>
-						</li>
-						<li className="nav__item">
-							<a href="#" className="nav__link">
-								+375 (29) 888 88&nbsp;88
-							</a>
-						</li>
-					</ul>
-				</nav>
-				<button className="btn-profile btn-reset" aria-label="Профиль">
+				{/* <button className="btn-profile btn-reset" aria-label="Профиль">
 					<svg
 						width="24"
 						height="24"
@@ -51,7 +25,7 @@ function MainPage() {
 							</clipPath>
 						</defs>
 					</svg>
-				</button>
+				</button> */}
 			</div>
 	);
 }

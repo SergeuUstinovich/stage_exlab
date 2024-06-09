@@ -22,7 +22,7 @@ export const Button: FC<IButtonProps> = ({
     <button
       disabled={isDisabled}
       type={type}
-      className="button"
+      className="btn"
       data-kind={kind}
       {...props}
     >

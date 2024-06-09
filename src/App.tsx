@@ -1,8 +1,7 @@
-import { Link, Route } from 'react-router-dom'
 import './App.scss'
-import { Routes } from 'react-router-dom'
-import { Suspense, lazy } from 'react'
-import { LoaderPage } from './components/Loader/LoaderPage'
+import { lazy } from 'react'
+import HeaderNavigation from './pages/HeaderNavigation/HeaderNavigation'
+
 
 const MainPageAsync = lazy(()=> import('./components/MainPage/MainPage'))
 const AboutPageAsync = lazy(()=> import('./components/AboutPage/AboutPage'))
@@ -12,17 +11,15 @@ function App() {
   return (
     <>
       <header>
-        {/* <nav>
-          <Link to={'/'}>
-            Главная
-          </Link>
-          <Link to={'/about'}>
-            Вторая страница
-          </Link>
-        </nav> */}
+        <div className='container'>
+          <HeaderNavigation />
+        </div>
       </header>
       <main>
-      <MainPageAsync />
+        <div className='container'>
+        <MainPageAsync />
+        </div>
+      
       {/*<Suspense fallback={<Loader />}>
         <Routes>
             <Route path={'/'} element={<MainPageAsync />} />
@@ -30,7 +27,11 @@ function App() {
           </Routes>
       </Suspense> */}
       </main>
-      <footer></footer>
+      <footer>
+        <div className='container'>
+
+        </div>
+      </footer>
     </>
   )
 }
