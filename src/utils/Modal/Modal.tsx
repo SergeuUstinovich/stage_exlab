@@ -6,6 +6,7 @@ interface ModalProps {
     children?: ReactNode;
     isOpen?: boolean;
     onClose?: () => void;
+    lazy?: boolean
 }
 
 function Modal(props:ModalProps) {
@@ -13,10 +14,18 @@ function Modal(props:ModalProps) {
     const {
         children,
         isOpen,
-        onClose
+        onClose,
+        lazy
     } = props
 
     const [isClosing, setIsClosing] = useState(false)
+    const [isMouned, setIsMouned] = useState(false)
+    //для первого монтирования если передал lazy
+    useEffect(() => {
+        if(isOpen) {
+            setIsMouned(true)
+        }
+    }, [isOpen])
 
     const timeRef = useRef<ReturnType<typeof setTimeout>>();
 
@@ -50,6 +59,12 @@ function Modal(props:ModalProps) {
             window.removeEventListener('keydown', onKeyDown)
         }
     }, [isOpen, onKeyDown])
+
+    //для первого монтирования
+
+    if(lazy && !isMouned) {
+        return null
+    }
     
     const modalClassName = isOpen
         ? `${style.modal} ${style.open}${isClosing ? ` ${style.close}` : ''}`
