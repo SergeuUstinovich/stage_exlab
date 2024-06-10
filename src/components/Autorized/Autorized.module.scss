@@ -14,3 +14,15 @@
   background: var(--light-grey);
   transition: background-color 0.3s ease-in-out;
 }
+
+.icon:hover path{
+	fill: var(--black);
+	transition: background-color 0.3s ease-in-out;
+  }
+
+  @media (max-width: 1024px) {
+
+	.container {
+	  max-width: 970px;
+	}
+  }
