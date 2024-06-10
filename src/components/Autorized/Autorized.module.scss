@@ -7,6 +7,18 @@
   display: block;
   padding: 5px;
   transition: color 0.3s ease-in-out;
+
+  &:hover {
+    .descr {
+      color: var(--black);
+      transition: color 0.3s ease-in-out;
+    }
+
+    .icon path {
+      fill: var(--black);
+      transition: fill 0.3s ease-in-out;
+    }
+  }
 }
 
 .descr {
@@ -14,19 +26,9 @@
   transition: color 0.3s ease-in-out;
 
   &:hover {
-	color: var(--black);
-	transition: color 0.3s ease-in-out;
+    color: var(--black);
+    transition: color 0.3s ease-in-out;
   }
-}
-
-.avatar:hover .icon path {
-  fill: var(--black);
-  transition: fill 0.3s ease-in-out;
-}
-
-.avatar:hover .descr {
-  color: var(--black);
-  transition: color 0.3s ease-in-out;
 }
 
 .icon:hover path {
@@ -34,8 +36,4 @@
   transition: fill 0.3s ease-in-out;
 }
 
-@media (max-width: 1024px) {
-  .container {
-    max-width: 970px;
-  }
-}
+

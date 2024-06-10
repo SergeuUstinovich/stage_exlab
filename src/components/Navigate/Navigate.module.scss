@@ -5,7 +5,7 @@
 .list {
     display: flex;
     gap: 53px;
-    padding-left: 325px;
+    padding-left: 170px;
 }
 
 .item {
@@ -16,6 +16,10 @@
 
 .btn {
     fill: var(--dark-grey);
+}
+
+@media  (max-width: 1024px) {
+    padding-left: 36px;
 }
 
 
