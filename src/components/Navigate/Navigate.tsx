@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import style from './Navigate.module.scss'
 import { useMediaQuery } from "react-responsive"
-import { Navig } from "../../pages/HeaderNavigation";
+import { Navig } from "../../pages/Navbar";
 import PhoneSvg from "../../assets/svg/PhoneSvg/PhoneSvg";
 import { Button } from "../../utils/Button";
 import BurgerMenu from "../../assets/svg/BurgerMenu/BurgerMenu";

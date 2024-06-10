@@ -12,7 +12,7 @@ function Autorized() {
 
     const onToggleModal = useCallback(()=> {
         setIsOpenModal((prev) => !prev)
-    }, [isOpenModal])
+    }, [])
 
     return(
         <div className={style.autoriz}>
@@ -27,7 +27,7 @@ function Autorized() {
                     <p className={style.descr}>Войти</p>
                 }
             </Button>
-            <Modal isOpen={isOpenModal} onClose={onToggleModal}>
+            <Modal isOpen={isOpenModal} onClose={onToggleModal} lazy>
                 Привет, тут скоро будет Вход/Регистрация, а сейчас до свидания!
             </Modal>
         </div>
