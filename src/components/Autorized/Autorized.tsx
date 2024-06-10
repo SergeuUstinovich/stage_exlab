@@ -8,6 +8,8 @@ function Autorized() {
 
     const [isOpenModal, setIsOpenModal] = useState(false)
 
+    const auth = true
+
     const onToggleModal = useCallback(()=> {
         setIsOpenModal((prev) => !prev)
     }, [isOpenModal])
@@ -15,11 +17,15 @@ function Autorized() {
     return(
         <div className={style.autoriz}>
             <div>
-                QWERTYUIOPASD
+            {!auth && 
+                <div>QWERTYUIOPASD</div>
+            }
             </div>
             <Button className={style.avatar} onClick={onToggleModal}>
                 <AvatarNoName className={style.icon} />
-                <p className={style.descr}>Войти</p>
+                {auth && 
+                    <p className={style.descr}>Войти</p>
+                }
             </Button>
             <Modal isOpen={isOpenModal} onClose={onToggleModal}>
                 Привет, тут скоро будет Вход/Регистрация, а сейчас до свидания!

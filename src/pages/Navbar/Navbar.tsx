@@ -1,7 +1,7 @@
 import Autorized from "../../components/Autorized/Autorized"
 import Logo from "../../components/Logo/Logo"
 import Navigate from "../../components/Navigate/Navigate"
-import style from './HeaderNavigation.module.scss'
+import style from './Navbar.module.scss'
 
 export interface Navig {
   name: string
@@ -23,7 +23,7 @@ const navigate:Navig[] = [
   },
 ]
 
-function HeaderNavigation() {
+function Navbar() {
     return (
         <div className={style.head}>
           <Logo />
@@ -33,4 +33,4 @@ function HeaderNavigation() {
     )
 }
 
-export default HeaderNavigation;
+export default Navbar;
