@@ -7,8 +7,7 @@
   display: flex;
   gap: 53px;
   position: absolute;
-  top: 2%;
-  padding-top: 3px;
+  top: 38%;
 }
 
 .item {
@@ -37,3 +36,9 @@
   }
 }
 
+@media (max-width: 768px) {
+
+  .nav {
+    right: 6%;
+  }
+}
