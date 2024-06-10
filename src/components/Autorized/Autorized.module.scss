@@ -1,21 +1,23 @@
 .autoriz {
-	display: flex;
-	align-items: center;
-}
+  display: flex;
+  align-items: center;
 
-.avatar {
-  display: block;
-	padding: 10px;
-}
+  .avatar {
+    display: block;
+    padding: 10px;
 
-.descr {
-	color: var(--dark-grey);;
-}
+    &:hover {
+      .icon path {
+        fill: var(--black);
+      }
 
-.avatar:hover .icon path {
-	fill: var(--black);
-}
+      .descr {
+        color: var(--black);
+      }
+    }
+  }
 
-.avatar:hover .descr {
-	color: var(--black);
+  .descr {
+    color: var(--dark-grey);
+  }
 }
