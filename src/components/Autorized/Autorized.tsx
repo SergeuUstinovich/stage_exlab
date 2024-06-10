@@ -16,7 +16,7 @@ function Autorized() {
 
     return(
         <div className={style.autoriz}>
-            <div>
+            <div className={style.wiget}>
             {!auth && 
                 <div className={style.username}>QWERTYUIOPASD</div>
             }
