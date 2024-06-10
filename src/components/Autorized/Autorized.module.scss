@@ -1,14 +1,21 @@
+.autoriz {
+	display: flex;
+	align-items: center;
+}
+
 .avatar {
   display: block;
 	padding: 10px;
 }
 
-.icon path {
-  fill: var(--dark-grey);
+.descr {
+	color: var(--dark-grey);;
 }
 
-.icon:hover {
-  border-radius: 60px;
-  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.06);
-  background: var(--light-grey);
+.avatar:hover .icon path {
+	fill: var(--black);
+}
+
+.avatar:hover .descr {
+	color: var(--black);
 }
