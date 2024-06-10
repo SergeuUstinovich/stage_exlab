@@ -8,7 +8,7 @@ function Autorized() {
 
     const [isOpenModal, setIsOpenModal] = useState(false)
 
-    const auth = false
+    const auth = true
 
     const onToggleModal = useCallback(()=> {
         setIsOpenModal((prev) => !prev)
