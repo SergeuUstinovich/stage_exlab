@@ -23,7 +23,7 @@ const navigate:Navig[] = [
   },
 ]
 
-function HeaderNavigation() {
+function Navbar() {
     return (
         <div className={style.head}>
           <Logo />
@@ -33,4 +33,4 @@ function HeaderNavigation() {
     )
 }
 
-export default HeaderNavigation;
+export default Navbar;

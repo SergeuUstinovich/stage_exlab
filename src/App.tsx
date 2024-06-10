@@ -1,8 +1,8 @@
 import './App.scss'
 import { Suspense, lazy } from 'react'
-import HeaderNavigation from './pages/HeaderNavigation/HeaderNavigation'
 import { LoaderPage } from './utils/Loader/LoaderPage'
 import { Route, Routes } from 'react-router-dom'
+import Navbar from './pages/Navbar/Navbar'
 
 
 const MainPage = lazy(()=> import('./components/MainPage/MainPage'))
@@ -16,7 +16,7 @@ function App() {
     <>
       <header>
         <div className='container'>
-          <HeaderNavigation />
+          <Navbar />
         </div>
       </header>
       <main>
