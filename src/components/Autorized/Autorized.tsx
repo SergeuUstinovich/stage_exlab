@@ -13,10 +13,13 @@ function Autorized() {
     }, [isOpenModal])
 
     return(
-        <div>
+        <div className={style.autoriz}>
+            <div>
+                QWERTYUIOPASD
+            </div>
             <Button className={style.avatar} onClick={onToggleModal}>
                 <AvatarNoName className={style.icon} />
-                <p>Войти</p>
+                <p className={style.descr}>Войти</p>
             </Button>
             <Modal isOpen={isOpenModal} onClose={onToggleModal}>
                 Привет, тут скоро будет Вход/Регистрация, а сейчас до свидания!
