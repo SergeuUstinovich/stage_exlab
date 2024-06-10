@@ -8,7 +8,7 @@ function Autorized() {
 
     const [isOpenModal, setIsOpenModal] = useState(false)
 
-    const auth = true
+    const auth = false
 
     const onToggleModal = useCallback(()=> {
         setIsOpenModal((prev) => !prev)
@@ -18,7 +18,7 @@ function Autorized() {
         <div className={style.autoriz}>
             <div>
             {!auth && 
-                <div>QWERTYUIOPASD</div>
+                <div className={style.username}>QWERTYUIOPASD</div>
             }
             </div>
             <Button className={style.avatar} onClick={onToggleModal}>

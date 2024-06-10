@@ -1,28 +1,34 @@
 .nav {
-    align-items: center;
+  align-items: center;
 }
 
 .list {
-    display: flex;
-    gap: 53px;
-    padding-left: 170px;
+  display: flex;
+  gap: 53px;
+  padding-left: 295px;
 }
 
 .item {
-    font-weight: 400;
-    font-size: 14px;
-    color: var(--dark-grey);
+  font-size: 14px;
+  color: var(--dark-grey);
 }
 
 .btn {
-    fill: var(--dark-grey);
+  fill: var(--dark-grey);
 }
 
-@media  (max-width: 1024px) {
-    padding-left: 36px;
+@media (max-width: 1200px) {
+  .list {
+    padding-left: 150px;
+  }
 }
 
+@media (max-width: 768px) {
+  .nav {
+    padding-left: 290px;
 
-
-
-  
+    svg:not(:last-child) {
+      margin-right: 24px;
+    }
+  }
+}

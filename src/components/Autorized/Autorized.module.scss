@@ -1,10 +1,17 @@
 .autoriz {
   display: flex;
   align-items: center;
+
+  .username {
+    font-size: 14px;
+    color: var(--dark-grey);
+  }
 }
+
 
 .avatar {
   display: block;
+  margin: 0 4px;
   padding: 5px;
   transition: color 0.3s ease-in-out;
 
@@ -34,6 +41,13 @@
 .icon:hover path {
   fill: var(--black);
   transition: fill 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+
+  .username {
+    display: none;
+  }
 }
 
 
