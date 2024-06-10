@@ -15,3 +15,11 @@ header {
   }
 }
 
+@media (max-width: 576px) {
+  .container {
+    max-width: 566px;
+    padding: 8px;
+  }
+
+  
+}

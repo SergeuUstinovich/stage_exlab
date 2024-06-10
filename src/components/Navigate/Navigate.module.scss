@@ -1,11 +1,14 @@
 .nav {
-  align-items: center;
+  position: inherit;
+  margin-right: 30px;
 }
 
 .list {
   display: flex;
   gap: 53px;
-  padding-left: 295px;
+  position: absolute;
+  top: 2%;
+  padding-top: 3px;
 }
 
 .item {
@@ -19,16 +22,18 @@
 
 @media (max-width: 1200px) {
   .list {
-    padding-left: 150px;
+    right: 21%;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 933px) {
+  .nav svg:not(:last-child) {
+    margin-right: 24px;
+  }
+
   .nav {
-    padding-left: 290px;
-
-    svg:not(:last-child) {
-      margin-right: 24px;
-    }
+    position: absolute;
+    right: 6%;
   }
 }
+

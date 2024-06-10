@@ -11,7 +11,7 @@ function Logo() {
         
         <Link className={style.link} to={'/'}>
             {isMobile ? (
-                <LogoSvg />
+                <LogoSvg className={style.logo_576} />
             ) : (
             <img
                 className={style.logo}
