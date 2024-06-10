@@ -1,13 +1,13 @@
-    .visually-hidden {
-    position: absolute;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-  }
-  // header
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+// header
 
-  .header__container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.header__container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

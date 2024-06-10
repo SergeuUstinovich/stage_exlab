@@ -9,7 +9,6 @@
 
 }
 
-
 .avatar {
   display: block;
   margin: 0 4px;
@@ -44,11 +43,9 @@
   transition: fill 0.3s ease-in-out;
 }
 
-@media (max-width: 768px) {
-
+@media (max-width: 933px) {
   .username {
     display: none;
   }
 }
-
 
