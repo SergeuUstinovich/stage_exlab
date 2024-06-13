@@ -1,12 +1,14 @@
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import style from './Modal.module.scss'
 import Portal from '../Portal/Portal';
+import CloseModalSvg from '../../assets/svg/CloseModalSvg/CloseModalSvg';
 
 interface ModalProps {
     children?: ReactNode;
     isOpen?: boolean;
     onClose?: () => void;
-    lazy?: boolean
+    lazy?: boolean;
+    hiddenClose?: boolean;
 }
 
 function Modal(props:ModalProps) {
@@ -15,7 +17,8 @@ function Modal(props:ModalProps) {
         children,
         isOpen,
         onClose,
-        lazy
+        lazy,
+        hiddenClose = false
     } = props
 
     const [isClosing, setIsClosing] = useState(false)
@@ -75,6 +78,11 @@ function Modal(props:ModalProps) {
         <div className={modalClassName}>
             <div className={style.overlay} onClick={closeHandler} >
                 <div className={style.content} onClick={onContentClick} >
+                    {hiddenClose && (
+                    <div className={style.closeCross} >
+                        <CloseModalSvg onCloses={closeHandler} />
+                    </div>
+                    )}
                     {children}
                 </div>
             </div>

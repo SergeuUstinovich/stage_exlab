@@ -19,12 +19,17 @@
 }
 
 .content {
-    padding: 20px;
+    padding: 10px;
     border-radius: 12px;
     background: var(--white);
     transition: 0.3s transform;
     transform: scale(0.5);
     max-width: 60%;
+}
+
+.closeCross {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .open {

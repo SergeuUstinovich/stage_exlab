@@ -15,6 +15,10 @@
   padding: 5px;
   transition: color 0.3s ease-in-out;
 
+  .descr {
+    color: var(--dark-grey);
+  }
+
   &:hover {
     .descr {
       color: var(--black);
