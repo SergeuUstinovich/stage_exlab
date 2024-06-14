@@ -5,26 +5,33 @@
   gap: 8px;
   width: 100%;
 
+  &:not(:last-child) {
+    margin-bottom: 32px;
+  }
+
+  &:last-child {
+    margin-bottom: 48px;
+  }
+
   &__label {
     font-size: 14px;
     font-weight: 500;
-    color: var(--text-secondary);
+    color: var(--dark-grey);
   }
 
   &__error {
     color: var(--error);
     font-size: 12px;
   }
-
 }
 
 .field > input,
 .field > textarea {
   border-radius: 8px;
-  font-size: 16px;
-  color: var(--text-primary);
-  border: 1px solid var(--border);
-  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--dark-grey);
+  border: 1px solid var(--grey);
+  padding: 11px 24px;
 
   &:focus {
     outline: none;

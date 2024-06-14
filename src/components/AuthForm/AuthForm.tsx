@@ -15,7 +15,7 @@ function AuthForm() {
         <div className={style.auth}>
             <SwitchAutoriz>
                 <SwitchAutorizOption 
-                    title='Войти' 
+                    title='Вход' 
                     isActive={authType === 'login'}
                     onClick={() => setAuthType('login')}
                     className={style.login}
