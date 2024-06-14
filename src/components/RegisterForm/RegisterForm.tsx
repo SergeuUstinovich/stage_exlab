@@ -66,6 +66,14 @@ function RegisterForm() {
                     {...register("confirmPassword")}
                 />
             </FormField>
+
+            {/* <div className={style.perdache}>
+                <label className={style.customcheck}>
+                    <input type="checkbox" className={style.customcheckinput, style.visuallyhidden} />
+                    <span className={style.customchecktext}>Даю согласие на обработку персональных данных</span>
+                </label>
+            </div> */}
+
             <div>
                 <input type="checkbox" />
                 <p>Даю согласие на обработку персональных данных</p>

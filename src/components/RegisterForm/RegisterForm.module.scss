@@ -1,0 +1,49 @@
+
+// // Стили для кастомного чекбокса
+// .customcheck {
+//     user-select: none;
+//     cursor: pointer;
+// }
+
+// .customchecktext {
+//     position: relative;
+//     padding-left: 20px;
+
+//     // коробка
+//     &::before {
+//         content: "";
+//         position: absolute;
+//         left: 0;
+//         top: 50%;
+//         transform: translateY(-50%);
+//         width: 18px;
+//         height: 18px;
+//         border: 1px solid var(--black);
+//     }
+
+//     // галочка
+//     &::after {
+//         content: "";
+//         position: absolute;
+//         left: 0;
+//         top: 0;
+//         width: 18px;
+//         height: 18px;
+//         background-image: url("https://cdn-icons-png.flaticon.com/512/32/32282.png");
+//         background-position: center;
+//         background-size: 70%;
+//         background-repeat: no-repeat;
+//         opacity: 0;
+//         transition: opacity 0.3s;
+//     }
+// }
+
+// .customcheckinput:checked + .customchecktext::after {
+//     opacity: 1;
+// }
+
+// .customcheckinput:focus + .customchecktext {
+//     outline: 1px solid var(--error);
+//     outline-offset: 2px;
+// }
+
