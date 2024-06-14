@@ -2,6 +2,7 @@ import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import style from './Modal.module.scss'
 import Portal from '../Portal/Portal';
 import CloseModalSvg from '../../assets/svg/CloseModalSvg/CloseModalSvg';
+import { useNavigate } from 'react-router-dom';
 
 interface ModalProps {
     children?: ReactNode;
@@ -23,6 +24,7 @@ function Modal(props:ModalProps) {
 
     const [isClosing, setIsClosing] = useState(false)
     const [isMouned, setIsMouned] = useState(false)
+    const navigate = useNavigate()
     //для первого монтирования если передал lazy
     useEffect(() => {
         if(isOpen) {
@@ -38,6 +40,7 @@ function Modal(props:ModalProps) {
             timeRef.current = setTimeout(()=> {
                 setIsClosing(false)
                 onClose()
+                navigate('/')
             }, 300)
         }
     }, [onClose])
