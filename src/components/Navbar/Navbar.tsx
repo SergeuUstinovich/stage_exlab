@@ -1,6 +1,6 @@
-import Autorized from "../../components/Autorized/Autorized"
-import Logo from "../../components/Logo/Logo"
-import Navigate from "../../components/Navigate/Navigate"
+import Autorized from "../Autorized/Autorized"
+import Logo from "../Logo/Logo"
+import Navigate from "../Navigate/Navigate"
 import style from './Navbar.module.scss'
 
 export interface Navig {

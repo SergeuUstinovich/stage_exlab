@@ -3,7 +3,7 @@ import { Suspense, lazy } from 'react'
 import { LoaderPage } from './utils/Loader/LoaderPage'
 import { Route, Routes } from 'react-router-dom'
 
-const Layout = lazy(()=> import('./components/Layout/Layout'))
+const Layout = lazy(()=> import('./pages/Layout/Layout'))
 const MainPage = lazy(()=> import('./components/MainPage/MainPage'))
 const AboutPage = lazy(()=> import('./components/AboutPage/AboutPage'))
 
