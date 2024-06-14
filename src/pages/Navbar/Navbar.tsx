@@ -25,11 +25,15 @@ const navigate:Navig[] = [
 
 function Navbar() {
     return (
-        <div className={style.head}>
-          <Logo />
-          <Navigate navigate={navigate}/>
-          <Autorized />
+      <header>
+        <div className={`container ${style.container_head}`}>
+          <div className={style.head}>
+            <Logo />
+            <Navigate navigate={navigate}/>
+            <Autorized />
+          </div>
         </div>
+      </header>
     )
 }
 

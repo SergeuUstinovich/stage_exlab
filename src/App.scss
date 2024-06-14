@@ -1,13 +1,8 @@
-header {
-  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.06);
-}
-
-.container {
-  max-width: 1330px;
-  padding: 0 15px;
-  margin: 0 auto;
-  width: 100%;
-  position: relative;
+.loader__page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 @media (max-width: 1024px) {

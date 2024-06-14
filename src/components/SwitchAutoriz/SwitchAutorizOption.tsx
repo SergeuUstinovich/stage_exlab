@@ -5,13 +5,14 @@ interface SwitchAutorizOptionProps {
     isActive: boolean;
     title: string;
     onClick: MouseEventHandler<HTMLButtonElement>;
+    className?: string;
 }
 
-function SwitchAutorizOption({isActive, title, onClick}:SwitchAutorizOptionProps) {
+function SwitchAutorizOption({isActive, title, onClick, className}:SwitchAutorizOptionProps) {
     return (
         <button
             data-active={isActive}
-            className={style.switch_option}
+            className={`${style.switch_option} ${className}`}
             onClick={onClick}
         >
             {title}
