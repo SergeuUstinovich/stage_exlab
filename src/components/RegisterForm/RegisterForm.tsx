@@ -4,12 +4,14 @@ import { FormField } from '../../utils/FormField'
 import style from './RegisterForm.module.scss'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import ShowPassword from '../../assets/svg/ShowPassword/ShowPassword'
+import Modal from '../../utils/Modal/Modal'
+import SuccesRegist from '../SuccesRegist/SuccesRegist'
 
 const CreateRegistrationSchema = z.object({
     username: z.string()
-        .min(2, "Введите более 2 символов для имени пользователя")
+        .min(1, "Минимальное количество символов 1")
         .max(25, "Превышена максимальная длина имени пользователя")
         .regex(/^[a-zA-Zа-яА-Я0-9\s.,]+$/, "Имя может содержать только буквы, цифры, пробелы, точки и запятые")
         .refine((value) => value.trim().length > 0 && !value.startsWith(" "), "Поле не должно быть пустым"),
@@ -38,68 +40,85 @@ type CreateRegistrationForm = z.infer<typeof CreateRegistrationSchema>
 function RegisterForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [isOpenModal, setIsOpenModal] = useState(false)
+    const [emailValue, setEmailValue] = useState("");
+
     const { register, handleSubmit, formState: {errors}, reset } = useForm<CreateRegistrationForm>({
         resolver: zodResolver(CreateRegistrationSchema)
       })
 
-    const handleTogglePassword = () => {
-        setShowPassword(!showPassword);
-    };
 
-    const handleToggleConfirmPassword = () => {
+    const handleTogglePassword = useCallback(() => {
+        setShowPassword(!showPassword);
+    }, [showPassword]);
+
+    const handleToggleConfirmPassword = useCallback(() => {
         setShowConfirmPassword(!showConfirmPassword);
+    },[showConfirmPassword]);
+
+    const onCloseModal = () => {
+        setIsOpenModal(false);
     };
 
     return (
-        <form className={style.form} onSubmit={handleSubmit(({}) => {
-            reset()
-        })}>
-            <FormField label='Имя' errorMessage={errors.username?.message}>
-                <input
-                    type="text"
-                    {...register("username")}
-                    className={errors.username ? style.error : ""}
-                />
-            </FormField>
-            <FormField label='Электронная почта' errorMessage={errors.email?.message}>
-                <input 
-                    type="text"
-                    {...register("email")}
-                    className={errors.email ? style.error : ""}
-                />
-            </FormField>
-            <FormField label='Пароль' errorMessage={errors.password?.message}>
-                <input 
-                    type={showPassword ? "text" : "password"}
-                    {...register("password")}
-                    className={errors.password ? style.error : ""}
-                />
-                <div onClick={handleTogglePassword}>
-                    <ShowPassword />
-                </div>
-            </FormField>
-            <FormField label='Повторите пароль' errorMessage={errors.confirmPassword?.message}>
-                <input 
-                    type={showConfirmPassword ? "text" : "password"}
-                    {...register("confirmPassword")}
-                    className={errors.confirmPassword ? style.error : ""}
-                />
-                <div onClick={handleToggleConfirmPassword}>
-                    <ShowPassword />
-                </div>
-            </FormField>
-            <FormField label='' errorMessage={errors.consent?.message}>
-                <div className={style.customcheck}>
-                    <input 
-                        type="checkbox" 
-                        className={`${style.customcheckinput} ${style.visuallyhidden}`} 
-                        {...register("consent")}
+        <div>
+            <form className={style.form} onSubmit={handleSubmit((data) => {
+                setEmailValue(data.email)
+                setIsOpenModal(true);
+                reset()
+            })}>
+                <FormField label='Имя*' errorMessage={errors.username?.message}>
+                    <input
+                        type="text"
+                        {...register("username")}
+                        className={errors.username ? style.error : ""}
                     />
-                    <span className={style.customchecktext}>Даю согласие на обработку персональных данных</span>
-                </div>
-            </FormField>
-            <Button type='submit' title='Зарегистрироваться'>Зарегистироваться</Button>
-        </form>
+                </FormField>
+                <FormField label='Электронная почта*' errorMessage={errors.email?.message}>
+                    <input 
+                        type="text"
+                        {...register("email")}
+                        className={errors.email ? style.error : ""}
+                    />
+                </FormField>
+                <FormField label='Пароль*' errorMessage={errors.password?.message}>
+                    <input 
+                        type={showPassword ? "text" : "password"}
+                        {...register("password")}
+                        className={errors.password ? style.error : ""}
+                    />
+                    <div className={style.showpassword} onClick={handleTogglePassword}>
+                        <ShowPassword />
+                    </div>
+                </FormField>
+                <FormField label='Повторите пароль*' errorMessage={errors.confirmPassword?.message}>
+                    <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        {...register("confirmPassword")}
+                        className={errors.confirmPassword ? style.error : ""}
+                    />
+                    <div className={style.showpassword} onClick={handleToggleConfirmPassword}>
+                        <ShowPassword />
+                    </div>
+                </FormField>
+                <FormField label='' errorMessage={errors.consent?.message}>
+                    <div className={style.customcheck}>
+                        <input 
+                            type="checkbox" 
+                            className={`${style.customcheckinput} ${style.visuallyhidden}`} 
+                            {...register("consent")}
+                        />
+                        <span className={style.customchecktext}>Даю согласие на обработку персональных данных</span>
+                    </div>
+                </FormField>
+                <Button type='submit' title='Зарегистрироваться'>Зарегистироваться</Button>
+            </form>
+            {isOpenModal && (
+                <Modal isOpen={isOpenModal} onClose={onCloseModal} hiddenClose>
+                    <SuccesRegist email={emailValue} />
+                </Modal>
+            )}
+        </div>
     )
 }
 

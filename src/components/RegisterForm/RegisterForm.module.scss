@@ -1,6 +1,13 @@
 input.error {
     border: 1px solid var(--error);
 }
+
+
+.showpassword {
+    position: absolute;
+    right: 20px;
+    bottom: 31px;
+}
 // Стили для кастомного чекбокса
 .customcheck {
     user-select: none;
@@ -44,9 +51,4 @@ input.error {
 .customcheckinput:checked + .customchecktext::after {
     opacity: 1;
 }
-
-// .customcheckinput:focus + .customchecktext {
-//     outline: 1px solid var(--error);
-//     outline-offset: 2px;
-// }
 

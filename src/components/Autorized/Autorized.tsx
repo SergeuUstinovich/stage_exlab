@@ -3,6 +3,7 @@ import AvatarNoName from "../../assets/svg/AvatarNoName/AvatarNoName"
 import style from './Autorized.module.scss'
 import { lazy, useCallback, useState } from "react"
 import Modal from "../../utils/Modal/Modal"
+import AuthModal from "../AuthModal/AuthModal"
 
 
 const AuthForm = lazy(()=> import('../AuthForm/AuthForm'))
@@ -30,9 +31,7 @@ function Autorized() {
                     <p className={style.descr}>Войти</p>
                 }  
             </Button>
-            <Modal isOpen={isOpenModal} onClose={onToggleModal} hiddenClose lazy>
-                <AuthForm />
-            </Modal>
+            <AuthModal isOpen={isOpenModal} onClose={onToggleModal} lazy hiddenClose/>
         </div>
     )
 }
