@@ -19,7 +19,8 @@ const CreateRegistrationSchema = z.object({
         .max(25, "Не более 25 символов")
         .regex(/^[a-zA-Z0-9~!@#$%^&*()[\]{}><\/\\|"'.,:;]+$/, "Пароль может содержать только латинские буквы, цифры и ~!@#$%^&*()[]{}>< и другие символы")
         .refine((value) => !value.startsWith(" "), "Пароль не должен начинаться с пробела"),
-    confirmPassword: z.string()
+    confirmPassword: z.string(),
+    consent: z.boolean().refine((value) => value, "Для регистрации необходимо дать согласие"),
 }).superRefine(({ confirmPassword, password }, ctx) => {
     if (confirmPassword !== password) {
       ctx.addIssue({
@@ -46,38 +47,40 @@ function RegisterForm() {
                 <input
                     type="text"
                     {...register("username")}
+                    className={errors.username ? style.error : ""}
                 />
             </FormField>
             <FormField label='Электронная почта' errorMessage={errors.email?.message}>
                 <input 
                     type="text"
                     {...register("email")}
+                    className={errors.email ? style.error : ""}
                 />
             </FormField>
             <FormField label='Пароль' errorMessage={errors.password?.message}>
                 <input 
                     type="text"
                     {...register("password")}
+                    className={errors.password ? style.error : ""}
                 />
             </FormField>
             <FormField label='Повторите пароль' errorMessage={errors.confirmPassword?.message}>
                 <input 
                     type="text"
                     {...register("confirmPassword")}
+                    className={errors.confirmPassword ? style.error : ""}
                 />
             </FormField>
-
-            {/* <div className={style.perdache}>
-                <label className={style.customcheck}>
-                    <input type="checkbox" className={style.customcheckinput, style.visuallyhidden} />
+            <FormField label='' errorMessage={errors.consent?.message}>
+                <div className={style.customcheck}>
+                    <input 
+                        type="checkbox" 
+                        className={`${style.customcheckinput} ${style.visuallyhidden}`} 
+                        {...register("consent")}
+                    />
                     <span className={style.customchecktext}>Даю согласие на обработку персональных данных</span>
-                </label>
-            </div> */}
-
-            <div>
-                <input type="checkbox" />
-                <p>Даю согласие на обработку персональных данных</p>
-            </div>
+                </div>
+            </FormField>
             <Button type='submit' title='Зарегистрироваться'>Зарегистироваться</Button>
         </form>
     )
