@@ -4,6 +4,8 @@ import { FormField } from '../../utils/FormField'
 import style from './RegisterForm.module.scss'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
+import ShowPassword from '../../assets/svg/ShowPassword/ShowPassword'
 
 const CreateRegistrationSchema = z.object({
     username: z.string()
@@ -34,10 +36,19 @@ const CreateRegistrationSchema = z.object({
 type CreateRegistrationForm = z.infer<typeof CreateRegistrationSchema>
 
 function RegisterForm() {
-
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const { register, handleSubmit, formState: {errors}, reset } = useForm<CreateRegistrationForm>({
         resolver: zodResolver(CreateRegistrationSchema)
       })
+
+    const handleTogglePassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const handleToggleConfirmPassword = () => {
+        setShowConfirmPassword(!showConfirmPassword);
+    };
 
     return (
         <form className={style.form} onSubmit={handleSubmit(({}) => {
@@ -59,17 +70,23 @@ function RegisterForm() {
             </FormField>
             <FormField label='Пароль' errorMessage={errors.password?.message}>
                 <input 
-                    type="text"
+                    type={showPassword ? "text" : "password"}
                     {...register("password")}
                     className={errors.password ? style.error : ""}
                 />
+                <div onClick={handleTogglePassword}>
+                    <ShowPassword />
+                </div>
             </FormField>
             <FormField label='Повторите пароль' errorMessage={errors.confirmPassword?.message}>
                 <input 
-                    type="text"
+                    type={showConfirmPassword ? "text" : "password"}
                     {...register("confirmPassword")}
                     className={errors.confirmPassword ? style.error : ""}
                 />
+                <div onClick={handleToggleConfirmPassword}>
+                    <ShowPassword />
+                </div>
             </FormField>
             <FormField label='' errorMessage={errors.consent?.message}>
                 <div className={style.customcheck}>
