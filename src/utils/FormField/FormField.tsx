@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import style from "./FormField.module.css";
+import style from "./FormField.module.scss";
 
 interface IFormFieldProps {
   label: string;
