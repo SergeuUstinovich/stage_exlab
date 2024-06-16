@@ -58,11 +58,13 @@ function Modal(props:ModalProps) {
     useEffect(() => {
         if(isOpen) {
             window.addEventListener('keydown', onKeyDown)
+            document.body.classList.add(style.bodyOpen)
         }
 
         return () => {
             clearTimeout(timeRef.current);
             window.removeEventListener('keydown', onKeyDown)
+            document.body.classList.remove(style.bodyOpen)
         }
     }, [isOpen, onKeyDown])
 

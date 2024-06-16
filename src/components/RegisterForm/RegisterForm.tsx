@@ -14,7 +14,7 @@ const CreateRegistrationSchema = z
     username: z
       .string()
       .min(1, "Минимальное количество символов 1")
-      .max(25, "Превышена максимальная длина имени пользователя")
+      .max(15, "Превышена максимальная длина имени пользователя")
       .regex(
         /^[a-zA-Zа-яА-Я0-9\s.,]+$/,
         "Имя может содержать только буквы, цифры, пробелы, точки и запятые"
@@ -95,7 +95,9 @@ function RegisterForm() {
       >
         <FormField label="Имя*" errorMessage={errors.username?.message}>
           <input
+            placeholder="Имя"
             type="text"
+            maxLength={16}
             {...register("username")}
             className={errors.username ? style.error : ""}
           />
@@ -105,6 +107,8 @@ function RegisterForm() {
           errorMessage={errors.email?.message}
         >
           <input
+            
+            placeholder="Электронная почта"
             type="text"
             {...register("email")}
             className={errors.email ? style.error : ""}
@@ -113,6 +117,9 @@ function RegisterForm() {
         <FormField label="Пароль*" errorMessage={errors.password?.message}>
           <div className={style.regintput}>
             <input
+              autoComplete="new-password"
+              maxLength={25}
+              placeholder="Пароль"
               type={showPassword ? "text" : "password"}
               {...register("password")}
               className={`${style.input} ${
@@ -130,6 +137,8 @@ function RegisterForm() {
         >
           <div className={style.regintput}>
             <input
+              autoComplete="new-password"
+              maxLength={25}
               placeholder="Пароль"
               type={showConfirmPassword ? "text" : "password"}
               {...register("confirmPassword")}

@@ -1,12 +1,9 @@
 import { Button } from "../../utils/Button"
 import AvatarNoName from "../../assets/svg/AvatarNoName/AvatarNoName"
 import style from './Autorized.module.scss'
-import { lazy, useCallback, useState } from "react"
-import Modal from "../../utils/Modal/Modal"
+import { useCallback, useState } from "react"
 import AuthModal from "../AuthModal/AuthModal"
 
-
-const AuthForm = lazy(()=> import('../AuthForm/AuthForm'))
 
 function Autorized() {
 
