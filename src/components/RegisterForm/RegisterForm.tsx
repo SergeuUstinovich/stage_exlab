@@ -95,6 +95,7 @@ function RegisterForm() {
       >
         <FormField label="Имя*" errorMessage={errors.username?.message}>
           <input
+            autoComplete="username"
             placeholder="Имя"
             type="text"
             maxLength={16}
@@ -107,7 +108,7 @@ function RegisterForm() {
           errorMessage={errors.email?.message}
         >
           <input
-            
+            autoComplete="email"
             placeholder="Электронная почта"
             type="text"
             {...register("email")}
