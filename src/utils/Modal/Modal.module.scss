@@ -6,19 +6,20 @@
     left: 0;
     opacity: 0;
     pointer-events: none;
+    background: var(--overlay-color);
     z-index: -1;
     overflow-y: auto;
-    max-height: 100vh;
 }
 
 .overlay {
     width: 100%;
-    height: 100%;
-    background: var(--overlay-color);
+    // height: 100%;
+    // background: var(--overlay-color);
     display: flex;
     align-items: flex-start;
     justify-content: center;
     padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 .content {
@@ -28,6 +29,8 @@
     transition: 0.3s transform;
     transform: scale(0.5);
     max-width: 60%;
+    // position: relative;
+    // overflow-y: auto;
 }
 
 .closeCross {
