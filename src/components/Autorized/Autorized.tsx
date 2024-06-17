@@ -1,4 +1,4 @@
-import { Button } from "../../utils/Button"
+import { Button } from "../../ui/Button"
 import AvatarNoName from "../../assets/svg/AvatarNoName/AvatarNoName"
 import style from './Autorized.module.scss'
 import { useCallback, useState } from "react"

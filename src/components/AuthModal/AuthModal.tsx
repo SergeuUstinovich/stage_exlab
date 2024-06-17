@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import Modal from "../../utils/Modal/Modal"
+import Modal from "../../ui/Modal/Modal"
 
 interface AuthModalProps {
     isOpen: boolean;

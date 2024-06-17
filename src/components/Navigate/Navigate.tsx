@@ -3,7 +3,7 @@ import style from './Navigate.module.scss'
 import { useMediaQuery } from "react-responsive"
 import { Navig } from "../Navbar";
 import PhoneSvg from "../../assets/svg/PhoneSvg/PhoneSvg";
-import { Button } from "../../utils/Button";
+import { Button } from "../../ui/Button";
 import BurgerMenu from "../../assets/svg/BurgerMenu/BurgerMenu";
 
 interface NavigateProps {

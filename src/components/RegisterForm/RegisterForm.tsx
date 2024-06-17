@@ -1,60 +1,14 @@
-import { z } from "zod";
-import { Button } from "../../utils/Button";
-import { FormField } from "../../utils/FormField";
+import { Button } from "../../ui/Button";
+import { FormField } from "../../ui/FormField";
 import style from "./RegisterForm.module.scss";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback, useState } from "react";
 import ShowPassword from "../../assets/svg/ShowPassword/ShowPassword";
-import Modal from "../../utils/Modal/Modal";
+import Modal from "../../ui/Modal/Modal";
 import SuccesRegist from "../SuccesRegist/SuccesRegist";
+import { CreateRegistrationForm, CreateRegistrationSchema } from "../../types";
 
-const CreateRegistrationSchema = z
-  .object({
-    username: z
-      .string()
-      .min(1, "Минимальное количество символов 1")
-      .max(15, "Превышена максимальная длина имени пользователя")
-      .regex(
-        /^[a-zA-Zа-яА-Я0-9\s.,]+$/,
-        "Имя может содержать только буквы, цифры, пробелы, точки и запятые"
-      )
-      .refine(
-        (value) => value.trim().length > 0 && !value.startsWith(" "),
-        "Поле не должно быть пустым"
-      ),
-    email: z
-      .string()
-      .email("Проверьте правильность ввода электронной почты")
-      .max(320, "Превышена максимальная длина адреса электронной почты"),
-    password: z
-      .string()
-      .min(7, "Введите более 7 символов")
-      .max(25, "Не более 25 символов")
-      .regex(
-        /^[a-zA-Z0-9~!@#$%^&*()[\]{}><\/\\|"'.,:;]+$/,
-        "Пароль может содержать только латинские буквы, цифры и ~!@#$%^&*()[]{}>< и другие символы"
-      )
-      .refine(
-        (value) => !value.startsWith(" "),
-        "Пароль не должен начинаться с пробела"
-      ),
-    confirmPassword: z.string(),
-    consent: z
-      .boolean()
-      .refine((value) => value, "Для регистрации необходимо дать согласие"),
-  })
-  .superRefine(({ confirmPassword, password }, ctx) => {
-    if (confirmPassword !== password) {
-      ctx.addIssue({
-        code: "custom",
-        message: "Пароли не совпадают",
-        path: ["confirmPassword"],
-      });
-    }
-  });
-
-type CreateRegistrationForm = z.infer<typeof CreateRegistrationSchema>;
 
 function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);

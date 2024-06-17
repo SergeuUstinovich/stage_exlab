@@ -1,6 +1,6 @@
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import style from './Modal.module.scss'
-import Portal from '../Portal/Portal';
+import Portal from '../../utils/Portal/Portal';
 import CloseModalSvg from '../../assets/svg/CloseModalSvg/CloseModalSvg';
 import { useNavigate } from 'react-router-dom';
 
