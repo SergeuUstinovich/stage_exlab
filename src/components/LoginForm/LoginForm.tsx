@@ -7,10 +7,21 @@ import { useCallback, useState } from "react";
 import ShowPassword from "../../assets/svg/ShowPassword/ShowPassword";
 import { Button } from "../../ui/Button";
 import GooglePng from '../../assets/img/Google.png'
+import Modal from "../../ui/Modal/Modal";
+import ForgotForm from "../ForgotForm/ForgotForm";
 
 function LoginForm() {
 
   const [showPassword, setShowPassword] = useState(false);
+  const [isOpenForgot, setIsOpenForgot] = useState(false);
+
+  const onOpenModal = useCallback(() => {
+    setIsOpenForgot(true);
+  }, [isOpenForgot]);
+
+  const onCloseModal = useCallback(() => {
+    setIsOpenForgot(false);
+  }, [isOpenForgot]);
 
   const handleTogglePassword = useCallback(() => {
     setShowPassword(!showPassword);
@@ -29,8 +40,7 @@ function LoginForm() {
     <>
       <form 
         className={style.form}
-        onSubmit={handleSubmit(() => {
-          
+        onSubmit={handleSubmit(({}) => {
           reset();
         })}
       >
@@ -45,7 +55,7 @@ function LoginForm() {
             type="text"
             {...register("email")}
             className={`${style.input} ${
-              errors.password ? style.error : style.input
+              errors.email ? style.error : style.input
             }`}
           />
         </div>
@@ -74,7 +84,7 @@ function LoginForm() {
             title="Войти"
           >Войти
           </Button>
-          <p className={style.forgot}>Забыли пароль?</p>
+          <p onClick={onOpenModal} className={style.forgot}>Забыли пароль?</p>
         </div>
       </form>
       <Button className={style.btnGoogle}>
@@ -87,6 +97,11 @@ function LoginForm() {
         </div>
         Войти с помощью Google
       </Button>
+      {isOpenForgot && (
+        <Modal isOpen={isOpenForgot} onClose={onCloseModal} hiddenClose lazy>
+          <ForgotForm />
+        </Modal>
+      )}
     </>
   );
 }
