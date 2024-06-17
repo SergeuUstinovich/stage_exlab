@@ -36,6 +36,7 @@ input.error {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 10%;
 
     .btnSubmit {
         border: 1px solid var(--sorporate-yellow);
@@ -60,11 +61,16 @@ input.error {
 .btnGoogle {
     border: 1px solid var(--light-corporate-yellow);
     border-radius: 12px;
-    padding: 11px 0 11px 0;
+    padding: 9px 0;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 114%;
+    text-align: center;
+    color: var(--dark-grey);
 
     .imgGoogle {
         margin-right: 8px;

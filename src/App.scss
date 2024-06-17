@@ -5,17 +5,3 @@
   height: 100vh;
 }
 
-@media (max-width: 1024px) {
-  .container {
-    max-width: 970px;
-  }
-}
-
-@media (max-width: 576px) {
-  .container {
-    max-width: 566px;
-    padding: 8px;
-  }
-
-  
-}
