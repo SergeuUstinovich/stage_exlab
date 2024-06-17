@@ -1,6 +1,6 @@
 import './App.scss'
 import { Suspense, lazy } from 'react'
-import { LoaderPage } from './utils/Loader/LoaderPage'
+import { LoaderPage } from './ui/Loader/LoaderPage'
 import { Route, Routes } from 'react-router-dom'
 
 const Layout = lazy(()=> import('./pages/Layout/Layout'))
