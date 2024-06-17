@@ -3,6 +3,7 @@ import style from './Modal.module.scss'
 import Portal from '../Portal/Portal';
 import CloseModalSvg from '../../assets/svg/CloseModalSvg/CloseModalSvg';
 import { useNavigate } from 'react-router-dom';
+import { classNames } from '../../utils/classNames';
 
 interface ModalProps {
     children?: ReactNode;
@@ -73,14 +74,17 @@ function Modal(props:ModalProps) {
     if(lazy && !isMouned) {
         return null
     }
-    
-    const modalClassName = isOpen
-        ? `${style.modal} ${style.open}${isClosing ? ` ${style.close}` : ''}`
-        : style.modal;
+    const mods:Record<string, boolean | undefined> = {
+        [style.open]: isOpen,
+        [style.close]: isClosing
+    }
+    // const modalClassName = isOpen
+    //     ? `${style.modal} ${style.open}${isClosing ? ` ${style.close}` : ''}`
+    //     : style.modal;
 
     return (
         <Portal>
-        <div className={modalClassName}>
+        <div className={classNames(style.modal, mods)}>
             <div className={style.overlay} onClick={closeHandler} >
                 <div className={style.content} onClick={onContentClick} >
                     {hiddenClose && (
