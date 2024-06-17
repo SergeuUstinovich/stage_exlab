@@ -130,7 +130,7 @@ function RegisterForm() {
         </Button>
       </form>
       {isOpenModal && (
-        <Modal isOpen={isOpenModal} onClose={onCloseModal} hiddenClose>
+        <Modal isOpen={isOpenModal} onClose={onCloseModal} hiddenClose lazy>
           <SuccesRegist email={emailValue} />
         </Modal>
       )}
