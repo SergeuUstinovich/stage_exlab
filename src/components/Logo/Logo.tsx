@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import style from './Logo.module.scss'
 import { useMediaQuery } from "react-responsive"
 import LogoSvg from "../../assets/svg/LogoSvg/LogoSvg"
+import LogoPng from '../../assets/img/Logo.png'
 
 function Logo() {
 
@@ -15,7 +16,7 @@ function Logo() {
             ) : (
             <img
                 className={style.logo}
-                src="../src/assets/img/Logo.png"
+                src={LogoPng}
                 alt="All inclusive"
                 aria-label="Логотип сайта All inclusive"
             />

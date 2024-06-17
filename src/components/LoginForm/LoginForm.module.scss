@@ -1,3 +1,9 @@
+.form {
+    padding-bottom: 25px;
+    border-bottom: 1px solid var(--grey);
+    margin-bottom: 25px;
+}
+
 .regintput {
 	position: relative;
 }
@@ -5,7 +11,7 @@
 .showpassword {
 	position: absolute;
 	top: 30%;
-  right: 5%;
+    right: 5%;
 }
 
 input.error {
@@ -25,4 +31,45 @@ input.error {
     border-color: var(--primary);
   }
 }
+
+.block_btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .btnSubmit {
+        border: 1px solid var(--sorporate-yellow);
+        width: 50%;
+        padding: 12px 0 12px 0;
+        border-radius: 12px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 114%;
+    }
+    
+    .forgot {
+        font-size: 14px;
+        line-height: 100%;
+        color: var(--dark-grey);
+        border-bottom: 1px solid var(--dark-grey);
+    }
+}
+
+
+
+.btnGoogle {
+    border: 1px solid var(--light-corporate-yellow);
+    border-radius: 12px;
+    padding: 11px 0 11px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .imgGoogle {
+        margin-right: 8px;
+        display: block;
+    }
+}
+
 

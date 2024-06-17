@@ -6,6 +6,7 @@ import { FormField } from "../../ui/FormField";
 import { useCallback, useState } from "react";
 import ShowPassword from "../../assets/svg/ShowPassword/ShowPassword";
 import { Button } from "../../ui/Button";
+import GooglePng from '../../assets/img/Google.png'
 
 function LoginForm() {
 
@@ -66,16 +67,26 @@ function LoginForm() {
             </div>
           </div>
         </FormField>
-        <div>
+        <div className={style.block_btn}>
           <Button
+            className={style.btnSubmit}
             type="submit"
             title="Войти"
           >Войти
           </Button>
-          <p>Забыли пароль?</p>
+          <p className={style.forgot}>Забыли пароль?</p>
         </div>
       </form>
-      <Button>Войти с помощью Google</Button>
+      <Button className={style.btnGoogle}>
+        <div>
+          <img 
+          className={style.imgGoogle}
+          src={GooglePng} 
+          alt="GoogleLogo"
+          />
+        </div>
+        Войти с помощью Google
+      </Button>
     </>
   );
 }
