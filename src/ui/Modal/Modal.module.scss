@@ -1,59 +1,64 @@
 .modal {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    opacity: 0;
-    pointer-events: none;
-    background: var(--overlay-color);
-    z-index: -1;
-    overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  background: var(--overlay-color);
+  z-index: -1;
+  overflow-y: scroll;
 }
 
 .overlay {
-    width: 100%;
-    // height: 100%;
-    // background: var(--overlay-color);
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 100px;
-    padding-bottom: 100px;
+  width: 100%;
+  // height: 100%;
+  // background: var(--overlay-color);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 100px 0;
 }
 
+// @media (max-width: 576px) {
+//   .content {
+//     max-width: 90%;
+//   }  
+// }
+
 .content {
-    padding: 10px;
-    border-radius: 12px;
-    background: var(--white);
-    transition: 0.3s transform;
-    transform: scale(0.5);
-    max-width: 60%;
-    // position: relative;
-    // overflow-y: auto;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--white);
+  transition: 0.3s transform;
+  transform: scale(0.5);
+  max-width: 60%;
+  // position: relative;
+  // overflow-y: auto;
 }
 
 .closeCross {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .open {
-    pointer-events: auto;
-    opacity: 1;
-    z-index: var(--modal-z-index);
+  pointer-events: auto;
+  opacity: 1;
+  z-index: var(--modal-z-index);
 
-    .content {
-        transform: scale(1);
-    }
+  .content {
+    transform: scale(1);
+  }
 }
 
 .close {
-    .content {
-        transform: scale(0.5);
-    }
+  .content {
+    transform: scale(0.5);
+  }
 }
 
 .bodyOpen {
-    overflow: hidden;
+  overflow: hidden;
 }

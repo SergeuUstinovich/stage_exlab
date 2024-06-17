@@ -1,14 +1,18 @@
 header {
-    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.06);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: var(--white);
 }
 
 .container_head {
-    position: relative;
+  position: relative;
 }
 
 .head {
-    padding: 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
