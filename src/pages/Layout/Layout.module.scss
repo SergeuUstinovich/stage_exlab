@@ -1,23 +1,5 @@
-.container {
-  max-width: 1330px;
-  padding: 0 15px;
-  margin: 0 auto;
-  width: 100%;
-}
-
 .page__content {
   padding-top: 90px;
 }
 
-@media (max-width: 1024px) {
-  .container {
-    max-width: 970px;
-  }
-}
 
-@media (max-width: 576px) {
-  .container {
-    max-width: 566px;
-    padding: 8px;
-  }
-}

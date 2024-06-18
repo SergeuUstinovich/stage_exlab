@@ -7,12 +7,12 @@ function Layout() {
         <>
             <Navbar />
             <main className={style.page__content}>
-                <div className={style.container}>
+                <div className='container'>
                     <Outlet />
                 </div>
             </main>
             <footer>
-                <div className={style.container}>
+                <div className='container'>
 
                 </div>
             </footer>
