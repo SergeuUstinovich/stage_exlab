@@ -23,12 +23,12 @@ function ForgotForm() {
       onSubmit={handleSubmit(() => {
         reset();
     })}>
-      <h2>Восстановление пароля</h2>
+      <h2 className={style.forgotFormH2}>Восстановление пароля</h2>
       <FormField
-        label="Электронная почта*"
+        label="Введите электронную почту, указанную при регистрации"
         errorMessage={errors.email?.message}
       >
-        <div>
+        <div className={style.forgotFormEmailWrapper}>
           <input
             autoComplete="email"
             placeholder="Электронная почта"
@@ -40,9 +40,9 @@ function ForgotForm() {
           />
         </div>
       </FormField>
-      <Button
+      <Button className={style.forgotFormBtn}
         type="submit"
-      >Выслать код
+      >Получить проверочный код
       </Button>
     </form>
   );
