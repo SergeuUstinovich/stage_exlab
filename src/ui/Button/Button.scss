@@ -6,7 +6,9 @@
   cursor: pointer;
   
   &:disabled {
+    background-color: var(--light-grey);
     opacity: 0.5;
+    border-color: var(--grey);
   }
 
   // &[data-kind="primary"] {

@@ -83,6 +83,9 @@ input.error {
 }
 
 .regbtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 	margin-top: -5px;
   border: 1px solid var(--sorporate-yellow);
   border-radius: 12px;

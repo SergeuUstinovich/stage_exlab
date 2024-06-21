@@ -1,7 +1,7 @@
 import style from './SuccesRegist.module.scss'
 
 interface SuccesRegistProps {
-    email: string
+    email: string;
 }
 
 function SuccesRegist({email}:SuccesRegistProps) {

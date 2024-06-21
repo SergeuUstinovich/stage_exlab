@@ -3,11 +3,14 @@ import { FormField } from "../../ui/FormField";
 import style from "./RegisterForm.module.scss";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ShowPassword from "../../assets/svg/ShowPassword/ShowPassword";
 import Modal from "../../ui/Modal/Modal";
 import SuccesRegist from "../SuccesRegist/SuccesRegist";
 import { CreateRegistrationForm, CreateRegistrationSchema } from "../../types";
+import { useMutation } from "@tanstack/react-query";
+import { registerUser } from "../../api/Auth";
+import { queryClient } from "../../api/queryClient";
 
 
 function RegisterForm() {
@@ -15,6 +18,7 @@ function RegisterForm() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [emailValue, setEmailValue] = useState("");
+  const [errorMes, setErrorMes] = useState("");
 
   const {
     register,
@@ -24,6 +28,36 @@ function RegisterForm() {
   } = useForm<CreateRegistrationForm>({
     resolver: zodResolver(CreateRegistrationSchema),
   });
+
+  const registerMutation = useMutation({
+    mutationFn: (data: {
+      username: string;
+      email: string;
+      password: string;
+      confirmPassword: string;
+    }) => registerUser(data.username, data.email, data.password, data.confirmPassword),
+    onSuccess: (data) => {
+      if(data !== undefined) {
+        setErrorMes(data.toString())
+      }
+      if(data === undefined) {
+        setIsOpenModal(true)
+      }
+    },
+    onError: (error) => {
+      console.log('Ошибка', error.message)
+      
+    },
+  }, queryClient)
+  // console.log(registerMutation)
+
+  // const {error} = useQuery({
+  //   queryFn: () => ErrorRegist("/api/auth/register/"),
+  //   queryKey: ['error'],
+  //   retry: 0
+  // }, queryClient)
+
+  // console.log(error?.message)
 
   const handleTogglePassword = useCallback(() => {
     setShowPassword(!showPassword);
@@ -37,14 +71,21 @@ function RegisterForm() {
     setIsOpenModal(false);
   };
 
+  useEffect(() => {
+    if(isOpenModal) {
+      reset();
+    }
+  }, [isOpenModal])
+
   return (
     <div>
       <form
         className={style.form}
-        onSubmit={handleSubmit((data) => {
-          setEmailValue(data.email);
-          setIsOpenModal(true);
-          reset();
+        onSubmit={handleSubmit(({username, email, password, confirmPassword}) => {
+          registerMutation.mutate({username, email, password, confirmPassword})
+          setEmailValue(email);
+          setErrorMes('')
+          
         })}
       >
         <FormField label="Имя*" errorMessage={errors.username?.message}>
@@ -121,10 +162,14 @@ function RegisterForm() {
             </span>
           </div>
         </FormField>
+        {errorMes && 
+          <span>{errorMes}</span>
+        }
         <Button
           className={style.regbtn}
           type="submit"
           title="Зарегистрироваться"
+          isLoading={registerMutation.isPending}
         >
           Зарегистироваться
         </Button>
