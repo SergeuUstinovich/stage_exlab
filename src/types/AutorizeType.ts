@@ -34,6 +34,7 @@ export const CreateRegistrationSchema = z
     consent: z
       .boolean()
       .refine((value) => value, "Для регистрации необходимо дать согласие"),
+    
   })
   .superRefine(({ confirmPassword, password }, ctx) => {
     if (confirmPassword !== password) {
@@ -46,3 +47,11 @@ export const CreateRegistrationSchema = z
   });
 
   export type CreateRegistrationForm = z.infer<typeof CreateRegistrationSchema>;
+
+  export const verifyEMailScheme = z.object({
+    code: z
+      .string()
+      .min(5, 'Минимум 5 символов')
+  })
+
+  export type verifyEMailType = z.infer<typeof verifyEMailScheme>;

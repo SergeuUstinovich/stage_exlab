@@ -25,20 +25,19 @@ function ForgotForm() {
     })}>
       <h2 className={style.forgotFormH2}>Восстановление пароля</h2>
       <FormField
+        className={style.forgotFormEmailWrapper}
         label="Введите электронную почту, указанную при регистрации"
         errorMessage={errors.email?.message}
       >
-        <div className={style.forgotFormEmailWrapper}>
-          <input
-            autoComplete="email"
-            placeholder="Электронная почта"
-            type="text"
-            {...register("email")}
-            className={`${style.input} ${
-              errors.email ? style.error : style.input
-            }`}
-          />
-        </div>
+        <input
+          autoComplete="email"
+          placeholder="Электронная почта"
+          type="text"
+          {...register("email")}
+          className={`${style.input} ${
+            errors.email ? style.error : style.input
+          }`}
+        />
       </FormField>
       <Button className={style.forgotFormBtn}
         type="submit"

@@ -7,15 +7,6 @@
   padding-bottom: 20%;
 }
 
-.thanksforreg {
-  margin-bottom: 3%;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 130%;
-  text-align: center;
-  color: var(--dark-grey);
-}
-
 .confirmletter {
   width: 80%;
   margin: 15px auto;
@@ -31,4 +22,8 @@
   line-height: 130%;
   text-align: center;
   color: var(--dark-grey);
+}
+
+input.error {
+  border: 1px solid var(--error);
 }
