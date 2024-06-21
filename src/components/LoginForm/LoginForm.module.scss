@@ -1,21 +1,21 @@
 .form {
-    padding-bottom: 25px;
-    border-bottom: 1px solid var(--grey);
-    margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--grey);
+  margin-bottom: 25px;
 }
 
 .regintput {
-	position: relative;
+  position: relative;
 }
 
 .showpassword {
-	position: absolute;
-	top: 30%;
-    right: 5%;
+  position: absolute;
+  top: 30%;
+  right: 5%;
 }
 
 input.error {
-    border: 1px solid var(--error);
+  border: 1px solid var(--error);
 }
 
 .input {
@@ -33,49 +33,45 @@ input.error {
 }
 
 .block_btn {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10%;
 
-    .btnSubmit {
-        border: 1px solid var(--sorporate-yellow);
-        width: 50%;
-        padding: 12px 0 12px 0;
-        border-radius: 12px;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 114%;
-    }
-    
-    .forgot {
-        font-size: 14px;
-        line-height: 100%;
-        color: var(--dark-grey);
-        border-bottom: 1px solid var(--dark-grey);
-    }
+  .btnSubmit {
+    border: 1px solid var(--sorporate-yellow);
+    width: 50%;
+    padding: 12px 0 12px 0;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 114%;
+  }
+
+  .forgot {
+    font-size: 14px;
+    line-height: 100%;
+    color: var(--dark-grey);
+    border-bottom: 1px solid var(--dark-grey);
+  }
 }
-
-
 
 .btnGoogle {
-    border: 1px solid var(--light-corporate-yellow);
-    border-radius: 12px;
-    padding: 9px 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 114%;
-    text-align: center;
-    color: var(--dark-grey);
+  border: 1px solid var(--light-corporate-yellow);
+  border-radius: 12px;
+  padding: 9px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 114%;
+  text-align: center;
+  color: var(--dark-grey);
 
-    .imgGoogle {
-        margin-right: 8px;
-        display: block;
-    }
+  .imgGoogle {
+    margin-right: 8px;
+    display: block;
+  }
 }
-
-

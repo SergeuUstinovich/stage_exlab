@@ -1,5 +1,9 @@
+.forgotFormEmailWrapper {
+  margin-bottom: -14px;
+}
+
 input.error {
-    border: 1px solid var(--error);
+  border: 1px solid var(--error);
 }
 
 .input {
@@ -14,4 +18,27 @@ input.error {
     outline: none;
     border-color: var(--primary);
   }
+}
+
+.forgotFormH2 {
+  margin: 20px 0 28px 0;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 130%;
+  text-align: center;
+  color: var(--dark-grey);
+}
+
+.forgotFormBtn {
+  border: 1px solid var(--sorporate-yellow);
+  border-radius: 12px;
+  padding: 12px 52px;
+  width: 480px;
+  height: 40px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 114%;
+  text-align: center;
+  color: var(--dark-grey);
+  letter-spacing: 0.6px;
 }
