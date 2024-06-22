@@ -21,6 +21,7 @@ function SuccesRegist({ email }: SuccesRegistProps) {
     {
       mutationFn: (data: { code: string }) => verifyEmail(data.code),
       onSuccess: (data) => {
+        console.log(data)
         if (data !== undefined) {
           setErrorMes(data.toString());
         }

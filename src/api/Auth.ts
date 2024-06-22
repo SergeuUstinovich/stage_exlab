@@ -1,4 +1,6 @@
-export function registerUser(first_name:string, email:string, password1:string, password2:string):Promise<object | undefined> {
+import { errorMessage } from "../helpers/errorMessage"
+
+export function registerUser(first_name:string, email:string, password1:string, password2:string):Promise<void | object | undefined> {
     return fetch("api/auth/register/", {
         method: "POST",
         headers: {
@@ -6,21 +8,13 @@ export function registerUser(first_name:string, email:string, password1:string, 
         },
         body: JSON.stringify({first_name, email, password1, password2})
     }).then( async (response) => {
-        if(response.ok){
-            return undefined;
-        } 
-        if(!response.ok) {
-            const errorBody = await response.json();
-            const errorMessage = errorBody?.errors.email || errorBody?.message || 'Возможны проблемы с сетью';
-            return errorMessage
-        }
-        throw new Error("Ошибка сервера");
+        return await errorMessage(response)
     }).catch((error) => {
         console.log(error)
     })
 }
 
-export function verifyEmail(code:string):Promise<object | undefined> {
+export function verifyEmail(code:string):Promise<void | object | undefined> {
     return fetch('api/auth/verify-email/', {
         method: "POST",
         headers: {
@@ -28,32 +22,36 @@ export function verifyEmail(code:string):Promise<object | undefined> {
         },
         body: JSON.stringify({code})
     }).then( async (response) => {
-        if(response.ok){
-            return undefined;
-        } 
-        if(!response.ok) {
-            const errorBody = await response.json();
-            const errorMessage = errorBody?.errors.non_field_errors || errorBody?.message || 'Возможны проблемы с сетью';
-            return errorMessage
-        }
-        throw new Error("Ошибка сервера");
+        return await errorMessage(response)
     }).catch((error) => {
         console.log(error)
     })
 }
 
-// export async function ErrorRegist(url:string, data?:object):Promise<Response> {
-//     const response = await fetch(url, {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": 'application/json',
-//         },
-//         body: JSON.stringify(data)
-//     })
-//     if (!response.ok) {
-//         const errorBody = await response.json();
-//         const errorMessage = errorBody?.status + " " + errorBody?.errors || errorBody?.message || 'Network response was not ok';
-//         throw new Error(errorMessage);
-//     }
-//     return response.json()
-// }
+export function login(email:string, password:string):Promise<void | object | undefined> {
+    return fetch("api/auth/login/", {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify({email, password})
+    }).then( async (response) => {
+        return await errorMessage(response)
+    }).catch((error) => {
+        console.log(error)
+    })
+}
+
+export function logout():Promise<void | object | undefined> {
+    return fetch("api/auth/login/", {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify({})
+    }).then( async (response) => {
+        return await errorMessage(response)
+    }).catch((error) => {
+        console.log(error)
+    })
+}

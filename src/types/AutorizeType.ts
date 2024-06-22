@@ -55,3 +55,24 @@ export const CreateRegistrationSchema = z
   })
 
   export type verifyEMailType = z.infer<typeof verifyEMailScheme>;
+
+  export const LoginScheme = z.object({
+    email: z
+      .string()
+      .email("Проверьте правильность ввода электронной почты")
+      .max(320, "Превышена максимальная длина адреса электронной почты"),
+    password: z
+      .string()
+      .min(7, "Введите более 7 символов")
+      .max(25, "Не более 25 символов")
+      .regex(
+        /^[a-zA-Z0-9~!@#$%^&*()[\]{}><\/\\|"'.,:;]+$/,
+        "Пароль может содержать только латинские буквы, цифры и ~!@#$%^&*()[]{}>< и другие символы"
+      )
+      .refine(
+        (value) => !value.startsWith(" "),
+        "Пароль не должен начинаться с пробела"
+      ),
+  })
+
+  export type LoginType = z.infer<typeof LoginScheme>;

@@ -37,6 +37,7 @@ function RegisterForm() {
       confirmPassword: string;
     }) => registerUser(data.username, data.email, data.password, data.confirmPassword),
     onSuccess: (data) => {
+      console.log(data)
       if(data !== undefined) {
         setErrorMes(data.toString())
       }
@@ -49,15 +50,6 @@ function RegisterForm() {
       
     },
   }, queryClient)
-  // console.log(registerMutation)
-
-  // const {error} = useQuery({
-  //   queryFn: () => ErrorRegist("/api/auth/register/"),
-  //   queryKey: ['error'],
-  //   retry: 0
-  // }, queryClient)
-
-  // console.log(error?.message)
 
   const handleTogglePassword = useCallback(() => {
     setShowPassword(!showPassword);

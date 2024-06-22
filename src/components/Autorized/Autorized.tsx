@@ -3,11 +3,22 @@ import AvatarNoName from "../../assets/svg/AvatarNoName/AvatarNoName"
 import style from './Autorized.module.scss'
 import { useCallback, useEffect, useState } from "react"
 import AuthModal from "../AuthModal/AuthModal"
+import { useMutation } from "@tanstack/react-query"
+import { logout } from "../../api/Auth"
+import { queryClient } from "../../api/queryClient"
 
 
 function Autorized() {
 
     const [isOpenModal, setIsOpenModal] = useState(false)
+
+    const logoutMutation = useMutation({
+        mutationFn: () => logout(),
+      }, queryClient)
+
+    const logoutClick = useCallback(() => {
+        logoutMutation.mutate();
+    }, [])
 
     const auth = false
 
@@ -34,7 +45,9 @@ function Autorized() {
                 }
                 </div>
                 <div className={style.avatar}>
-                    <AvatarNoName className={style.icon} />
+                    <Button onClick={logoutClick}>
+                        <AvatarNoName className={style.icon} />
+                    </Button>
                 </div>
                  
             </div> 
