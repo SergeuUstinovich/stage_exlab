@@ -14,23 +14,14 @@ interface SuccesRegistProps {
 }
 
 function SuccesRegist({ email }: SuccesRegistProps) {
-  const [errorMes, setErrorMes] = useState("");
-  const [succesVerify, setSuccesVerify] = useState(true);
+  const [succesVerify, setSuccesVerify] = useState(false);
 
   const verifyEmailMutation = useMutation(
     {
       mutationFn: (data: { code: string }) => verifyEmail(data.code),
-      onSuccess: (data) => {
-        // console.log(data)
-        if (data !== undefined) {
-          setErrorMes(data.toString());
-        }
-        if (data === undefined) {
-          setSuccesVerify(true)
-        }
-      },
-      onError: (error) => {
-        console.log("Ошибка", error.message);
+      onSuccess: () => {
+        setSuccesVerify(true)
+        reset()
       },
     },
     queryClient
@@ -64,8 +55,7 @@ function SuccesRegist({ email }: SuccesRegistProps) {
       <span className={style.regemail}>{email}</span>
       <form onSubmit={handleSubmit(({code}) => {
         verifyEmailMutation.mutate({code})
-        setErrorMes('')
-        reset()
+        
       })}>
         <FormField label="" errorMessage={errors.code?.message}>
           <input
@@ -78,7 +68,7 @@ function SuccesRegist({ email }: SuccesRegistProps) {
         </FormField>
         <Button className={style.succesRegistBtn} isLoading={verifyEmailMutation.isPending}>Отправить</Button>
       </form>
-      {errorMes && <span>{errorMes}</span>}
+      {verifyEmailMutation.error && <span>{verifyEmailMutation.error.message}</span>}
     </div>
   );
 }

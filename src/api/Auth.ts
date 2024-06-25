@@ -1,4 +1,4 @@
-import { errorMessage } from "../helpers/errorMessage"
+import { validateResponse } from "../helpers/validateResponse";
 
 export function registerUser(first_name:string, email:string, password1:string, password2:string):Promise<void | object | undefined> {
     return fetch("api/auth/register/", {
@@ -7,11 +7,9 @@ export function registerUser(first_name:string, email:string, password1:string, 
             "Content-Type": 'application/json',
         },
         body: JSON.stringify({first_name, email, password1, password2})
-    }).then( async (response) => {
-        return await errorMessage(response)
-    }).catch((error) => {
-        console.log(error)
     })
+    .then(validateResponse)
+    .then(() => undefined);
 }
 
 export function verifyEmail(code:string):Promise<void | object | undefined> {
@@ -21,11 +19,9 @@ export function verifyEmail(code:string):Promise<void | object | undefined> {
             "Content-Type": 'application/json',
         },
         body: JSON.stringify({code})
-    }).then( async (response) => {
-        return await errorMessage(response)
-    }).catch((error) => {
-        console.log(error)
     })
+    .then(validateResponse)
+    .then(() => undefined);
 }
 
 export function login(email:string, password:string):Promise<void | object | undefined> {
@@ -35,23 +31,19 @@ export function login(email:string, password:string):Promise<void | object | und
             "Content-Type": 'application/json',
         },
         body: JSON.stringify({email, password})
-    }).then( async (response) => {
-        return await errorMessage(response)
-    }).catch((error) => {
-        console.log(error)
     })
+    .then(validateResponse)
+    .then(() => undefined);
 }
 
 export function logout():Promise<void | object | undefined> {
-    return fetch("api/auth/login/", {
+    return fetch("api/auth/logout/", {
         method: "POST",
         headers: {
             "Content-Type": 'application/json',
         },
         body: JSON.stringify({})
-    }).then( async (response) => {
-        return await errorMessage(response)
-    }).catch((error) => {
-        console.log(error)
     })
+    .then(validateResponse)
+    .then(() => undefined);
 }

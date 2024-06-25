@@ -17,7 +17,6 @@ function RegisterForm() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [emailValue, setEmailValue] = useState("");
-  const [errorMes, setErrorMes] = useState("");
 
   const {
     register,
@@ -42,17 +41,12 @@ function RegisterForm() {
           data.password,
           data.confirmPassword
         ),
-      onSuccess: (data) => {
-        console.log(data);
-        if (data !== undefined) {
-          setErrorMes(data.toString());
-        }
-        if (data === undefined) {
-          setIsOpenModal(true);
-        }
+      onSuccess: () => {
+        setIsOpenModal(true);
+        reset();
       },
       onError: (error) => {
-        console.log("Ошибка", error.message);
+        console.log("Ошибка", error);
       },
     },
     queryClient
@@ -70,12 +64,6 @@ function RegisterForm() {
     setIsOpenModal(false);
   };
 
-  useEffect(() => {
-    if (isOpenModal) {
-      reset();
-    }
-  }, [isOpenModal]);
-
   return (
     <div>
       <form
@@ -89,7 +77,6 @@ function RegisterForm() {
               confirmPassword,
             });
             setEmailValue(email);
-            setErrorMes("");
           }
         )}
       >
@@ -167,7 +154,7 @@ function RegisterForm() {
             </span>
           </div>
         </FormField>
-        {errorMes && <span className={style.sistemError}>{errorMes}</span>}
+        {registerMutation.error && <span className={style.sistemError}>{registerMutation.error.message}</span>}
         <Button
           className={style.regbtn}
           type="submit"

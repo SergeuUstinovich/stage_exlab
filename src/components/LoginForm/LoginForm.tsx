@@ -23,19 +23,10 @@ function LoginForm() {
       email: string;
       password: string;
     }) => login(data.email, data.password),
-    onSuccess: (data) => {
-      console.log(data)
-      if(data !== undefined) {
-        // setErrorMes(data.toString())
-      }
-      if(data === undefined) {
-        // setIsOpenModal(true)
-      }
+    onSuccess: () => {
+      reset();
     },
-    onError: (error) => {
-      console.log('Ошибка', error.message)
-      
-    },
+    
   }, queryClient)
 
   const onOpenModal = useCallback(() => {
@@ -65,7 +56,6 @@ function LoginForm() {
         className={style.form}
         onSubmit={handleSubmit(({email, password}) => {
           loginMutation.mutate({email, password})
-          // reset();
         })}
       >
         <FormField
@@ -101,8 +91,10 @@ function LoginForm() {
             </div>
           </div>
         </FormField>
+        {loginMutation.error && <span>{loginMutation.error.message}</span>}
         <div className={style.block_btn}>
           <Button
+            isLoading={loginMutation.isPending}
             className={style.btnSubmit}
             type="submit"
             title="Войти"
