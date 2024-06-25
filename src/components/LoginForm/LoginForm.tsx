@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import style from "./LoginForm.module.scss";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CreateRegistrationForm, CreateRegistrationSchema, LoginScheme, LoginType } from "../../types";
+import { LoginScheme, LoginType } from "../../types";
 import { FormField } from "../../ui/FormField";
 import { useCallback, useState } from "react";
 import ShowPassword from "../../assets/svg/ShowPassword/ShowPassword";

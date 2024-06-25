@@ -12,7 +12,7 @@ export const CreateRegistrationSchema = z
       )
       .refine(
         (value) => value.trim().length > 0 && !value.startsWith(" "),
-        "Поле не должно быть пустым"
+        "Пробел не может быть первым символом"
       ),
     email: z
       .string()
