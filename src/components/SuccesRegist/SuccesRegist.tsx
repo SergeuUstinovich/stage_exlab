@@ -15,13 +15,13 @@ interface SuccesRegistProps {
 
 function SuccesRegist({ email }: SuccesRegistProps) {
   const [errorMes, setErrorMes] = useState("");
-  const [succesVerify, setSuccesVerify] = useState(false);
+  const [succesVerify, setSuccesVerify] = useState(true);
 
   const verifyEmailMutation = useMutation(
     {
       mutationFn: (data: { code: string }) => verifyEmail(data.code),
       onSuccess: (data) => {
-        console.log(data)
+        // console.log(data)
         if (data !== undefined) {
           setErrorMes(data.toString());
         }
@@ -47,9 +47,12 @@ function SuccesRegist({ email }: SuccesRegistProps) {
 
   if(succesVerify) {
     return(
-      <h2>
-        Благодарим за регистрацию!
-      </h2>
+      <div className={style.confirmregwrapper}>
+        <h2>
+          Благодарим за регистрацию!
+        </h2>
+      </div>
+      
     )
   }
 
@@ -66,16 +69,16 @@ function SuccesRegist({ email }: SuccesRegistProps) {
       })}>
         <FormField label="" errorMessage={errors.code?.message}>
           <input
+            maxLength={5}
             placeholder="Код"
             type="text"
             {...register("code")}
             className={errors.code ? style.error : ""}
           />
         </FormField>
-        {errorMes && <span>{errorMes}</span>} {/*можешь закомитить и на строчку ниже просто поставить спан с произвольным текстом что бы посмотреть как выглядит */}
-        <span>Текст ошибки</span>
         <Button className={style.succesRegistBtn} isLoading={verifyEmailMutation.isPending}>Отправить</Button>
       </form>
+      {errorMes && <span>{errorMes}</span>}
     </div>
   );
 }

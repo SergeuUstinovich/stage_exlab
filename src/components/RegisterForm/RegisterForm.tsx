@@ -167,8 +167,7 @@ function RegisterForm() {
             </span>
           </div>
         </FormField>
-        {errorMes && <span>{errorMes}</span>}
-        <span className={style.sistemError}>Сервис не&nbsp;доступен, идут профилактические работы</span>
+        {errorMes && <span className={style.sistemError}>{errorMes}</span>}
         <Button
           className={style.regbtn}
           type="submit"
