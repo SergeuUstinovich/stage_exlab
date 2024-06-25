@@ -2,14 +2,13 @@
   display: flex;
   flex-direction: column;
   max-width: 520px;
-  margin-top: 42px;
   padding: 20px;
-  padding-bottom: 20%;
+  padding-bottom: 40px;
 }
 
 .confirmletter {
   width: 80%;
-  margin: 15px auto;
+  margin: 9px auto;
   font-size: 20px;
   line-height: 150%;
   text-align: center;
@@ -17,6 +16,7 @@
 }
 
 .regemail {
+  margin-bottom: 30px;
   font-weight: 700;
   font-size: 20px;
   line-height: 130%;
@@ -24,14 +24,38 @@
   color: var(--dark-grey);
 }
 
+.labelSuccesCode {
+  height: 32px;
+}
+
+.formSucReg {
+  display: flex;
+  justify-content: center;
+}
+
 input.error {
   border: 1px solid var(--error);
 }
 
+.labelSucces {
+  gap: 0;
+  width: 144px;
+  margin-right: 20px;
+}
+
 .succesRegistBtn {
+  display: block;
   border: 1px solid var(--sorporate-yellow);
   border-radius: 12px;
   padding: 8px 28px;
   width: 144px;
   height: 32px;
+}
+
+.succesRegistError {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  color: var(--error);
+  text-align: center;
 }
