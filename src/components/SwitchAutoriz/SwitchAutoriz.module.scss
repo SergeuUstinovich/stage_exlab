@@ -1,9 +1,15 @@
 .switch {
-    display: flex;
-    flex-direction: row;
-    border-radius: 20px;
-    overflow: hidden;
-    max-width: 480px;
-    width: 100%;
-    margin-bottom: 22px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 480px;
+  width: 100%;
+  margin-bottom: 22px;
+}
+
+@media (max-width: 768px) {
+  .switch {
+    margin-bottom: 16px;
   }
+}

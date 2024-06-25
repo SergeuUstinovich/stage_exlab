@@ -1,10 +1,10 @@
 .regintput {
-	position: relative;
+  position: relative;
 }
 
 .showpassword {
-	position: absolute;
-	top: 30%;
+  position: absolute;
+  top: 30%;
   right: 5%;
 }
 
@@ -36,17 +36,17 @@ input.error {
 .customcheck {
   user-select: none;
   cursor: pointer;
-	margin-top: 8px;
+  margin-top: 8px;
 }
 
 .customchecktext {
-	display: block;
+  display: block;
   position: relative;
   padding-left: 38px;
-	font-weight: 300;
-	font-size: 14px;
-	line-height: 130%;
-	color: var(--black);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 130%;
+  color: var(--black);
 
   // коробка
   &::before {
@@ -66,7 +66,8 @@ input.error {
     content: "";
     position: absolute;
     left: 0;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 18px;
     height: 18px;
     background-image: url("../../assets/svg/check.svg");
@@ -86,15 +87,39 @@ input.error {
   display: flex;
   align-items: center;
   justify-content: center;
-	margin-top: -5px;
   border: 1px solid var(--sorporate-yellow);
   border-radius: 12px;
   padding: 10px 52px;
   width: 100%;
   height: 40px;
-	font-weight: 500;
-	font-size: 16px;
-	line-height: 114%;
-	text-align: center;
-	color: var(--dark-grey);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.6px;
+  line-height: 114%;
+  text-align: center;
+  color: var(--dark-grey);
+}
+
+.sistemError {
+  display: block;
+  margin-bottom: 25px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: var(--error);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .input {
+    padding: 11px 16px;
+  }
+
+  .customcheck {
+    margin-top: 5px;
+  }
+
+  .regbtn {
+    margin-top: -5px;
+  }
 }
