@@ -1,8 +1,8 @@
 .confirmregwrapper {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
   max-width: 520px;
-	margin-top: 42px;
+  margin-top: 42px;
   padding: 20px;
   padding-bottom: 20%;
 }
@@ -26,4 +26,12 @@
 
 input.error {
   border: 1px solid var(--error);
+}
+
+.succesRegistBtn {
+  border: 1px solid var(--sorporate-yellow);
+  border-radius: 12px;
+  padding: 8px 28px;
+  width: 144px;
+  height: 32px;
 }

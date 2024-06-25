@@ -21,12 +21,6 @@
   padding: 100px 0;
 }
 
-// @media (max-width: 576px) {
-//   .content {
-//     max-width: 90%;
-//   }  
-// }
-
 .content {
   padding: 10px;
   border-radius: 12px;
@@ -36,6 +30,22 @@
   max-width: 60%;
   // position: relative;
   // overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .content {
+    max-width: 56%;
+  }
+
+  .closeCross {
+    margin-right: 5px;
+  }
+}
+
+@media (max-width: 576px) {
+  .content {
+    max-width: 100%;
+  }
 }
 
 .closeCross {

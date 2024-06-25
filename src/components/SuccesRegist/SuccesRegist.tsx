@@ -56,7 +56,7 @@ function SuccesRegist({ email }: SuccesRegistProps) {
   return (
     <div className={style.confirmregwrapper}>
       <p className={style.confirmletter}>
-        Введите одноразовый код, который был отправлен на электронную почту:
+      Введите одноразовый код, который был отправлен на&nbsp;электронную почту
       </p>
       <span className={style.regemail}>{email}</span>
       <form onSubmit={handleSubmit(({code}) => {
@@ -73,8 +73,8 @@ function SuccesRegist({ email }: SuccesRegistProps) {
           />
         </FormField>
         {errorMes && <span>{errorMes}</span>} {/*можешь закомитить и на строчку ниже просто поставить спан с произвольным текстом что бы посмотреть как выглядит */}
-        {/* <span>Текст ошибки</span> ПРИМЕР */}
-        <Button isLoading={verifyEmailMutation.isPending}>Отправить</Button>
+        <span>Текст ошибки</span>
+        <Button className={style.succesRegistBtn} isLoading={verifyEmailMutation.isPending}>Отправить</Button>
       </form>
     </div>
   );

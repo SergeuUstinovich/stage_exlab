@@ -12,7 +12,6 @@ import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "../../api/Auth";
 import { queryClient } from "../../api/queryClient";
 
-
 function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -29,27 +28,35 @@ function RegisterForm() {
     resolver: zodResolver(CreateRegistrationSchema),
   });
 
-  const registerMutation = useMutation({
-    mutationFn: (data: {
-      username: string;
-      email: string;
-      password: string;
-      confirmPassword: string;
-    }) => registerUser(data.username, data.email, data.password, data.confirmPassword),
-    onSuccess: (data) => {
-      console.log(data)
-      if(data !== undefined) {
-        setErrorMes(data.toString())
-      }
-      if(data === undefined) {
-        setIsOpenModal(true)
-      }
+  const registerMutation = useMutation(
+    {
+      mutationFn: (data: {
+        username: string;
+        email: string;
+        password: string;
+        confirmPassword: string;
+      }) =>
+        registerUser(
+          data.username,
+          data.email,
+          data.password,
+          data.confirmPassword
+        ),
+      onSuccess: (data) => {
+        console.log(data);
+        if (data !== undefined) {
+          setErrorMes(data.toString());
+        }
+        if (data === undefined) {
+          setIsOpenModal(true);
+        }
+      },
+      onError: (error) => {
+        console.log("Ошибка", error.message);
+      },
     },
-    onError: (error) => {
-      console.log('Ошибка', error.message)
-      
-    },
-  }, queryClient)
+    queryClient
+  );
 
   const handleTogglePassword = useCallback(() => {
     setShowPassword(!showPassword);
@@ -64,21 +71,27 @@ function RegisterForm() {
   };
 
   useEffect(() => {
-    if(isOpenModal) {
+    if (isOpenModal) {
       reset();
     }
-  }, [isOpenModal])
+  }, [isOpenModal]);
 
   return (
     <div>
       <form
         className={style.form}
-        onSubmit={handleSubmit(({username, email, password, confirmPassword}) => {
-          registerMutation.mutate({username, email, password, confirmPassword})
-          setEmailValue(email);
-          setErrorMes('')
-          
-        })}
+        onSubmit={handleSubmit(
+          ({ username, email, password, confirmPassword }) => {
+            registerMutation.mutate({
+              username,
+              email,
+              password,
+              confirmPassword,
+            });
+            setEmailValue(email);
+            setErrorMes("");
+          }
+        )}
       >
         <FormField label="Имя*" errorMessage={errors.username?.message}>
           <input
@@ -154,9 +167,8 @@ function RegisterForm() {
             </span>
           </div>
         </FormField>
-        {errorMes && 
-          <span>{errorMes}</span>
-        }
+        {errorMes && <span>{errorMes}</span>}
+        <span className={style.sistemError}>Сервис не&nbsp;доступен, идут профилактические работы</span>
         <Button
           className={style.regbtn}
           type="submit"

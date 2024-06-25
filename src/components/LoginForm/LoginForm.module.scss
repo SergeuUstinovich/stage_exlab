@@ -22,6 +22,7 @@ input.error {
   width: 100%;
   border-radius: 8px;
   font-size: 14px;
+  letter-spacing: 0.7px;
   color: var(--black);
   border: 1px solid var(--grey);
   padding: 11px 24px;
@@ -41,7 +42,7 @@ input.error {
   .btnSubmit {
     border: 1px solid var(--sorporate-yellow);
     width: 50%;
-    padding: 12px 0 12px 0;
+    padding: 12px 0;
     border-radius: 12px;
     font-weight: 500;
     font-size: 14px;
@@ -73,5 +74,28 @@ input.error {
   .imgGoogle {
     margin-right: 8px;
     display: block;
+  }
+}
+
+@media (max-width: 430px) {
+  .form {
+    padding-bottom: 19px;
+    margin-bottom: 18px;
+  }
+
+  .input {
+    padding: 11px 14px;
+  }
+
+  .block_btn {
+    margin-top: 13%;
+
+    .btnSubmit {
+      padding: 8px 0;
+    }
+  }
+
+  .btnGoogle {
+    padding: 8px 0;
   }
 }
