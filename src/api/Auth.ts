@@ -63,7 +63,11 @@ export function User(token:string | undefined):Promise<UserType> {
         },
     })
     .then(validateResponse)
-    .then(response => response.json());
+    .then( async (response) => {
+        const obj = await response.json()
+        const users = obj.message
+        return users
+    } );
 }
 
 

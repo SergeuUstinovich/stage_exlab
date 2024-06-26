@@ -10,18 +10,16 @@ import { useDispatch, useSelector } from "react-redux"
 import { getTokenUser } from "../../providers/StoreProvider/selectors/getTokenUser"
 import { tokenActions } from "../../providers/StoreProvider/slice/tokenSlice"
 import { userActions } from "../../providers/StoreProvider"
-// import { useUsers } from "../../utils/useUsers"
+import { getUserAuthData } from "../../providers/StoreProvider/selectors/getUserAuth"
+
 
 
 function Autorized() {
     const dispatch = useDispatch()
     const token = useSelector(getTokenUser)
     const [isOpenModal, setIsOpenModal] = useState(false)
-    // const users = useSelector((state) => state.user.authData)
+    const auth = useSelector(getUserAuthData)
    
-    // console.log(typeof token)
-    // const data = useUsers(token)
-    // console.log(token)
     const logoutMutation = useMutation({
         mutationFn: (data: string | undefined) => logout(data),
         onSuccess: () => {
@@ -29,28 +27,20 @@ function Autorized() {
         }
     }, queryClient)
 
-    console.log(`Токент ${token}`)
 
     const meUsers = useQuery({
         queryFn: () => User(token),
         queryKey: ['user'],
+        retry: 0
     }, queryClient)
 
     useEffect(() => {
-        // localStorage.setItem('test', 'test')
-    }, [])
-    
-    
-    // useEffect(() => {
-    //     dispatch(userActions.setUserAuth(meUsers.data))
-        
-    // }, [meUsers.data])
+        dispatch(userActions.setUserAuth(meUsers.data))
+    }, [meUsers.data])
 
     const logoutClick = () => {
         logoutMutation.mutate(token);
     }
-
-    const auth = false
 
     const onOpenModal = useCallback(()=> {
         setIsOpenModal(true)
@@ -70,8 +60,8 @@ function Autorized() {
         return(
             <div className={style.autoriz}>
                 <div className={style.wiget}>
-                {token && 
-                    <div className={style.username}>QWERTYUIOPASD</div>
+                {auth && 
+                    <div className={style.username}>{auth.first_name}</div>
                 }
                 </div>
                 <div className={style.avatar}>
@@ -90,9 +80,7 @@ function Autorized() {
             </div>
             <Button className={style.avatar} onClick={onOpenModal}>
                 <AvatarNoName className={style.icon} />
-                {!auth && 
-                    <p className={style.descr}>Войти</p>
-                }  
+                <p className={style.descr}>Войти</p> 
             </Button>
             <AuthModal isOpen={isOpenModal} onClose={onCloseModal} lazy hiddenClose/>
         </div>
