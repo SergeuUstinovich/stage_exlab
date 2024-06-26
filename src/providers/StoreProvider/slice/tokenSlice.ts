@@ -2,22 +2,22 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { TokenScheme } from "../../../types"
 
 const initialState: TokenScheme = {
-    token: undefined
+    token: localStorage.getItem('userToken') ?? undefined
 }
 
 export const tokenSlice = createSlice({
     name: 'token',
     initialState,
     reducers: {
-        initAuthData: (state) => {
-            const user = localStorage.getItem('authToken');
-            if (user) {
-                state.token = user;
-            }
+        initAuthData: (state, action: PayloadAction<string>) => {
+            localStorage.setItem('userToken', action.payload)
+            // console.log(`вызвался ${action.payload}`)
+            state.token = action.payload;
         },
         logout: (state) => {
             state.token = undefined
-            localStorage.removeItem('authToken');
+            localStorage.removeItem('userToken');
+            // console.log('log вызвался')
         }
     }
 })

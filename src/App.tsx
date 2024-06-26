@@ -11,11 +11,7 @@ const AboutPage = lazy(()=> import('./components/AboutPage/AboutPage'))
 
 function App() {
 
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(tokenActions.initAuthData());
-}, [dispatch]);
+  // 
 
   return (
     <>

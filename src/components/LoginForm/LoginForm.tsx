@@ -3,7 +3,7 @@ import style from "./LoginForm.module.scss";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginScheme, LoginType } from "../../types";
 import { FormField } from "../../ui/FormField";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import ShowPassword from "../../assets/svg/ShowPassword/ShowPassword";
 import { Button } from "../../ui/Button";
 import GooglePng from '../../assets/img/Google.png'
@@ -29,13 +29,12 @@ function LoginForm() {
       password: string;
     }) => login(data.email, data.password),
     onSuccess: (data) => {
-      localStorage.setItem('authToken', data);
-      dispatch(tokenActions.initAuthData());
+      dispatch(tokenActions.initAuthData(data));
       reset();
     },
   }, queryClient)
 
-
+  
   const onOpenModal = useCallback(() => {
     setIsOpenForgot(true);
   }, [isOpenForgot]);

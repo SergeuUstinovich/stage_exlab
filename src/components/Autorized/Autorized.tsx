@@ -17,10 +17,11 @@ function Autorized() {
     const dispatch = useDispatch()
     const token = useSelector(getTokenUser)
     const [isOpenModal, setIsOpenModal] = useState(false)
+    // const users = useSelector((state) => state.user.authData)
    
-    console.log(typeof token)
+    // console.log(typeof token)
     // const data = useUsers(token)
-
+    // console.log(token)
     const logoutMutation = useMutation({
         mutationFn: (data: string | undefined) => logout(data),
         onSuccess: () => {
@@ -29,15 +30,21 @@ function Autorized() {
     }, queryClient)
 
     console.log(`Токент ${token}`)
+
     const meUsers = useQuery({
         queryFn: () => User(token),
         queryKey: ['user'],
     }, queryClient)
+
+    useEffect(() => {
+        // localStorage.setItem('test', 'test')
+    }, [])
     
-    // console.log(data)
+    
     // useEffect(() => {
+    //     dispatch(userActions.setUserAuth(meUsers.data))
         
-    // }, [])
+    // }, [meUsers.data])
 
     const logoutClick = () => {
         logoutMutation.mutate(token);
@@ -54,16 +61,16 @@ function Autorized() {
     }, [])
 
     useEffect(() => {
-        if(meUsers.data) {
+        if(token) {
             setIsOpenModal(false)
         }
-    }, [meUsers.data])
+    }, [token])
 
-    if(meUsers.data) {
+    if(token) {
         return(
             <div className={style.autoriz}>
                 <div className={style.wiget}>
-                {meUsers.data && 
+                {token && 
                     <div className={style.username}>QWERTYUIOPASD</div>
                 }
                 </div>
