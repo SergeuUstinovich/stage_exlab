@@ -76,3 +76,42 @@ export const CreateRegistrationSchema = z
   })
 
   export type LoginType = z.infer<typeof LoginScheme>;
+
+  export const ForgotEmailScheme = z.object({
+    email: z
+    .string()
+    .email("Проверьте правильность ввода электронной почты")
+    .max(320, "Превышена максимальная длина адреса электронной почты"),
+  })
+
+  export type ForgotEmailType = z.infer<typeof ForgotEmailScheme>
+
+  export const ForgotCodeScheme = z.object({
+    code: z
+    .string()
+    .min(5, 'Минимум 5 символов'),
+    password: z
+      .string()
+      .min(7, "Введите более 7 символов")
+      .max(25, "Не более 25 символов")
+      .regex(
+        /^[a-zA-Z0-9~!@#$%^&*()[\]{}><\/\\|"'.,:;]+$/,
+        "Пароль может содержать только латинские буквы, цифры и ~!@#$%^&*()[]{}>< и другие символы"
+      )
+      .refine(
+        (value) => !value.startsWith(" "),
+        "Пароль не должен начинаться с пробела"
+      ),
+    confirmPassword: z.string(),
+
+  }).superRefine(({ confirmPassword, password }, ctx) => {
+    if (confirmPassword !== password) {
+      ctx.addIssue({
+        code: "custom",
+        message: "Пароли не совпадают",
+        path: ["confirmPassword"],
+      });
+    }
+  });
+
+  export type ForgotCodeType = z.infer<typeof ForgotCodeScheme>

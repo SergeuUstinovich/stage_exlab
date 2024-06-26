@@ -56,12 +56,13 @@ function Autorized() {
         }
     }, [token])
 
+
     if(token) {
         return(
             <div className={style.autoriz}>
                 <div className={style.wiget}>
-                {auth && 
-                    <div className={style.username}>{auth.first_name}</div>
+                {auth?.first_name && 
+                    <div className={style.username}>{auth?.first_name}</div>
                 }
                 </div>
                 <div className={style.avatar}>

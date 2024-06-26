@@ -30,6 +30,9 @@ input.error {
 }
 
 .forgotFormBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid var(--sorporate-yellow);
   border-radius: 12px;
   padding: 12px 52px;

@@ -1,4 +1,4 @@
-import { validateResponse } from "../helpers/validateResponse";
+import { validateResponse, validateResponseForgotEmail } from "../helpers/validateResponse";
 import { UserType } from "../types";
 
 
@@ -68,6 +68,30 @@ export function User(token:string | undefined):Promise<UserType> {
         const users = obj.message
         return users
     } );
+}
+
+export function forgotEmail(email:string):Promise<void> {
+    return fetch('api/auth/password-reset/', {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify({email})
+    })
+    .then(validateResponseForgotEmail)
+    .then(() => undefined);
+}
+
+export function forgotCode(code:string, new_password1: string, new_password2: string):Promise<void> {
+    return fetch('api/auth/password-reset/confirm/', {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify({code, new_password1, new_password2})
+    })
+    .then(validateResponseForgotEmail)
+    .then(() => undefined);
 }
 
 
