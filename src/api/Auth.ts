@@ -1,6 +1,8 @@
 import { validateResponse } from "../helpers/validateResponse";
+import { UserType } from "../types";
 
-export function registerUser(first_name:string, email:string, password1:string, password2:string):Promise<void | object | undefined> {
+
+export function registerUser(first_name:string, email:string, password1:string, password2:string):Promise<void> {
     return fetch("api/auth/register/", {
         method: "POST",
         headers: {
@@ -12,7 +14,7 @@ export function registerUser(first_name:string, email:string, password1:string, 
     .then(() => undefined);
 }
 
-export function verifyEmail(code:string):Promise<void | object | undefined> {
+export function verifyEmail(code:string):Promise<void> {
     return fetch('api/auth/verify-email/', {
         method: "POST",
         headers: {
@@ -24,7 +26,7 @@ export function verifyEmail(code:string):Promise<void | object | undefined> {
     .then(() => undefined);
 }
 
-export function login(email:string, password:string):Promise<void | object | undefined> {
+export function login(email:string, password:string):Promise<string> {
     return fetch("api/auth/login/", {
         method: "POST",
         headers: {
@@ -33,17 +35,37 @@ export function login(email:string, password:string):Promise<void | object | und
         body: JSON.stringify({email, password})
     })
     .then(validateResponse)
-    .then(() => undefined);
+    .then( async (response) => {
+        const obj = await response.json()
+        const token = obj.token
+        return token
+    });
 }
 
-export function logout():Promise<void | object | undefined> {
+export function logout(token: string | undefined):Promise<void> {
     return fetch("api/auth/logout/", {
         method: "POST",
         headers: {
             "Content-Type": 'application/json',
+            "Authorization": `Token ${token}`
         },
-        body: JSON.stringify({})
     })
     .then(validateResponse)
     .then(() => undefined);
 }
+
+export function User(token:string | undefined):Promise<UserType> {
+    return fetch("/api/auth/user-details/", {
+        method: "GET",
+        headers: {
+            "Content-Type": 'application/json',
+            "Authorization": `Token ${token}`
+        },
+    })
+    .then(validateResponse)
+    .then(response => response.json());
+}
+
+
+
+

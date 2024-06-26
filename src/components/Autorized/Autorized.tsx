@@ -3,22 +3,45 @@ import AvatarNoName from "../../assets/svg/AvatarNoName/AvatarNoName"
 import style from './Autorized.module.scss'
 import { useCallback, useEffect, useState } from "react"
 import AuthModal from "../AuthModal/AuthModal"
-import { useMutation } from "@tanstack/react-query"
-import { logout } from "../../api/Auth"
+import { useMutation, useQuery } from "@tanstack/react-query"
+import { User, logout } from "../../api/Auth"
 import { queryClient } from "../../api/queryClient"
+import { useDispatch, useSelector } from "react-redux"
+import { getTokenUser } from "../../providers/StoreProvider/selectors/getTokenUser"
+import { tokenActions } from "../../providers/StoreProvider/slice/tokenSlice"
+import { userActions } from "../../providers/StoreProvider"
+// import { useUsers } from "../../utils/useUsers"
 
 
 function Autorized() {
-
+    const dispatch = useDispatch()
+    const token = useSelector(getTokenUser)
     const [isOpenModal, setIsOpenModal] = useState(false)
+   
+    console.log(typeof token)
+    // const data = useUsers(token)
 
     const logoutMutation = useMutation({
-        mutationFn: () => logout(),
-      }, queryClient)
+        mutationFn: (data: string | undefined) => logout(data),
+        onSuccess: () => {
+            dispatch(tokenActions.logout())
+        }
+    }, queryClient)
 
-    const logoutClick = useCallback(() => {
-        logoutMutation.mutate();
-    }, [])
+    console.log(`Токент ${token}`)
+    const meUsers = useQuery({
+        queryFn: () => User(token),
+        queryKey: ['user'],
+    }, queryClient)
+    
+    // console.log(data)
+    // useEffect(() => {
+        
+    // }, [])
+
+    const logoutClick = () => {
+        logoutMutation.mutate(token);
+    }
 
     const auth = false
 
@@ -31,16 +54,16 @@ function Autorized() {
     }, [])
 
     useEffect(() => {
-        if(auth) {
+        if(meUsers.data) {
             setIsOpenModal(false)
         }
-    }, [auth])
+    }, [meUsers.data])
 
-    if(auth) {
+    if(meUsers.data) {
         return(
             <div className={style.autoriz}>
                 <div className={style.wiget}>
-                {auth && 
+                {meUsers.data && 
                     <div className={style.username}>QWERTYUIOPASD</div>
                 }
                 </div>

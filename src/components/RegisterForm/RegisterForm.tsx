@@ -3,7 +3,7 @@ import { FormField } from "../../ui/FormField";
 import style from "./RegisterForm.module.scss";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import ShowPassword from "../../assets/svg/ShowPassword/ShowPassword";
 import Modal from "../../ui/Modal/Modal";
 import SuccesRegist from "../SuccesRegist/SuccesRegist";

@@ -3,7 +3,7 @@ import style from "./LoginForm.module.scss";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginScheme, LoginType } from "../../types";
 import { FormField } from "../../ui/FormField";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ShowPassword from "../../assets/svg/ShowPassword/ShowPassword";
 import { Button } from "../../ui/Button";
 import GooglePng from '../../assets/img/Google.png'
@@ -12,22 +12,29 @@ import ForgotForm from "../ForgotForm/ForgotForm";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "../../api/Auth";
 import { queryClient } from "../../api/queryClient";
+import { useDispatch } from "react-redux";
+import { tokenActions } from "../../providers/StoreProvider/slice/tokenSlice";
 
 function LoginForm() {
 
+  const dispatch = useDispatch()
+  
   const [showPassword, setShowPassword] = useState(false);
   const [isOpenForgot, setIsOpenForgot] = useState(false);
+
 
   const loginMutation = useMutation({
     mutationFn: (data: {
       email: string;
       password: string;
     }) => login(data.email, data.password),
-    onSuccess: () => {
+    onSuccess: (data) => {
+      localStorage.setItem('authToken', data);
+      dispatch(tokenActions.initAuthData());
       reset();
     },
-    
   }, queryClient)
+
 
   const onOpenModal = useCallback(() => {
     setIsOpenForgot(true);

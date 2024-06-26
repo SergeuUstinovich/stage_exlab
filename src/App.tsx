@@ -1,13 +1,21 @@
 import './App.scss'
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { LoaderPage } from './ui/Loader/LoaderPage'
 import { Route, Routes } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { tokenActions } from './providers/StoreProvider/slice/tokenSlice'
 
 const Layout = lazy(()=> import('./pages/Layout/Layout'))
 const MainPage = lazy(()=> import('./components/MainPage/MainPage'))
 const AboutPage = lazy(()=> import('./components/AboutPage/AboutPage'))
 
 function App() {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(tokenActions.initAuthData());
+}, [dispatch]);
 
   return (
     <>
