@@ -27,11 +27,22 @@ function Autorized() {
         }
     }, queryClient)
 
+    // useEffect(() => {
+    //     const meUsers = useQuery({
+    //         queryFn: () => User(token),
+    //         queryKey: ['user'],
+    //         retry: 0
+    //     }, queryClient)
+    //     useEffect(() => {
+    //         dispatch(userActions.setUserAuth(meUsers.data))
+    //     }, [meUsers.data])
+    // }, [token])
+
 
     const meUsers = useQuery({
         queryFn: () => User(token),
         queryKey: ['user'],
-        retry: 0
+        retry: 3
     }, queryClient)
 
     useEffect(() => {

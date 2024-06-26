@@ -53,7 +53,7 @@ function SuccesRegist({ email }: SuccesRegistProps) {
       Введите одноразовый код, который был отправлен на&nbsp;электронную почту
       </p>
       <span className={style.regemail}>{email}</span>
-      <form onSubmit={handleSubmit(({code}) => {
+      <form className={style.formSucReg} onSubmit={handleSubmit(({code}) => {
         verifyEmailMutation.mutate({code})
         
       })}>
@@ -63,7 +63,7 @@ function SuccesRegist({ email }: SuccesRegistProps) {
             placeholder="Код"
             type="text"
             {...register("code")}
-            className={errors.code ? style.error : ""}
+            className={`${errors.code ? style.error : ""} ${style.labelSuccesCode}`} 
           />
         </FormField>
         <Button className={style.succesRegistBtn} isLoading={verifyEmailMutation.isPending}>Отправить</Button>
