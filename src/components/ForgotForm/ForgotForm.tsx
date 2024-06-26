@@ -3,8 +3,6 @@ import { FormField } from "../../ui/FormField";
 import style from "./ForgotForm.module.scss";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  CreateRegistrationForm,
-  CreateRegistrationSchema,
   ForgotEmailScheme,
   ForgotEmailType,
 } from "../../types";

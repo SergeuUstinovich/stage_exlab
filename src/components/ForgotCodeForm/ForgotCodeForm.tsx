@@ -30,8 +30,7 @@ function ForgotCodeForm() {
           password: string;
           confirmPassword: string;
         }) => forgotCode(data.code, data.password, data.confirmPassword),
-        onSuccess: (data) => {
-          
+        onSuccess: () => {
           reset();
         },
       }, queryClient)
