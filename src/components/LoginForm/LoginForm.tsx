@@ -14,6 +14,7 @@ import { login } from "../../api/Auth";
 import { queryClient } from "../../api/queryClient";
 import { useDispatch } from "react-redux";
 import { tokenActions } from "../../providers/StoreProvider/slice/tokenSlice";
+import { useGoogleLogin } from "@react-oauth/google";
 
 function LoginForm() {
 
@@ -33,6 +34,10 @@ function LoginForm() {
       reset();
     },
   }, queryClient)
+
+  const loginGoogle = useGoogleLogin({
+    onSuccess: codeResponse => console.log(codeResponse),
+  });
 
   
   const onOpenModal = useCallback(() => {
@@ -109,7 +114,7 @@ function LoginForm() {
           <p onClick={onOpenModal} className={style.forgot}>Забыли пароль?</p>
         </div>
       </form>
-      <Button className={style.btnGoogle}>
+      <Button onClick={() => loginGoogle()} className={style.btnGoogle}>
         <div>
           <img 
           className={style.imgGoogle}
