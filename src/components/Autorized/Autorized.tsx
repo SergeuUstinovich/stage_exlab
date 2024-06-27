@@ -18,12 +18,13 @@ function Autorized() {
     const dispatch = useDispatch()
     const token = useSelector(getTokenUser)
     const [isOpenModal, setIsOpenModal] = useState(false)
-    const auth = useSelector(getUserAuthData)
+    const users = useSelector(getUserAuthData)
    
     const logoutMutation = useMutation({
         mutationFn: (data: string | undefined) => logout(data),
         onSuccess: () => {
             dispatch(tokenActions.logout())
+            queryClient.invalidateQueries()
         }
     }, queryClient)
 
@@ -42,7 +43,8 @@ function Autorized() {
     const meUsers = useQuery({
         queryFn: () => User(token),
         queryKey: ['user'],
-        retry: 3
+        enabled: !!token,
+        retry: 0
     }, queryClient)
 
     useEffect(() => {
@@ -72,8 +74,8 @@ function Autorized() {
         return(
             <div className={style.autoriz}>
                 <div className={style.wiget}>
-                {auth?.first_name && 
-                    <div className={style.username}>{auth?.first_name}</div>
+                {users?.first_name && 
+                    <div className={style.username}>{users?.first_name}</div>
                 }
                 </div>
                 <div className={style.avatar}>
