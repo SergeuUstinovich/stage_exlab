@@ -57,7 +57,7 @@ function SuccesRegist({ email }: SuccesRegistProps) {
         verifyEmailMutation.mutate({code})
         
       })}>
-        <FormField label="" errorMessage={errors.code?.message}>
+        <FormField className={style.labelSucces} label="" errorMessage={errors.code?.message}>
           <input
             maxLength={5}
             placeholder="Код"

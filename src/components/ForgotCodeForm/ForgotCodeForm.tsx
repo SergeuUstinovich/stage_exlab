@@ -47,7 +47,7 @@ function ForgotCodeForm() {
 
     if(ForgotCodeMutation.isSuccess) {
         return (
-            <div>Доступ восстановлен</div>
+            <div className={style.accessRestored}>Доступ восстановлен</div>
         )
     }
 
