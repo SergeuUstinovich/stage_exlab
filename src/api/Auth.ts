@@ -1,9 +1,10 @@
 import { validateResponse, validateResponseForgotEmail } from "../helpers/validateResponse";
 import { UserType } from "../types";
 
+const api_url = import.meta.env.MODE === 'development' ? '/api' : import.meta.env.VITE_API_BASE_URL;
 
 export function registerUser(first_name:string, email:string, password1:string, password2:string):Promise<void> {
-    return fetch("api/auth/register/", {
+    return fetch(`${api_url}/auth/register/`, {
         method: "POST",
         headers: {
             "Content-Type": 'application/json',
@@ -15,7 +16,7 @@ export function registerUser(first_name:string, email:string, password1:string, 
 }
 
 export function verifyEmail(code:string):Promise<void> {
-    return fetch('api/auth/verify-email/', {
+    return fetch(`${api_url}/auth/verify-email/`, {
         method: "POST",
         headers: {
             "Content-Type": 'application/json',
@@ -27,7 +28,7 @@ export function verifyEmail(code:string):Promise<void> {
 }
 
 export function login(email:string, password:string):Promise<string> {
-    return fetch("api/auth/login/", {
+    return fetch(`${api_url}/auth/login/`, {
         method: "POST",
         headers: {
             "Content-Type": 'application/json',
@@ -43,7 +44,7 @@ export function login(email:string, password:string):Promise<string> {
 }
 
 export function logout(token: string | undefined):Promise<void> {
-    return fetch("api/auth/logout/", {
+    return fetch(`${api_url}/auth/logout/`, {
         method: "POST",
         headers: {
             "Content-Type": 'application/json',
@@ -55,7 +56,7 @@ export function logout(token: string | undefined):Promise<void> {
 }
 
 export function User(token:string | undefined):Promise<UserType> {
-    return fetch("/api/auth/user-details/", {
+    return fetch(`${api_url}/auth/user-details/`, {
         method: "GET",
         headers: {
             "Content-Type": 'application/json',
@@ -71,7 +72,7 @@ export function User(token:string | undefined):Promise<UserType> {
 }
 
 export function forgotEmail(email:string):Promise<void> {
-    return fetch('api/auth/password-reset/', {
+    return fetch(`${api_url}/auth/password-reset/`, {
         method: "POST",
         headers: {
             "Content-Type": 'application/json',
