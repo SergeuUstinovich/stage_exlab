@@ -1,0 +1,40 @@
+.group {
+    position: relative;
+    display: flex;
+    height: 36px; 
+    width: 76px;
+    cursor: pointer;
+    border: none;
+    border-radius: 9999px; 
+    background-color: var(--light-grey);
+    transition: background-color 0.3s ease-in-out;
+    outline: none;
+    padding: 1px;
+  }
+  
+  .group:focus {
+    outline: 1px solid white; 
+  }
+  
+  .group:focus-within {
+    outline: 1px solid white; 
+  }
+  
+  .group[data-checked='true'] {
+    background-color: var(--light-grey); 
+  }
+  
+  /* внутренний круг */
+  .group span {
+    pointer-events: none;
+    display: inline-block;
+    width: 36px;
+    height: 34px;
+    border-radius: 9999px; 
+    background-color: white;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .group[data-checked='true'] span {
+    transform: translateX(1.75rem);
+  }
