@@ -5,7 +5,6 @@ import "./mainPage.scss";
 function MainPage() {
     return (
 			<div className="header__container">
-				<SwitchTheme />
 			</div>
 	);
 }

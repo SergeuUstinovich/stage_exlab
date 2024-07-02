@@ -10,6 +10,7 @@ export interface DropdownItem {
   content?: ReactNode;
   onClick?: () => void;
   href?: string;
+  style?: React.CSSProperties;
 }
 
 interface DropdownProps {
@@ -31,6 +32,7 @@ function Dropdown(props: DropdownProps) {
               onClick={item.onClick}
               disabled={item.disabled}
               className={classNames(style.item, { [style.focus]: focus })}
+              style={item.style}
             >
               {item.content}
             </button>

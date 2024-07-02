@@ -9,7 +9,6 @@
     padding: 0;
     border: none;
     cursor: pointer;
-    
 }
 
 .menu {
@@ -19,7 +18,6 @@
     right: 0;
     z-index: 10000;
     border-radius: 8px;
-    border: 1px solid var(--black);
 }
 
 .item {
@@ -29,7 +27,11 @@
     background: none;
     outline: none;
     cursor: pointer;
-    color: var(--black);
+    color: var(--black);  
+}
+
+.item .logoutBtn {
+    border: 1px solid var(--black);
 }
 
 .focus {

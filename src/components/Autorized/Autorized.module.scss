@@ -47,6 +47,11 @@
   transition: fill 0.3s ease-in-out;
 }
 
+.divider {
+  border: 1px solid var(--black);
+  padding: 0;
+}
+
 @media (max-width: 933px) {
   .username {
     display: none;
