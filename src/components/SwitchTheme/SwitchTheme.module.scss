@@ -6,7 +6,7 @@
     cursor: pointer;
     border: none;
     border-radius: 9999px;
-    background-color: var(--light-grey);
+    background-color: var(--color-switcher-bg);
     transition: background-color 0.3s ease-in-out;
     outline: none;
     padding: 1px;
@@ -20,7 +20,7 @@
     }
   
     &[data-checked] {
-      background-color: var(--light-grey);
+      background-color: var(--color-switcher-bg);
     }
 
     &[data-checked] span{
@@ -48,7 +48,7 @@
       width: 36px;
       height: 34px;
       border-radius: 9999px;
-      background-color: white;
+      background-color: var(--bg-color);
       transition: transform 0.3s ease-in-out;
       z-index: 5;
     }

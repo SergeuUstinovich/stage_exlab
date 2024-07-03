@@ -14,6 +14,7 @@ import { getUserAuthData } from "../../providers/StoreProvider/selectors/getUser
 import Dropdown from "../../ui/Dropdown/Dropdown";
 import SwitchTheme from "../SwitchTheme/SwitchTheme";
 
+
 function Autorized() {
   const dispatch = useDispatch();
   const token = useSelector(getTokenUser);

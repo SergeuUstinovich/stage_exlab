@@ -4,7 +4,6 @@
 
   .username {
     font-size: 14px;
-    color: var(--dark-grey);
   }
 
 }
@@ -15,35 +14,30 @@
   padding: 5px;
   transition: color 0.3s ease-in-out;
 
-  .descr {
-    color: var(--dark-grey);
-  }
-
   &:hover {
     .descr {
-      color: var(--black);
+      color: var(--hover-color);
       transition: color 0.3s ease-in-out;
     }
 
     .icon path {
-      fill: var(--black);
+      fill: var(--hover-color);
       transition: fill 0.3s ease-in-out;
     }
   }
 }
 
 .descr {
-  color: var(--dark-grey);
   transition: color 0.3s ease-in-out;
 
   &:hover {
-    color: var(--black);
+    color: var(--hover-color);
     transition: color 0.3s ease-in-out;
   }
 }
 
 .icon:hover path {
-  fill: var(--black);
+  fill: var(--hover-color);
   transition: fill 0.3s ease-in-out;
 }
 

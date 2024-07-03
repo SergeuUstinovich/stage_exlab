@@ -48,6 +48,7 @@ input.error {
   line-height: 114%;
   text-align: center;
   color: var(--dark-grey);
+  background-color: var(--white);
 }
 
 .sistemError {
@@ -79,7 +80,7 @@ input.error {
   font-size: 20px;
   line-height: 130%;
   text-align: center;
-  color: var(--dark-grey);
+  color: var(--primary-color);
 }
 
 // Внес изменения в стили, но не нашел в разметке

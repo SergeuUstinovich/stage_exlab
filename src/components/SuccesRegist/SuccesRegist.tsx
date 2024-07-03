@@ -39,7 +39,7 @@ function SuccesRegist({ email }: SuccesRegistProps) {
   if(succesVerify) {
     return(
       <div className={style.confirmregwrapper}>
-        <h2>
+        <h2 className={style.thancks}>
           Благодарим за регистрацию!
         </h2>
       </div>

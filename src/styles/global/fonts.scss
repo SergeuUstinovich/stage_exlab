@@ -1,8 +1,8 @@
 @font-face {
   font-family: "OpenSans";
   src: local("OpenSansRegular"),
-    url("./assets/fonts/OpenSansRegular.woff2") format("woff2"),
-    url("./assets/fonts/OpenSansRegular.woff") format("woff");
+    url("../../assets/fonts/OpenSansRegular.woff2") format("woff2"),
+    url("../../assets/fonts/OpenSansRegular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -11,8 +11,8 @@
 @font-face {
   font-family: "OpenSans";
   src: local("OpenSansBold"),
-    url("./assets/fonts/OpenSansBold.woff2") format("woff2"),
-    url("./assets/fonts/OpenSansBold.woff") format("woff");
+    url("../../assets/fonts/OpenSansBold.woff2") format("woff2"),
+    url("../../assets/fonts/OpenSansBold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;

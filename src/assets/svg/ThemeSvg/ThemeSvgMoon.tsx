@@ -1,11 +1,14 @@
+import { classNames } from "../../../utils/classNames";
+
 interface ThemeMoonProps {
-    className?: string
+  className?: string;
 }
 
-function ThemeSvgMoon({className}: ThemeMoonProps) {
+function ThemeSvgMoon(props: ThemeMoonProps) {
+  const { className = "" } = props;
   return (
     <svg
-      className={className}
+      className={classNames("svgColors", {}, [className])}
       width="16"
       height="16"
       viewBox="0 0 16 16"

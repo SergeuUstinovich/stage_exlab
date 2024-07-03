@@ -50,6 +50,8 @@ input.error {
     font-weight: 500;
     font-size: 14px;
     line-height: 114%;
+    color: var(--dark-grey);
+  background-color: var(--btn-bg);
 
     &:disabled{
       background-color: var(--light-grey);
@@ -61,8 +63,8 @@ input.error {
   .forgot {
     font-size: 14px;
     line-height: 100%;
-    color: var(--dark-grey);
-    border-bottom: 1px solid var(--dark-grey);
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
   }
 }
 
@@ -79,6 +81,7 @@ input.error {
   line-height: 114%;
   text-align: center;
   color: var(--dark-grey);
+  background-color: var(--btn-bg);
 
   .imgGoogle {
     margin-right: 8px;

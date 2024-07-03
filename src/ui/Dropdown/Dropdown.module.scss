@@ -12,7 +12,7 @@
 }
 
 .menu {
-    background-color: var(--white);
+    background-color: var(--bg-color);
     position: absolute;
     top: 30px;
     right: 0;
@@ -28,7 +28,7 @@
     background: none;
     outline: none;
     cursor: pointer;
-    color: var(--black);  
+    color: var(--primary-color);  
 }
 
 .item .logoutBtn {

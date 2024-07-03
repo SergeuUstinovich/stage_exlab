@@ -2,8 +2,8 @@ import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import style from './Modal.module.scss'
 import Portal from '../Portal/Portal';
 import CloseModalSvg from '../../assets/svg/CloseModalSvg/CloseModalSvg';
-import { useNavigate } from 'react-router-dom';
 import { classNames } from '../../utils/classNames';
+import { useTheme } from '../../providers/ThemeContext/useTheme';
 
 interface ModalProps {
     children?: ReactNode;
@@ -25,7 +25,7 @@ function Modal(props:ModalProps) {
 
     const [isClosing, setIsClosing] = useState(false)
     const [isMouned, setIsMouned] = useState(false)
-    const navigate = useNavigate()
+    const {theme} = useTheme()
     //для первого монтирования если передал lazy
     useEffect(() => {
         if(isOpen) {
@@ -41,7 +41,6 @@ function Modal(props:ModalProps) {
             timeRef.current = setTimeout(()=> {
                 setIsClosing(false)
                 onClose()
-                navigate('/')
             }, 300)
         }
     }, [onClose])
@@ -84,7 +83,7 @@ function Modal(props:ModalProps) {
 
     return (
         <Portal>
-        <div className={classNames(style.modal, mods)}>
+        <div className={classNames(style.modal, mods, [theme, 'app_modal'])}>
             <div className={style.overlay} onClick={closeHandler} >
                 <div className={style.content} onClick={onContentClick} >
                     {hiddenClose && (

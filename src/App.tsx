@@ -1,4 +1,4 @@
-import './App.scss'
+import './styles/global/App.scss'
 import { Suspense, lazy } from 'react'
 import { LoaderPage } from './ui/Loader/LoaderPage'
 import { Route, Routes } from 'react-router-dom'

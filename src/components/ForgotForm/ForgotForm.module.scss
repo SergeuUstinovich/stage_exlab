@@ -26,7 +26,7 @@ input.error {
   font-size: 20px;
   line-height: 130%;
   text-align: center;
-  color: var(--dark-grey);
+  color: var(--primary-color);
 }
 
 .forgotFormBtn {
@@ -43,5 +43,6 @@ input.error {
   line-height: 114%;
   text-align: center;
   color: var(--dark-grey);
+  background-color: var(--white);
   letter-spacing: 0.6px;
 }

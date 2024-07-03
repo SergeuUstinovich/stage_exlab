@@ -6,13 +6,17 @@
   padding-bottom: 40px;
 }
 
+.thancks {
+  color: var(--primary-color);
+}
+
 .confirmletter {
   width: 80%;
   margin: 9px auto;
   font-size: 20px;
   line-height: 150%;
   text-align: center;
-  color: var(--dark-grey);
+  color: var(--primary-color);
 }
 
 .regemail {
@@ -21,7 +25,7 @@
   font-size: 20px;
   line-height: 130%;
   text-align: center;
-  color: var(--dark-grey);
+  color: var(--primary-color);
 }
 
 .labelSuccesCode {
@@ -50,6 +54,8 @@ input.error {
   padding: 8px 28px;
   width: 144px;
   height: 32px;
+  background-color: var(--white);
+  color: var(--dark-grey);
 }
 
 .succesRegistError {
