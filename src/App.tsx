@@ -4,7 +4,7 @@ import { LoaderPage } from './ui/Loader/LoaderPage'
 import { Route, Routes } from 'react-router-dom'
 
 const Layout = lazy(()=> import('./pages/Layout/Layout'))
-const MainPage = lazy(()=> import('./components/MainPage/MainPage'))
+const MainPage = lazy(()=> import('./pages/MainPage/MainPage'))
 const AboutPage = lazy(()=> import('./components/AboutPage/AboutPage'))
 
 function App() {

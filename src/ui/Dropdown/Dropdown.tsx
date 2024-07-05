@@ -24,7 +24,7 @@ function Dropdown(props: DropdownProps) {
   return (
     <Menu as={"div"} className={classNames(style.dropdown, {}, [className])}>
       <MenuButton className={style.btn}>{trigger}</MenuButton>
-      <MenuItems className={style.menu}>
+      <MenuItems modal={false} className={style.menu}>
         {items.map((item) => {
           const content = ({ focus }: { focus: boolean }) => (
             <button

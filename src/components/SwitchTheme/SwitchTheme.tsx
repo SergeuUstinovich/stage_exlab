@@ -7,9 +7,10 @@ import { useTheme } from "../../providers/ThemeContext/useTheme";
 import { Theme } from "../../providers/ThemeContext/ThemeContext";
 
 function SwitchTheme() {
-    const [enabled, setEnabled] = useState(false)
-    const {theme, toggleTheme} = useTheme()
+  const {theme, toggleTheme} = useTheme()
     const newTheme = theme === Theme.DARK ? true : false
+    const [enabled, setEnabled] = useState(newTheme)
+    
     const handleToggle = () => {
         setEnabled(newTheme);
       };
