@@ -2,6 +2,41 @@
   position: relative;
 }
 
+.content {
+  width: 540px;
+}
+
+.form {
+  padding: 0 20px;
+  padding-bottom: 43px;
+}
+
+.forgotFormH2 {
+  margin: 20px 0 28px 0;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 130%;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.labelFirst {
+  margin-bottom: 45px;
+  position: relative;
+}
+
+.labelFirst::after {
+  content: "";
+  position: absolute;
+  width: inherit;
+  top: 98px;
+  border: 1px solid var(--grey);
+}
+
+.labelThird {
+  margin-bottom: 38px;
+}
+
 .showpassword {
   position: absolute;
   top: 30%;
@@ -76,6 +111,10 @@ input.error {
 }
 
 .accessRestored {
+  width: 520px;
+  width: 520px;
+  margin-top: 50px;
+  margin-bottom: 70px;
   font-weight: 700;
   font-size: 20px;
   line-height: 130%;

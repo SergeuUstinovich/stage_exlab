@@ -13,8 +13,9 @@
   }
 
   &__error {
+    font-size: 14px;
+    line-height: 100%;
     color: var(--error);
-    font-size: 12px;
   }
 }
 

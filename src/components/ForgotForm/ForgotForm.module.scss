@@ -1,5 +1,14 @@
+.content {
+  width: 540px;
+}
+
+.form {
+  padding: 0 20px;
+  padding-bottom: 65px;
+}
+
 .forgotFormEmailWrapper {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 input.error {
@@ -27,6 +36,14 @@ input.error {
   line-height: 130%;
   text-align: center;
   color: var(--primary-color);
+}
+
+.errorCode {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 100%;
+  color: var(--error);
 }
 
 .forgotFormBtn {

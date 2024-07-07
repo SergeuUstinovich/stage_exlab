@@ -6,7 +6,7 @@ import { FormField } from "../../ui/FormField";
 import { useCallback, useState } from "react";
 import ShowPassword from "../../assets/svg/ShowPassword/ShowPassword";
 import { Button } from "../../ui/Button";
-import GooglePng from '../../assets/img/Google.png'
+import GooglePng from "../../assets/img/Google.png";
 import Modal from "../../ui/Modal/Modal";
 import ForgotForm from "../ForgotForm/ForgotForm";
 import { useMutation } from "@tanstack/react-query";
@@ -17,29 +17,27 @@ import { tokenActions } from "../../providers/StoreProvider/slice/tokenSlice";
 import { useGoogleLogin } from "@react-oauth/google";
 
 function LoginForm() {
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
-  
   const [showPassword, setShowPassword] = useState(false);
   const [isOpenForgot, setIsOpenForgot] = useState(false);
 
-
-  const loginMutation = useMutation({
-    mutationFn: (data: {
-      email: string;
-      password: string;
-    }) => login(data.email, data.password),
-    onSuccess: (data) => {
-      dispatch(tokenActions.initAuthData(data));
-      reset();
+  const loginMutation = useMutation(
+    {
+      mutationFn: (data: { email: string; password: string }) =>
+        login(data.email, data.password),
+      onSuccess: (data) => {
+        dispatch(tokenActions.initAuthData(data));
+        reset();
+      },
     },
-  }, queryClient)
+    queryClient
+  );
 
   const loginGoogle = useGoogleLogin({
-    onSuccess: codeResponse => console.log(codeResponse),
+    onSuccess: (codeResponse) => console.log(codeResponse),
   });
 
-  
   const onOpenModal = useCallback(() => {
     setIsOpenForgot(true);
   }, [isOpenForgot]);
@@ -63,27 +61,27 @@ function LoginForm() {
 
   return (
     <>
-      <form 
+      <form
         className={style.form}
-        onSubmit={handleSubmit(({email, password}) => {
-          loginMutation.mutate({email, password})
+        onSubmit={handleSubmit(({ email, password }) => {
+          loginMutation.mutate({ email, password });
         })}
       >
         <FormField
           label="Электронная почта*"
           errorMessage={errors.email?.message}
         >
-        <div>
-          <input
-            autoComplete="email"
-            placeholder="Электронная почта"
-            type="text"
-            {...register("email")}
-            className={`${style.input} ${
-              errors.email ? style.error : style.input
-            }`}
-          />
-        </div>
+          <div>
+            <input
+              autoComplete="email"
+              placeholder="Электронная почта"
+              type="text"
+              {...register("email")}
+              className={`${style.input} ${
+                errors.email ? style.error : style.input
+              }`}
+            />
+          </div>
         </FormField>
         <FormField label="Пароль*" errorMessage={errors.password?.message}>
           <div className={style.regintput}>
@@ -109,18 +107,17 @@ function LoginForm() {
             className={style.btnSubmit}
             type="submit"
             title="Войти"
-          >Войти
+          >
+            Войти
           </Button>
-          <p onClick={onOpenModal} className={style.forgot}>Забыли пароль?</p>
+          <p onClick={onOpenModal} className={style.forgot}>
+            Забыли пароль?
+          </p>
         </div>
       </form>
       <Button onClick={() => loginGoogle()} className={style.btnGoogle}>
         <div>
-          <img 
-          className={style.imgGoogle}
-          src={GooglePng} 
-          alt="GoogleLogo"
-          />
+          <img className={style.imgGoogle} src={GooglePng} alt="GoogleLogo" />
         </div>
         Войти с помощью Google
       </Button>

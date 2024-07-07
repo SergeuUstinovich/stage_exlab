@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import style from "./Layout.module.scss";
 import { useTheme } from "../../providers/ThemeContext/useTheme";
 import { classNames } from "../../utils/classNames";
+import Footers from "../../components/Footers/Footers";
 
 function Layout() {
   const { theme } = useTheme();
@@ -16,7 +17,9 @@ function Layout() {
         </div>
       </main>
       <footer>
-        <div className="container"></div>
+        <div className="container">
+          <Footers />
+        </div>
       </footer>
     </div>
   );
