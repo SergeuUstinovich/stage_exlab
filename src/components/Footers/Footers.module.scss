@@ -1,0 +1,62 @@
+.footers {
+  padding-bottom: 40px;
+}
+
+.footersContainer {
+  display: flex;
+  padding-top: 20px;
+}
+
+.footersLogoWrapper {
+  width: 50%;
+}
+
+.footersLogo {
+  margin-bottom: 24px;
+}
+
+.footersAdress {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.adressDescr {
+  font-size: 12px;
+  line-height: 167%;
+  color: var(--primary-color);
+}
+
+.footersLinksWrapper {
+  width: 25%;
+}
+
+.footersList {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  padding-left: 10px;
+}
+
+.footersLinksItem {
+  font-size: 14px;
+  line-height: 100%;
+  color: var(--primary-color);
+}
+
+.social {
+  display: flex;
+  gap: 20px;
+}
+
+.footersSocialWrapper {
+  width: 25%;
+  padding-left: 15px;
+}
+
+.footersSocialDescr {
+  font-size: 14px;
+  line-height: 100%;
+  color: var(--primary-color);
+  margin-bottom: 18px;
+}

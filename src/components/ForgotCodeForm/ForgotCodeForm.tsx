@@ -60,7 +60,9 @@ function ForgotCodeForm() {
         }
         )}
       >
+        <h2 className={style.forgotFormH2}>Восстановление пароля</h2>
         <FormField
+          className={style.labelFirst}
           label="Введите одноразовый код, отправленный на вашу электронную почту"
           errorMessage={errors.code?.message}
         >
@@ -91,6 +93,7 @@ function ForgotCodeForm() {
           </div>
         </FormField>
         <FormField
+          className={style.labelThird}
           label="Повторите, чтобы не ошибится"
           errorMessage={errors.confirmPassword?.message}
         >

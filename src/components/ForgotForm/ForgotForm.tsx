@@ -2,10 +2,7 @@ import { useForm } from "react-hook-form";
 import { FormField } from "../../ui/FormField";
 import style from "./ForgotForm.module.scss";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  ForgotEmailScheme,
-  ForgotEmailType,
-} from "../../types";
+import { ForgotEmailScheme, ForgotEmailType } from "../../types";
 import { Button } from "../../ui/Button";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../../api/queryClient";
@@ -59,7 +56,9 @@ function ForgotForm() {
           }`}
         />
       </FormField>
-      {forgotMutation.error && <span>{forgotMutation.error.message}</span>}
+      {forgotMutation.error && (
+        <span className={style.errorCode}>{forgotMutation.error.message}</span>
+      )}
       <Button
         isLoading={forgotMutation.isPending}
         className={style.forgotFormBtn}

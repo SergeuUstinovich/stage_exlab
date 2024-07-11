@@ -97,7 +97,7 @@ function Autorized() {
                 id: '5',
                 content: "Выйти",
                 onClick: logoutClick,
-                style: {borderTop: '1px solid var(--black)', borderEndEndRadius: '5px', borderBottomLeftRadius: '5px'}
+                style: {borderTop: '1px solid var(--br-color)', borderEndEndRadius: '5px', borderBottomLeftRadius: '5px', paddingTop: '15px', paddingBottom: '10px'}
               },
             ]}
             trigger={<AvatarNoName className={style.icon} />}
