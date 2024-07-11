@@ -1,5 +1,6 @@
 import InfinitiStr from "../../components/InfiniteStr/InfinitiStr";
 import SlideAdvertising from "../../components/SliderAdvertising/SlideAdvertising";
+import SliderComments from "../../components/SliderComments/SliderComments";
 import style from "./mainPage.module.scss";
 
 
@@ -15,6 +16,7 @@ function MainPage() {
 	  </h1>
 	  <SlideAdvertising />
 	  <InfinitiStr />
+	  <SliderComments />
     </>
   );
 }

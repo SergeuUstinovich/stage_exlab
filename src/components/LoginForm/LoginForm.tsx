@@ -3,14 +3,14 @@ import style from "./LoginForm.module.scss";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginScheme, LoginType } from "../../types";
 import { FormField } from "../../ui/FormField";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ShowPassword from "../../assets/svg/ShowPassword/ShowPassword";
 import { Button } from "../../ui/Button";
 import GooglePng from "../../assets/img/Google.png";
 import Modal from "../../ui/Modal/Modal";
 import ForgotForm from "../ForgotForm/ForgotForm";
 import { useMutation } from "@tanstack/react-query";
-import { login } from "../../api/Auth";
+import { googleAuth, login } from "../../api/Auth";
 import { queryClient } from "../../api/queryClient";
 import { useDispatch } from "react-redux";
 import { tokenActions } from "../../providers/StoreProvider/slice/tokenSlice";
@@ -21,6 +21,7 @@ function LoginForm() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [isOpenForgot, setIsOpenForgot] = useState(false);
+  const [googleData, setGoogleData] = useState();
 
   const loginMutation = useMutation(
     {
@@ -34,8 +35,19 @@ function LoginForm() {
     queryClient
   );
 
-  const loginGoogle = useGoogleLogin({
-    onSuccess: (codeResponse) => console.log(codeResponse),
+  // Функция для входа в систему
+
+  useEffect(() => {
+    console.log(googleData);
+  }, [googleData]);
+
+  const handleSuccessGoogle = async (response: any) => {
+    const data = await googleAuth(response);
+    setGoogleData(data);
+  };
+
+  const dataGoogle = useGoogleLogin({
+    onSuccess: handleSuccessGoogle,
   });
 
   const onOpenModal = useCallback(() => {
@@ -115,7 +127,7 @@ function LoginForm() {
           </p>
         </div>
       </form>
-      <Button onClick={() => loginGoogle()} className={style.btnGoogle}>
+      <Button onClick={() => dataGoogle()} className={style.btnGoogle}>
         <div>
           <img className={style.imgGoogle} src={GooglePng} alt="GoogleLogo" />
         </div>
