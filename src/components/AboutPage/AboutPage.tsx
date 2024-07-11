@@ -1,8 +1,9 @@
+import ForgotCodeForm from '../ForgotCodeForm/ForgotCodeForm'
 import './AboutPage.scss'
 
 function AboutPage() {
     return (
-        <div className="about">Тут тоже идут работы</div>
+        <ForgotCodeForm />
     )
 }
 

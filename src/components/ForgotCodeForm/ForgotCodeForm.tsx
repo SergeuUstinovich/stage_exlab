@@ -52,7 +52,8 @@ function ForgotCodeForm() {
     }
 
     return (
-        <form
+      <>
+      <form
         className={style.form}
         onSubmit={handleSubmit(({code, password, confirmPassword}) => {
             ForgotCodeMutation.mutate({code, password, confirmPassword})
@@ -123,7 +124,7 @@ function ForgotCodeForm() {
           Далее
         </Button>
       </form>
-      
+      </>  
     )
 }
 
