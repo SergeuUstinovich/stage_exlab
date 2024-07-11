@@ -3,18 +3,20 @@ import style from "./LoginForm.module.scss";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginScheme, LoginType } from "../../types";
 import { FormField } from "../../ui/FormField";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ShowPassword from "../../assets/svg/ShowPassword/ShowPassword";
 import { Button } from "../../ui/Button";
 import GooglePng from '../../assets/img/Google.png'
 import Modal from "../../ui/Modal/Modal";
 import ForgotForm from "../ForgotForm/ForgotForm";
 import { useMutation } from "@tanstack/react-query";
-import { login } from "../../api/Auth";
+import { googleAuth, login } from "../../api/Auth";
 import { queryClient } from "../../api/queryClient";
 import { useDispatch } from "react-redux";
 import { tokenActions } from "../../providers/StoreProvider/slice/tokenSlice";
 import { useGoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 
 function LoginForm() {
 
@@ -22,6 +24,7 @@ function LoginForm() {
   
   const [showPassword, setShowPassword] = useState(false);
   const [isOpenForgot, setIsOpenForgot] = useState(false);
+  const [googleData, setGoogleData] = useState()
 
 
   const loginMutation = useMutation({
@@ -35,11 +38,24 @@ function LoginForm() {
     },
   }, queryClient)
 
-  const loginGoogle = useGoogleLogin({
-    onSuccess: codeResponse => console.log(codeResponse),
-  });
 
+  // Функция для входа в систему
   
+
+  useEffect(() => {
+    console.log(googleData)
+  }, [googleData])
+
+  const handleSuccessGoogle = async (response: any) => {
+      const data = await googleAuth(response);
+      setGoogleData(data);
+  }
+
+  const dataGoogle = useGoogleLogin({
+    onSuccess: handleSuccessGoogle 
+  });
+  
+
   const onOpenModal = useCallback(() => {
     setIsOpenForgot(true);
   }, [isOpenForgot]);
@@ -63,6 +79,7 @@ function LoginForm() {
 
   return (
     <>
+      
       <form 
         className={style.form}
         onSubmit={handleSubmit(({email, password}) => {
@@ -114,7 +131,7 @@ function LoginForm() {
           <p onClick={onOpenModal} className={style.forgot}>Забыли пароль?</p>
         </div>
       </form>
-      <Button onClick={() => loginGoogle()} className={style.btnGoogle}>
+      <Button onClick={() => dataGoogle()}  className={style.btnGoogle}>
         <div>
           <img 
           className={style.imgGoogle}

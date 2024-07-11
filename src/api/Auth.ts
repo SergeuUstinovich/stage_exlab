@@ -68,13 +68,31 @@ export function forgotEmail(email:string):Promise<void> {
 }
 
 export function forgotCode(code:string, new_password1: string, new_password2: string):Promise<void> {
-    return axios.post('api/auth/password-reset/confirm/', {
+    return axios.post(`${api_url}/auth/password-reset/confirm/`, {
         code,
         new_password1,
         new_password2
     })
     .then(() => undefined)
     .catch(validateErrorForgotEmail)
+}
+
+export function googleAuth(response: any) {
+    return axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+        headers: {
+            Authorization: `Bearer ${response.access_token}`
+        }
+    })
+    .then(response => {
+        const data = response.data
+        return data
+    })
+    .catch(error => {
+        if(error) {
+            throw new Error('Ошибка')
+        }
+    })
+
 }
 
 

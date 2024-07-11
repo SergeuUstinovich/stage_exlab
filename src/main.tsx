@@ -7,13 +7,14 @@ import StoreProviders from './providers/StoreProvider/StoreProviders.tsx'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import ThemeProvider from './providers/ThemeContext/ThemeProvider.tsx'
 
-const clientsId = '949215497470-rbutqin0rniig6t0ujai6d0vlchbh2ng.apps.googleusercontent.com'
+
+const clientID = '949215497470-rbutqin0rniig6t0ujai6d0vlchbh2ng.apps.googleusercontent.com'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <StoreProviders>
       <BrowserRouter>
-        <GoogleOAuthProvider clientId={clientsId}>
+        <GoogleOAuthProvider clientId={clientID}>
           <ThemeProvider>
             <App />
           </ThemeProvider>
