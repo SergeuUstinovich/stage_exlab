@@ -1,17 +1,15 @@
-export async function validateResponse(response: Response): Promise<Response> {
-    if(!response.ok) {
-        const errorObject = await response.json();
-        const nonFieldErrors = errorObject.errors.non_field_errors || 'Возможны проблемы с сетью';
-        throw new Error(nonFieldErrors);
+export function validateError(error: any): Promise<never> {
+    if(error.response) {
+        const nonFieldErrors = error.response.data.errors.non_field_errors || ['Возникла ошибка'];
+        throw new Error(nonFieldErrors.join(' '));
     }
-    return response
+    throw new Error('Возникла неизвестная ошибка');
 }
 
-export async function validateResponseForgotEmail(response: Response): Promise<Response> {
-    if(!response.ok) {
-        const errorObject = await response.json();
-        const nonFieldErrors = errorObject.errors || 'Возможны проблемы с сетью';
+export function validateErrorForgotEmail(error: any): Promise<never> {
+    if(error.response) {
+        const nonFieldErrors = error.response.data.errors || 'Возможны проблемы с сетью';
         throw new Error(nonFieldErrors);
     }
-    return response
+    throw new Error('Возникла неизвестная ошибка');
 }
