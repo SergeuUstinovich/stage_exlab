@@ -1,7 +1,7 @@
 import { validateResponse, validateResponseForgotEmail } from "../helpers/validateResponse";
 import { UserType } from "../types";
 
-const api_url = import.meta.env.VITE_API_BASE_URL
+const api_url = import.meta.env.MODE === 'development' ? '/api' : import.meta.env.VITE_API_BASE_URL;
 
 export function registerUser(first_name:string, email:string, password1:string, password2:string):Promise<void> {
     return fetch(`${api_url}/auth/register/`, {
