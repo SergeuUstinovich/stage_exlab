@@ -1,3 +1,4 @@
+import axios from "axios";
 import { validateResponse, validateResponseForgotEmail } from "../helpers/validateResponse";
 import { UserType } from "../types";
 
@@ -27,21 +28,21 @@ export function verifyEmail(code:string):Promise<void> {
     .then(() => undefined);
 }
 
-export function login(email:string, password:string):Promise<string> {
-    return fetch(`${api_url}/auth/login/`, {
-        method: "POST",
-        headers: {
-            "Content-Type": 'application/json',
-        },
-        body: JSON.stringify({email, password})
+export function login(email: string, password: string) {
+    return axios.post(`${api_url}/auth/login/`, {
+      email,
+      password
     })
-    .then(validateResponse)
-    .then( async (response) => {
-        const obj = await response.json()
-        const token = obj.token
-        return token
-    });
-}
+    .then(response => {
+      const token = response.data.token;
+      return token;
+    })
+    .catch(error => {
+        if(error.response) {
+            throw new Error(error.response.data.errors.non_field_errors.join(' '))
+        }
+    })
+  }
 
 export function logout(token: string | undefined):Promise<void> {
     return fetch(`${api_url}/auth/logout/`, {
