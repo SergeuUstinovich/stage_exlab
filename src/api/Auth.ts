@@ -15,7 +15,6 @@ export function registerUser(first_name:string, email:string, password1:string, 
     .then(validateResponse)
     .then(() => undefined);
 }
-
 export function verifyEmail(code:string):Promise<void> {
     return fetch(`${api_url}/auth/verify-email/`, {
         method: "POST",
