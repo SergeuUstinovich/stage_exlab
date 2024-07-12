@@ -84,15 +84,36 @@ export function googleAuth(response: any) {
         }
     })
     .then(response => {
-        const data = response.data
-        return data
+        const email = response.data.email
+        const username = response.data.given_name
+        const lastname = response.data.family_name
+        const id = response.data.sub
+        return {
+            email,
+            username,
+            lastname,
+            id
+        }
     })
     .catch(error => {
         if(error) {
             throw new Error('Ошибка')
         }
     })
+}
 
+export function googleLogin(email: string, first_name: string, last_name: string, google_id: string) {
+    return axios.post(`${api_url}/auth/google-login/`, {
+        email,
+        first_name,
+        last_name,
+        google_id
+    })
+    .then(response => {
+        const token = response.data.token;
+        return token;
+    })
+    .catch(validateError)
 }
 
 

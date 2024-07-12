@@ -10,11 +10,18 @@ import GooglePng from '../../assets/img/Google.png'
 import Modal from "../../ui/Modal/Modal";
 import ForgotForm from "../ForgotForm/ForgotForm";
 import { useMutation } from "@tanstack/react-query";
-import { googleAuth, login } from "../../api/Auth";
+import { googleAuth, googleLogin, login } from "../../api/Auth";
 import { queryClient } from "../../api/queryClient";
 import { useDispatch } from "react-redux";
 import { tokenActions } from "../../providers/StoreProvider/slice/tokenSlice";
 import { useGoogleLogin } from "@react-oauth/google";
+
+interface googleLoginProps {
+  email: string
+  username: string
+  lastname: string
+  id: string
+}
 
 function LoginForm() {
 
@@ -22,7 +29,7 @@ function LoginForm() {
   
   const [showPassword, setShowPassword] = useState(false);
   const [isOpenForgot, setIsOpenForgot] = useState(false);
-  const [googleData, setGoogleData] = useState();
+  const [googleData, setGoogleData] = useState<googleLoginProps | undefined>();
 
   const loginMutation = useMutation(
     {
@@ -36,15 +43,32 @@ function LoginForm() {
     queryClient
   );
 
-  // Функция для входа в систему
+  // Функция для входа в систему google
+
+  const googleMutation = useMutation(
+    {
+      mutationFn: (data: { email: string; username: string, lastname: string, id: string }) =>
+        googleLogin(data.email, data.username, data.lastname, data.id),
+      onSuccess: (data) => {
+        dispatch(tokenActions.initAuthData(data));
+        setGoogleData(undefined);
+      },
+    },
+    queryClient
+  );
 
   useEffect(() => {
-    console.log(googleData);
+    if(googleData) {
+      googleMutation.mutate(googleData)
+    }
   }, [googleData]);
 
   const handleSuccessGoogle = async (response: any) => {
-    const data = await googleAuth(response);
-    setGoogleData(data);
+    const result = await googleAuth(response);
+    if(result) {
+      const {email, username, lastname, id} = result;
+      setGoogleData({email, username, lastname, id});
+    }
   };
 
   const dataGoogle = useGoogleLogin({

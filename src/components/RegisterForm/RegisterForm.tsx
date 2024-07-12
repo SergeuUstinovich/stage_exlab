@@ -163,7 +163,7 @@ function RegisterForm() {
           title="Зарегистрироваться"
           isLoading={registerMutation.isPending}
         >
-          Зарегистироваться
+          Зарегистрироваться
         </Button>
       </form>
       {isOpenModal && (
