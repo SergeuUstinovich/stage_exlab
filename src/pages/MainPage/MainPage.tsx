@@ -73,11 +73,11 @@ const arrComm = [
 function MainPage() {
   return (
     <>
-    <div className={style.filter} /> {/* в перспективе филтр */}
-	  <SlideAdvertising slider={SliderAdvertis} />
-    <Partners />
-	  <InfinitiStr />
-	  <SliderComments slider={arrComm} />
+      <div className={style.filter} /> {/* в перспективе филтр */}
+      <SlideAdvertising slider={SliderAdvertis} />
+      <Partners />
+      <InfinitiStr />
+      <SliderComments slider={arrComm} />
     </>
   );
 }
