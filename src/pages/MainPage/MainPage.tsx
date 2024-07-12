@@ -81,9 +81,9 @@ function MainPage() {
 		</p>
 	  </h1>
 	  <SlideAdvertising slider={SliderAdvertis} />
+    <Partners />
 	  <InfinitiStr />
 	  <SliderComments slider={arrComm} />
-    <Partners />
     </>
   );
 }
