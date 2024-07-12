@@ -1,0 +1,28 @@
+.partnersWrapper {
+    padding: 100px 0;
+}
+
+.partnersDescr {
+  margin-bottom: 50px;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 130%;
+  color: var(--primary-color);
+  letter-spacing: -1.6px;
+}
+
+.partnersList {
+  display: flex;
+  gap: 20px;
+}
+
+.partnersItem {
+  max-width: 310px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 130%;
+  color: var(--primary-color);
+}

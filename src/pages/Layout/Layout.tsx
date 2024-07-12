@@ -4,6 +4,7 @@ import style from "./Layout.module.scss";
 import { useTheme } from "../../providers/ThemeContext/useTheme";
 import { classNames } from "../../utils/classNames";
 import Footers from "../../components/Footers/Footers";
+import Partners from "../../components/Partners/Partners";
 
 function Layout() {
   const { theme } = useTheme();
@@ -14,6 +15,9 @@ function Layout() {
       <main className={style.page__content}>
         <div className="container">
           <Outlet />
+        </div>
+        <div className="container">
+          <Partners />
         </div>
       </main>
       <footer>
