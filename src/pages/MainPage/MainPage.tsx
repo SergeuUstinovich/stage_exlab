@@ -9,6 +9,7 @@ import imgComm1 from "../../assets/img/comment_avatar1.png";
 import imgComm2 from "../../assets/img/comment_avatar2.png";
 import imgComm3 from "../../assets/img/comment_avatar3.png";
 import imgComm4 from "../../assets/img/comment_avatar4.png";
+import Partners from "../../components/Partners/Partners";
 const SliderAdvertis = [
 	{
 		id: '1',
@@ -82,6 +83,7 @@ function MainPage() {
 	  <SlideAdvertising slider={SliderAdvertis} />
 	  <InfinitiStr />
 	  <SliderComments slider={arrComm} />
+    <Partners />
     </>
   );
 }
