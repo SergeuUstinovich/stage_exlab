@@ -21,7 +21,6 @@ const arrNav = [
     path: "#",
   },
 ];
-
 const arrSoc = [
   {
     id: "1",
