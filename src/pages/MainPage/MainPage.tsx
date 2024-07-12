@@ -5,6 +5,10 @@ import style from "./mainPage.module.scss";
 import slideAdv1 from '../../assets/img/Swiper-slide1.jpg'
 import slideAdv2 from '../../assets/img/Swiper-slide2.jpg'
 import slideAdv3 from '../../assets/img/Swiper-slide3.jpg'
+import imgComm1 from "../../assets/img/comment_avatar1.png";
+import imgComm2 from "../../assets/img/comment_avatar2.png";
+import imgComm3 from "../../assets/img/comment_avatar3.png";
+import imgComm4 from "../../assets/img/comment_avatar4.png";
 const SliderAdvertis = [
 	{
 		id: '1',
@@ -29,6 +33,41 @@ const SliderAdvertis = [
 	}
 ]
 
+const arrComm = [
+    {
+        name: 'Роман',
+        time: '1 год',
+        raiting: 4,
+        year: 'апрель 2024',
+        textComm: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint repellat animi omnis culpa sit mollitia quaerat eaque error! Est doloribus modi praesentium vel, molestiae, quod inventore placeat ea omnis doloremque harum culpa quasi laudantium recusandae dolor voluptatum, tenetur beatae exercitationem similique numquam nobis ipsam suscipit accusantium. Tempore cumque exercitationem porro consectetur culpa atque sunt, quaerat, sint, hic nemo quidem dolorem explicabo natus quibusdam delectus necessitatibus voluptate. Sint quam eaque quisquam sed placeat tempore dolorem iste odio nulla, natus illo, iusto labore ratione aspernatur incidunt eius. Quibusdam, iste! Necessitatibus odit repellendus distinctio provident aut, numquam ut, eius consectetur accusantium aliquam illo.',
+        img: imgComm1
+    },
+    {
+        name: 'Валентина',
+        time: '3 месяца',
+        raiting: 4,
+        year: 'июнь 2024',
+        textComm: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint repellat animi omnis culpa sit mollitia quaerat eaque error! Est doloribus modi praesentium vel, molestiae, quod inventore placeat ea omnis doloremque harum culpa quasi laudantium recusandae dolor voluptatum, tenetur beatae exercitationem similique numquam nobis ipsam suscipit accusantium. Tempore cumque exercitationem porro consectetur culpa atque sunt, quaerat, sint, hic nemo quidem dolorem explicabo natus quibusdam delectus necessitatibus voluptate. Sint quam eaque quisquam sed placeat tempore dolorem iste odio nulla, natus illo, iusto labore ratione aspernatur incidunt eius. Quibusdam, iste! Necessitatibus odit repellendus distinctio provident aut, numquam ut, eius consectetur accusantium aliquam illo.',
+        img: imgComm2
+    },
+    {
+        name: 'Ксения',
+        time: '6 месяцев',
+        raiting: 5,
+        year: 'январь 2024',
+        textComm: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint repellat animi omnis culpa sit mollitia quaerat eaque error! Est doloribus modi praesentium vel, molestiae, quod inventore placeat ea omnis doloremque harum culpa quasi laudantium recusandae dolor voluptatum, tenetur beatae exercitationem similique numquam nobis ipsam suscipit accusantium. Tempore cumque exercitationem porro consectetur culpa atque sunt, quaerat, sint, hic nemo quidem dolorem explicabo natus quibusdam delectus necessitatibus voluptate. Sint quam eaque quisquam sed placeat tempore dolorem iste odio nulla, natus illo, iusto labore ratione aspernatur incidunt eius. Quibusdam, iste! Necessitatibus odit repellendus distinctio provident aut, numquam ut, eius consectetur accusantium aliquam illo.',
+        img: imgComm3
+    },
+    {
+        name: 'Василий',
+        time: '2 года',
+        raiting: 4,
+        year: 'сентябрь 2023',
+        textComm: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint repellat animi omnis culpa sit mollitia quaerat eaque error! Est doloribus modi praesentium vel, molestiae, quod inventore placeat ea omnis doloremque harum culpa quasi laudantium recusandae dolor voluptatum, tenetur beatae exercitationem similique numquam nobis ipsam suscipit accusantium. Tempore cumque exercitationem porro consectetur culpa atque sunt, quaerat, sint, hic nemo quidem dolorem explicabo natus quibusdam delectus necessitatibus voluptate. Sint quam eaque quisquam sed placeat tempore dolorem iste odio nulla, natus illo, iusto labore ratione aspernatur incidunt eius. Quibusdam, iste! Necessitatibus odit repellendus distinctio provident aut, numquam ut, eius consectetur accusantium aliquam illo.',
+        img: imgComm4
+    }
+]
+
 
 function MainPage() {
   return (
@@ -42,7 +81,7 @@ function MainPage() {
 	  </h1>
 	  <SlideAdvertising slider={SliderAdvertis} />
 	  <InfinitiStr />
-	  <SliderComments />
+	  <SliderComments slider={arrComm} />
     </>
   );
 }

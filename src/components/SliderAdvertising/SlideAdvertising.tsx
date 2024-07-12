@@ -3,6 +3,7 @@ import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/css/pagination";
 import style from "./SliderAdvertising.module.scss";
+import './SliderAdvertising.scss'
 import { A11y, Navigation, Pagination } from "swiper/modules";
 
 import slideNew from '../../assets/img/Slider arrow_right.png'
