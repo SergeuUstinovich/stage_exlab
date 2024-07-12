@@ -11,6 +11,7 @@ export interface CommentsItemProps {
   year: string;
   textComm: string;
   img: string;
+  isModal?: boolean;
 }
 
 function CommentsItem(props: CommentsItemProps) {
@@ -27,29 +28,36 @@ function CommentsItem(props: CommentsItemProps) {
   };
 
   return (
-    <div className={style.comment}>
-      <CommentCard
-        name={name}
-        time={time}
-        raiting={raiting}
-        year={year}
-        textComm={textComm}
-        img={img}
-      />
-      <Button onClick={handleOpenModal} className={style.btn}>Подробнее</Button>
+    <>
+      <div className={style.comment}>
+        <CommentCard
+          name={name}
+          time={time}
+          raiting={raiting}
+          year={year}
+          textComm={textComm}
+          img={img}
+        />
+        <Button onClick={handleOpenModal} className={style.btn}>
+          Подробнее
+        </Button>
+      </div>
       {isOpen && (
         <Modal isOpen={isOpen} onClose={handleCloseModal} hiddenClose>
-          <CommentCard
-            name={name}
-            time={time}
-            raiting={raiting}
-            year={year}
-            textComm={textComm}
-            img={img}
-          />
+          <div className={style.ModCard}>
+            <CommentCard
+              name={name}
+              time={time}
+              raiting={raiting}
+              year={year}
+              textComm={textComm}
+              img={img}
+              isModal={isOpen}
+            />
+          </div>
         </Modal>
       )}
-    </div>
+    </>
   );
 }
 

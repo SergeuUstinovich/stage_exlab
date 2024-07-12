@@ -3,7 +3,7 @@ import style from "./CommentCard.module.scss";
 import { StarRating } from "./StarRaiting";
 
 function CommentCard(props: CommentsItemProps) {
-  const { name, time, raiting, year, textComm, img } = props;
+  const { name, time, raiting, year, textComm, img, isModal } = props;
   return (
     <>
       <div className={style.infoUser}>
@@ -19,7 +19,11 @@ function CommentCard(props: CommentsItemProps) {
         </div>
         <p className={style.years}>{year}</p>
       </div>
-      <p className={style.descr}>{textComm}</p>
+      {!isModal ? 
+        <p className={style.descr}>{textComm}</p> :
+        <p className={style.descrText}>{textComm}</p>
+      }
+      
     </>
   );
 }

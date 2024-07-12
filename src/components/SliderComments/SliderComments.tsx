@@ -2,18 +2,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import style from "./SliderComments.module.scss";
 import { A11y, Navigation } from "swiper/modules";
 import CommentsItem, { CommentsItemProps } from "../CommentsItem/CommentsItem";
-import commSlideRight from '../../assets/img/comment_slide_right.png'
-import commSlideLeft from '../../assets/img/comment_slide_left.png'
-import './SliderComments.scss'
+import commSlideRight from "../../assets/img/comment_slide_right.png";
+import commSlideLeft from "../../assets/img/comment_slide_left.png";
+import "./SliderComments.scss";
 import "swiper/scss";
 import "swiper/scss/navigation";
-  interface SliderProps {
-    slider: CommentsItemProps[];
-  }
+interface SliderProps {
+  slider: CommentsItemProps[];
+}
 
-function SliderComments(props:SliderProps) {
-    const { slider } = props;
-    
+function SliderComments(props: SliderProps) {
+  const { slider } = props;
+
   return (
     <div className={style.blockComments}>
       <h2 className={style.reviews}>Отзывы</h2>
@@ -29,16 +29,16 @@ function SliderComments(props:SliderProps) {
         className={style.swiper}
       >
         {slider.map((item) => (
-            <SwiperSlide key={item.img} className={style.swiperslide}>
-                <CommentsItem
-                    name={item.name}
-                    time={item.time} 
-                    raiting={item.raiting}
-                    year={item.year}
-                    textComm={item.textComm}
-                    img={item.img}
-                 />
-            </SwiperSlide>
+          <SwiperSlide key={item.img} className={style.swiperslide}>
+            <CommentsItem
+              name={item.name}
+              time={item.time}
+              raiting={item.raiting}
+              year={item.year}
+              textComm={item.textComm}
+              img={item.img}
+            />
+          </SwiperSlide>
         ))}
         <div className="commPrev">
           <img src={commSlideLeft} alt="" />

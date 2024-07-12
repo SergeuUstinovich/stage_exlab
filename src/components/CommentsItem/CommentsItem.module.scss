@@ -1,9 +1,9 @@
 .comment {
-    max-width: 380px;
-    max-height: 326px;
+    max-width: 378px;
+    max-height: 284px;
     height: 100%;
     width: 100%;
-    outline: 1px solid var(--light-grey);
+    border: 1px solid var(--light-grey);
     border-radius: 16px;
     padding: 20px;
 
@@ -12,6 +12,9 @@
         padding: 8px 28px;
         border-radius: 12px;
     }
+}
+.ModCard {
+    padding: 0 20px 30px 20px;
 }
 
 
