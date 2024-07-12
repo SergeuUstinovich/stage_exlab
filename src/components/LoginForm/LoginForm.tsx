@@ -44,7 +44,6 @@ function LoginForm() {
   );
 
   // Функция для входа в систему google
-
   const googleMutation = useMutation(
     {
       mutationFn: (data: { email: string; username: string, lastname: string, id: string }) =>
