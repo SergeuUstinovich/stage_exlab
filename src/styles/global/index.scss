@@ -20,10 +20,13 @@ body {
   min-width: 320px;
 }
 
+
+
 :root {
   //z-index
   --modal-z-index: 10;
-  
+  --bg--slider: #4F2A6E;
+  --swiper-pagination-bullet-horizontal-gap: 10px;
   // // Цвета из Фигмы
   --overlay-color: rgba(217 217 217 / 80%);
   --sorporate-yellow: #fbbc05;
