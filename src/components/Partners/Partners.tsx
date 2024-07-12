@@ -1,5 +1,8 @@
 import style from "./Partners.module.scss";
 import imagePart1 from "../../assets/img/BlackKliff.png";
+import imagePart2 from "../../assets/img/SmartCook.png";
+import imagePart3 from "../../assets/img/WhiteLily.png";
+import imagePart4 from "../../assets/img/Tibet.png";
 
 const arrPartn = [
   {
@@ -11,19 +14,19 @@ const arrPartn = [
   {
     id: "2",
     path: "#",
-    img: "./src",
+    img: imagePart2,
     text: "Кейтеринг Smart Cook",
   },
   {
     id: "3",
     path: "#",
-    img: "src",
+    img: imagePart3,
     text: "Цветочный магазин Белая лилия",
   },
   {
     id: "4",
     path: "#",
-    img: "src",
+    img: imagePart4,
     text: "Ресторан Тибет",
   },
 ];
@@ -36,7 +39,7 @@ function Partners() {
         {arrPartn.map((item) => (
           <li key={item.id} className={style.partnersItem}>
             <img src={item.img} alt={item.text} />
-            {item.text}
+            <p>{item.text}</p>
           </li>
         ))}
       </ul>
