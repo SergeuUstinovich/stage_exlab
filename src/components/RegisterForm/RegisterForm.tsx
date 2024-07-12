@@ -147,6 +147,7 @@ function RegisterForm() {
           <div className={style.customcheck}>
             <input
               type="checkbox"
+              defaultChecked
               className={`${style.customcheckinput} ${style.visuallyhidden}`}
               {...register("consent")}
             />
