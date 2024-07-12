@@ -60,7 +60,7 @@ const arrComm = [
     },
     {
         name: 'Василий',
-        time: '2 год на all inclusive',
+        time: '2 года',
         raiting: 4,
         year: 'сентябрь 2023',
         textComm: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint repellat animi omnis culpa sit mollitia quaerat eaque error! Est doloribus modi praesentium vel, molestiae, quod inventore placeat ea omnis doloremque harum culpa quasi laudantium recusandae dolor voluptatum, tenetur beatae exercitationem similique numquam nobis ipsam suscipit accusantium. Tempore cumque exercitationem porro consectetur culpa atque sunt, quaerat, sint, hic nemo quidem dolorem explicabo natus quibusdam delectus necessitatibus voluptate. Sint quam eaque quisquam sed placeat tempore dolorem iste odio nulla, natus illo, iusto labore ratione aspernatur incidunt eius. Quibusdam, iste! Necessitatibus odit repellendus distinctio provident aut, numquam ut, eius consectetur accusantium aliquam illo.',
