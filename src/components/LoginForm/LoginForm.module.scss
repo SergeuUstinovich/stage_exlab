@@ -92,6 +92,16 @@ input.error {
   }
 }
 
+.sistemError {
+  display: block;
+  margin-bottom: 25px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: var(--error);
+  text-align: center;
+}
+
 @media (max-width: 430px) {
   .form {
     padding-bottom: 19px;

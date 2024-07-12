@@ -15,8 +15,6 @@ import { queryClient } from "../../api/queryClient";
 import { useDispatch } from "react-redux";
 import { tokenActions } from "../../providers/StoreProvider/slice/tokenSlice";
 import { useGoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
-import axios from "axios";
 
 function LoginForm() {
 
@@ -24,37 +22,34 @@ function LoginForm() {
   
   const [showPassword, setShowPassword] = useState(false);
   const [isOpenForgot, setIsOpenForgot] = useState(false);
-  const [googleData, setGoogleData] = useState()
+  const [googleData, setGoogleData] = useState();
 
-
-  const loginMutation = useMutation({
-    mutationFn: (data: {
-      email: string;
-      password: string;
-    }) => login(data.email, data.password),
-    onSuccess: (data) => {
-      dispatch(tokenActions.initAuthData(data));
-      reset();
+  const loginMutation = useMutation(
+    {
+      mutationFn: (data: { email: string; password: string }) =>
+        login(data.email, data.password),
+      onSuccess: (data) => {
+        dispatch(tokenActions.initAuthData(data));
+        reset();
+      },
     },
-  }, queryClient)
-
+    queryClient
+  );
 
   // Функция для входа в систему
-  
 
   useEffect(() => {
-    console.log(googleData)
-  }, [googleData])
+    console.log(googleData);
+  }, [googleData]);
 
   const handleSuccessGoogle = async (response: any) => {
-      const data = await googleAuth(response);
-      setGoogleData(data);
-  }
+    const data = await googleAuth(response);
+    setGoogleData(data);
+  };
 
   const dataGoogle = useGoogleLogin({
-    onSuccess: handleSuccessGoogle 
+    onSuccess: handleSuccessGoogle,
   });
-  
 
   const onOpenModal = useCallback(() => {
     setIsOpenForgot(true);
@@ -79,8 +74,7 @@ function LoginForm() {
 
   return (
     <>
-      
-      <form 
+      <form
         className={style.form}
         onSubmit={handleSubmit(({email, password}) => {
           loginMutation.mutate({email, password})
@@ -119,7 +113,7 @@ function LoginForm() {
             </div>
           </div>
         </FormField>
-        {loginMutation.error && <span>{loginMutation.error.message}</span>}
+        {loginMutation.error && <span className={style.sistemError}>{loginMutation.error.message}</span>}
         <div className={style.block_btn}>
           <Button
             isLoading={loginMutation.isPending}
@@ -131,7 +125,7 @@ function LoginForm() {
           <p onClick={onOpenModal} className={style.forgot}>Забыли пароль?</p>
         </div>
       </form>
-      <Button onClick={() => dataGoogle()}  className={style.btnGoogle}>
+      <Button onClick={() => dataGoogle()} className={style.btnGoogle}>
         <div>
           <img 
           className={style.imgGoogle}
