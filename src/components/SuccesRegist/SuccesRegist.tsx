@@ -68,7 +68,7 @@ function SuccesRegist({ email }: SuccesRegistProps) {
         </FormField>
         <Button className={style.succesRegistBtn} isLoading={verifyEmailMutation.isPending}>Отправить</Button>
       </form>
-      {verifyEmailMutation.error && <span>{verifyEmailMutation.error.message}</span>}
+      {verifyEmailMutation.error && <span className={style.sistemError}>{verifyEmailMutation.error.message}</span>}
     </div>
   );
 }

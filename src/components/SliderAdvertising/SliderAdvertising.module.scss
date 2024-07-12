@@ -1,0 +1,62 @@
+.swiper {
+    margin-bottom: 100px;
+    border-radius: 16px;
+    position: relative;
+}
+
+.imgSlide {
+    max-width: 530px;
+    width: 100%;
+
+}
+
+.bgSlider {
+    width: 100%;
+    display: flex;
+    padding:  0 90px;
+   
+}
+
+.swiperBlock {
+    max-width: 590px;
+    width: 100%;
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blockInfo {
+    margin-bottom: 69px;
+}
+
+.title {
+    color: var(--light-grey);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 130%;
+    margin-bottom: 30px;
+}
+
+.btnSlider {
+    padding: 8px 28px;
+    font-size: 14px;
+    line-height: 114%;
+    text-align: center;
+    background-color: var(--light-corporate-yellow);
+    border-radius: 12px;
+}
+
+.pagination .swiper-pagination-bullet {
+    background: yellow; /* Цвет пагинации */
+  }
+  
+  .pagination .swiper-pagination-bullet-active {
+    background: yellow; /* Цвет активного элемента */
+    width: 12px; /* Увеличение размера активного элемента */
+    height: 12px;
+  }
+
+
+
+
