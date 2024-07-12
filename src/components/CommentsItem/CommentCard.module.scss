@@ -1,0 +1,58 @@
+.infoUser {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .imgUser {
+    margin-right: 20px;
+  }
+
+  .name {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 130%;
+    color: var(--dark-grey);
+  }
+
+  .time {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: var(--dark-grey);
+  }
+}
+
+.blockRait {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+
+  .rait {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .years {
+    padding-bottom: 3px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: var(--light-color);
+  }
+}
+
+.descr {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 143%;
+  color: var(--dark-grey);
+  margin-bottom: 20px;
+  max-height: 120px;
+  height: 100%;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6; /* количество строк, которые вы хотите отображать */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

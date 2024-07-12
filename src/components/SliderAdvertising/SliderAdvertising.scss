@@ -1,0 +1,35 @@
+.pagination{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    transform: translateX(25%);
+    z-index: 10;
+  }
+  
+  .pagination .swiper-pagination-bullet {
+    padding: 5px;
+    background: var(--grey);
+  }
+  
+  .pagination .swiper-pagination-bullet-active {
+    background: var(--sorporate-yellow);
+    padding: 6px;
+  }
+  
+  .buttonPrev {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 10;
+    transform: translateY(-50%);
+  }
+  
+  .buttonNew {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 10;
+    transform: translateY(-50%);
+  }
