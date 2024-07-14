@@ -20,12 +20,7 @@
 }
 
 .regemail {
-  margin-bottom: 30px;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 130%;
-  text-align: center;
-  color: var(--primary-color);
+  
 }
 
 .labelSuccesCode {
@@ -33,6 +28,28 @@
 }
 
 .formSucReg {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.labelEmail {
+  display: flex;
+  justify-content: center;
+}
+
+.emailSucces {
+  border: none;
+  outline: none;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 130%;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.codeUser {
   display: flex;
   justify-content: center;
 }

@@ -51,7 +51,10 @@ export const CreateRegistrationSchema = z
   export const verifyEMailScheme = z.object({
     code: z
       .string()
-      .min(5, 'Минимум 5 символов')
+      .min(5, 'Минимум 5 символов'),
+    email: z
+      .string()
+      .email("Проверьте правильность ввода электронной почты")
   })
 
   export type verifyEMailType = z.infer<typeof verifyEMailScheme>;

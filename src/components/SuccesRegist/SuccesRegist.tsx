@@ -15,10 +15,11 @@ interface SuccesRegistProps {
 
 function SuccesRegist({ email }: SuccesRegistProps) {
   const [succesVerify, setSuccesVerify] = useState(false);
-
+  const [emailUser, setEmailUser] = useState(email);
+  
   const verifyEmailMutation = useMutation(
     {
-      mutationFn: (data: { code: string }) => verifyEmail(data.code),
+      mutationFn: (data: { code: string, email: string }) => verifyEmail(data.code, data.email),
       onSuccess: () => {
         setSuccesVerify(true)
         reset()
@@ -52,21 +53,32 @@ function SuccesRegist({ email }: SuccesRegistProps) {
       <p className={style.confirmletter}>
       Введите одноразовый код, который был отправлен на&nbsp;электронную почту
       </p>
-      <span className={style.regemail}>{email}</span>
-      <form className={style.formSucReg} onSubmit={handleSubmit(({code}) => {
-        verifyEmailMutation.mutate({code})
-        
+      <form className={style.formSucReg} onSubmit={handleSubmit(({code, email}) => {
+        verifyEmailMutation.mutate({code, email})
       })}>
-        <FormField className={style.labelSucces} label="" errorMessage={errors.code?.message}>
-          <input
-            maxLength={5}
-            placeholder="Код"
-            type="text"
-            {...register("code")}
-            className={`${errors.code ? style.error : ""} ${style.labelSuccesCode}`} 
-          />
+        <FormField label="" errorMessage={errors.email?.message}>
+          <div className={style.labelEmail}>
+            <input
+              readOnly
+              value={emailUser}
+              type="text"
+              {...register("email")}
+              className={style.emailSucces}
+            />
+          </div>
         </FormField>
-        <Button className={style.succesRegistBtn} isLoading={verifyEmailMutation.isPending}>Отправить</Button>
+        <div className={style.codeUser}>
+          <FormField className={style.labelSucces} label="" errorMessage={errors.code?.message}>
+            <input
+              maxLength={5}
+              placeholder="Код"
+              type="text"
+              {...register("code")}
+              className={`${errors.code ? style.error : ""} ${style.labelSuccesCode}`} 
+            />
+          </FormField>
+          <Button className={style.succesRegistBtn} isLoading={verifyEmailMutation.isPending}>Отправить</Button>
+        </div>
       </form>
       {verifyEmailMutation.error && <span className={style.sistemError}>{verifyEmailMutation.error.message}</span>}
     </div>

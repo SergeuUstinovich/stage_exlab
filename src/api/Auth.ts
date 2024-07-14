@@ -14,9 +14,10 @@ export function registerUser(first_name:string, email:string, password1:string, 
     .then(() => undefined)
     .catch(validateError)
 }
-export function verifyEmail(code:string):Promise<void> {
+export function verifyEmail(code:string, email: string):Promise<void> {
     return axios.post(`${api_url}/auth/verify-email/`, {
-        code
+        code,
+        email
     })
     .then(() => undefined)
     .catch(validateError)
@@ -113,6 +114,17 @@ export function googleLogin(email: string, first_name: string, last_name: string
         const token = response.data.token;
         return token;
     })
+    .catch(validateError)
+}
+
+export function deleteUser(token:string | undefined):Promise<void> {
+    return axios.delete(`${api_url}/auth/delete-user/`, {
+        headers: {
+            "Content-Type": 'application/json',
+            "Authorization": `Token ${token}`
+        },
+    })
+    .then(() => undefined)
     .catch(validateError)
 }
 
