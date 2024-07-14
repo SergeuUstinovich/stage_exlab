@@ -16,13 +16,14 @@ interface SuccesRegistProps {
 function SuccesRegist({ email }: SuccesRegistProps) {
   const [succesVerify, setSuccesVerify] = useState(false);
   const [emailUser, setEmailUser] = useState(email);
-  
+
   const verifyEmailMutation = useMutation(
     {
-      mutationFn: (data: { code: string, email: string }) => verifyEmail(data.code, data.email),
+      mutationFn: (data: { code: string; email: string }) =>
+        verifyEmail(data.code, data.email),
       onSuccess: () => {
-        setSuccesVerify(true)
-        reset()
+        setSuccesVerify(true);
+        reset();
       },
     },
     queryClient
@@ -37,25 +38,25 @@ function SuccesRegist({ email }: SuccesRegistProps) {
     resolver: zodResolver(verifyEMailScheme),
   });
 
-  if(succesVerify) {
-    return(
+  if (succesVerify) {
+    return (
       <div className={style.confirmregwrapper}>
-        <h2 className={style.thancks}>
-          Благодарим за регистрацию!
-        </h2>
+        <h2 className={style.thancks}>Благодарим за регистрацию!</h2>
       </div>
-      
-    )
+    );
   }
 
   return (
     <div className={style.confirmregwrapper}>
       <p className={style.confirmletter}>
-      Введите одноразовый код, который был отправлен на&nbsp;электронную почту
+        Введите одноразовый код, который был отправлен на&nbsp;электронную почту
       </p>
-      <form className={style.formSucReg} onSubmit={handleSubmit(({code, email}) => {
-        verifyEmailMutation.mutate({code, email})
-      })}>
+      <form
+        className={style.formSucReg}
+        onSubmit={handleSubmit(({ code, email }) => {
+          verifyEmailMutation.mutate({ code, email });
+        })}
+      >
         <FormField label="" errorMessage={errors.email?.message}>
           <div className={style.labelEmail}>
             <input
@@ -68,19 +69,34 @@ function SuccesRegist({ email }: SuccesRegistProps) {
           </div>
         </FormField>
         <div className={style.codeUser}>
-          <FormField className={style.labelSucces} label="" errorMessage={errors.code?.message}>
+          <FormField
+            className={style.labelSucces}
+            label=""
+            errorMessage={errors.code?.message}
+          >
             <input
               maxLength={5}
               placeholder="Код"
               type="text"
               {...register("code")}
-              className={`${errors.code ? style.error : ""} ${style.labelSuccesCode}`} 
+              className={`${errors.code ? style.error : ""} ${
+                style.labelSuccesCode
+              }`}
             />
           </FormField>
-          <Button className={style.succesRegistBtn} isLoading={verifyEmailMutation.isPending}>Отправить</Button>
+          <Button
+            className={style.succesRegistBtn}
+            isLoading={verifyEmailMutation.isPending}
+          >
+            Отправить
+          </Button>
         </div>
       </form>
-      {verifyEmailMutation.error && <span className={style.sistemError}>{verifyEmailMutation.error.message}</span>}
+      {verifyEmailMutation.error && (
+        <span className={style.sistemError}>
+          {verifyEmailMutation.error.message}
+        </span>
+      )}
     </div>
   );
 }
