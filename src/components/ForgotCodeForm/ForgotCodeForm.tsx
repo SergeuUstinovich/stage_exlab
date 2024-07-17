@@ -10,7 +10,11 @@ import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../../api/queryClient";
 import { forgotCode } from "../../api/Auth";
 
-function ForgotCodeForm() {
+interface ForgotCodeFormProps {
+  email:string
+}
+
+function ForgotCodeForm({email}: ForgotCodeFormProps) {
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -26,10 +30,11 @@ function ForgotCodeForm() {
 
       const ForgotCodeMutation = useMutation({
         mutationFn: (data: {
+          email: string
           code: string;
           password: string;
           confirmPassword: string;
-        }) => forgotCode(data.code, data.password, data.confirmPassword),
+        }) => forgotCode(data.code, data.password, data.confirmPassword, data.email),
         onSuccess: () => {
           reset();
         },
@@ -56,7 +61,7 @@ function ForgotCodeForm() {
       <form
         className={style.form}
         onSubmit={handleSubmit(({code, password, confirmPassword}) => {
-            ForgotCodeMutation.mutate({code, password, confirmPassword})
+            ForgotCodeMutation.mutate({code, password, confirmPassword, email})
         }
         )}
       >

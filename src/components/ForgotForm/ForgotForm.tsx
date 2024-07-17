@@ -8,8 +8,12 @@ import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../../api/queryClient";
 import { forgotEmail } from "../../api/Auth";
 import ForgotCodeForm from "../ForgotCodeForm/ForgotCodeForm";
+import { useState } from "react";
 
 function ForgotForm() {
+
+  const [emailValue, setEmailValue] = useState("");
+
   const forgotMutation = useMutation(
     {
       mutationFn: (data: { email: string }) => forgotEmail(data.email),
@@ -30,7 +34,7 @@ function ForgotForm() {
   });
 
   if (forgotMutation.isSuccess) {
-    return <ForgotCodeForm />;
+    return <ForgotCodeForm email={emailValue} />;
   }
 
   return (
@@ -38,6 +42,7 @@ function ForgotForm() {
       className={style.form}
       onSubmit={handleSubmit(({ email }) => {
         forgotMutation.mutate({ email });
+        setEmailValue(email)
       })}
     >
       <h2 className={style.forgotFormH2}>Восстановление пароля</h2>

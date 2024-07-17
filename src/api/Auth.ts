@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   validateError,
+  validateErrorConfirm,
   validateErrorForgotEmail,
 } from "../helpers/validateResponse";
 import { UserType } from "../types";
@@ -97,16 +98,17 @@ export function forgotEmail(email: string): Promise<void> {
 export function forgotCode(
   code: string,
   new_password1: string,
-  new_password2: string
+  new_password2: string,
+  email: string
 ): Promise<void> {
   return fetch(`${api_url}/auth/password-reset/confirm/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ code, new_password1, new_password2 }),
+    body: JSON.stringify({ code, new_password1, new_password2, email }),
   })
-    .then(validateErrorForgotEmail)
+    .then(validateErrorConfirm)
     .then(() => undefined);
 }
 

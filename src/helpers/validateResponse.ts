@@ -10,8 +10,17 @@ export async function validateError(response: Response): Promise<Response> {
 export async function validateErrorForgotEmail(response: Response): Promise<Response> {
     if(!response.ok) {
         const errorObject = await response.json();
-        const nonFieldErrors = errorObject.errors || 'Возможны проблемы с сетью';
-        throw new Error(nonFieldErrors);
+        const nonFieldErrors = errorObject.errors || ['Возможны проблемы с сетью'];
+        throw new Error(nonFieldErrors.join());
+    }
+    return response
+}
+
+export async function validateErrorConfirm(response: Response): Promise<Response> {
+    if(!response.ok) {
+        const errorObject = await response.json();
+        const nonFieldErrors = errorObject.errors.errors || ['Возможны проблемы с сетью'];
+        throw new Error(nonFieldErrors.join());
     }
     return response
 }
