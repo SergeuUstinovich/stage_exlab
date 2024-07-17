@@ -1,7 +1,6 @@
 import { Button } from "../../ui/Button";
 import style from "./RegisterForm.module.scss";
 import { FormField } from "../../ui/FormField";
-
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback, useState } from "react";

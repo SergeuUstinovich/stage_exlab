@@ -3,7 +3,7 @@ import './AboutPage.scss'
 
 function AboutPage() {
     return (
-        <ForgotCodeForm />
+        <></>
     )
 }
 
