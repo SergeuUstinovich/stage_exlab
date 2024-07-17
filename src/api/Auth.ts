@@ -5,77 +5,94 @@ import { UserType } from "../types";
 const api_url = import.meta.env.MODE === 'development' ? '/api' : import.meta.env.VITE_API_BASE_URL;
 
 export function registerUser(first_name:string, email:string, password1:string, password2:string):Promise<void> {
-    return axios.post(`${api_url}/auth/register/`, {
-        first_name,
-        email,
-        password1,
-        password2
+    return fetch(`${api_url}/auth/register/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify({first_name, email, password1, password2})
     })
-    .then(() => undefined)
-    .catch(validateError)
+    .then(validateError)
+    .then(() => undefined);
 }
 export function verifyEmail(code:string, email: string):Promise<void> {
-    return axios.post(`${api_url}/auth/verify-email/`, {
-        code,
-        email
+    return fetch(`${api_url}/auth/verify-email/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify({code, email})
     })
-    .then(() => undefined)
-    .catch(validateError)
+    .then(validateError)
+    .then(() => undefined);
 }
 
 export function login(email: string, password: string) {
-    return axios.post(`${api_url}/auth/login/`, {
-      email,
-      password
+    return fetch(`${api_url}/auth/login/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify({email, password})
     })
-    .then(response => {
-      const token = response.data.token;
-      return token;
-    })
-    .catch(validateError)
+    .then(validateError)
+    .then( async (response) => {
+        const obj = await response.json()
+        const token = obj.token
+        return token
+    });
   }
 
 export function logout(token: string | undefined):Promise<void> {
-    return axios.post(`${api_url}/auth/logout/`, {}, {
+    return fetch(`${api_url}/auth/logout/`, {
+        method: "POST",
         headers: {
             "Content-Type": 'application/json',
             "Authorization": `Token ${token}`
         }
     })
-    .then(() => undefined)
-    .catch(validateError)
+    .then(validateError)
+    .then(() => undefined);
 }
 
 export function User(token:string | undefined):Promise<UserType> {
-    return axios.get(`${api_url}/auth/user-details/`, {
+    return fetch(`${api_url}/auth/user-details/`, {
+        method: "GET",
         headers: {
             "Content-Type": 'application/json',
             "Authorization": `Token ${token}`
         },
     })
-    .then(response => {
-        const users =  response.data.message
+    .then(validateError)
+    .then( async (response) => {
+        const obj = await response.json()
+        const users = obj.message
         return users
-    })
-    .catch(validateError)
+    } );
 }
 
 export function forgotEmail(email:string):Promise<void> {
-    return axios.post(`${api_url}/auth/password-reset/`, {
-        email
+    return fetch(`${api_url}/auth/password-reset/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify({email})
     })
-    .then(() => undefined)
-    .catch(validateErrorForgotEmail)
+    .then(validateErrorForgotEmail)
+    .then(() => undefined);
 }
 
 export function forgotCode(code:string, new_password1: string, new_password2: string):Promise<void> {
-    return axios.post(`${api_url}/auth/password-reset/confirm/`, {
-        code,
-        new_password1,
-        new_password2
+    return fetch(`${api_url}/auth/password-reset/confirm/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify({code, new_password1, new_password2})
     })
-    .then(() => undefined)
-    .catch(validateErrorForgotEmail)
+    .then(validateErrorForgotEmail)
+    .then(() => undefined);
 }
 
 export function googleAuth(response: any) {
@@ -104,28 +121,31 @@ export function googleAuth(response: any) {
 }
 
 export function googleLogin(email: string, first_name: string, last_name: string, google_id: string) {
-    return axios.post(`${api_url}/auth/google-login/`, {
-        email,
-        first_name,
-        last_name,
-        google_id
+    return fetch(`${api_url}/auth/google-login/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify({email, first_name, last_name, google_id})
     })
-    .then(response => {
-        const token = response.data.token;
+    .then(validateError)
+    .then(async response => {
+        const obj = await response.json();
+        const token = obj.token
         return token;
     })
-    .catch(validateError)
 }
 
 export function deleteUser(token:string | undefined):Promise<void> {
-    return axios.delete(`${api_url}/auth/delete-user/`, {
+    return fetch(`${api_url}/auth/delete-user/`, {
+        method: 'DELETE',
         headers: {
             "Content-Type": 'application/json',
             "Authorization": `Token ${token}`
         },
     })
-    .then(() => undefined)
-    .catch(validateError)
+    .then(validateError)
+    .then(() => undefined);
 }
 
 
