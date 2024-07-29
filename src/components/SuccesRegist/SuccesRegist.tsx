@@ -18,7 +18,7 @@ interface SuccesRegistProps {
 function SuccesRegist({ email }: SuccesRegistProps) {
   const [succesVerify, setSuccesVerify] = useState(false);
   const [emailUser, setEmailUser] = useState(email);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const verifyEmailMutation = useMutation(
     {
@@ -32,15 +32,15 @@ function SuccesRegist({ email }: SuccesRegistProps) {
     queryClient
   );
 
-  useEffect(()=> {
-    if(verifyEmailMutation.data) {
+  
+  useEffect(() => {
+    if (verifyEmailMutation.data) {
       const timeout = setTimeout(() => {
         dispatch(tokenActions.initAuthData(verifyEmailMutation.data));
-      }, 1000)
-      return () => clearTimeout(timeout)
+      }, 1000);
+      return () => clearTimeout(timeout);
     }
-    
-  }, [verifyEmailMutation.data])
+  }, [verifyEmailMutation.data]);
 
   const {
     register,
