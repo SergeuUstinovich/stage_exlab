@@ -15,6 +15,7 @@ import { queryClient } from "../../api/queryClient";
 import { useDispatch } from "react-redux";
 import { tokenActions } from "../../providers/StoreProvider/slice/tokenSlice";
 import { useGoogleLogin } from "@react-oauth/google";
+import { HidePassword } from "../../assets/svg/HidePassword";
 
 interface googleLoginProps {
   email: string
@@ -26,7 +27,7 @@ interface googleLoginProps {
 function LoginForm() {
 
   const dispatch = useDispatch()
-  
+
   const [showPassword, setShowPassword] = useState(false);
   const [isOpenForgot, setIsOpenForgot] = useState(false);
   const [googleData, setGoogleData] = useState<googleLoginProps | undefined>();
@@ -57,16 +58,16 @@ function LoginForm() {
   );
 
   useEffect(() => {
-    if(googleData) {
+    if (googleData) {
       googleMutation.mutate(googleData)
     }
   }, [googleData]);
 
   const handleSuccessGoogle = async (response: any) => {
     const result = await googleAuth(response);
-    if(result) {
-      const {email, username, lastname, id} = result;
-      setGoogleData({email, username, lastname, id});
+    if (result) {
+      const { email, username, lastname, id } = result;
+      setGoogleData({ email, username, lastname, id });
     }
   };
 
@@ -99,25 +100,24 @@ function LoginForm() {
     <>
       <form
         className={style.form}
-        onSubmit={handleSubmit(({email, password}) => {
-          loginMutation.mutate({email, password})
+        onSubmit={handleSubmit(({ email, password }) => {
+          loginMutation.mutate({ email, password })
         })}
       >
         <FormField
           label="Электронная почта*"
           errorMessage={errors.email?.message}
         >
-        <div>
-          <input
-            autoComplete="email"
-            placeholder="Электронная почта"
-            type="text"
-            {...register("email")}
-            className={`${style.input} ${
-              errors.email ? style.error : style.input
-            }`}
-          />
-        </div>
+          <div>
+            <input
+              autoComplete="email"
+              placeholder="Электронная почта"
+              type="text"
+              {...register("email")}
+              className={`${style.input} ${errors.email ? style.error : style.input
+                }`}
+            />
+          </div>
         </FormField>
         <FormField label="Пароль*" errorMessage={errors.password?.message}>
           <div className={style.regintput}>
@@ -127,12 +127,11 @@ function LoginForm() {
               placeholder="Пароль"
               type={showPassword ? "text" : "password"}
               {...register("password")}
-              className={`${style.input} ${
-                errors.password ? style.error : style.input
-              }`}
+              className={`${style.input} ${errors.password ? style.error : style.input
+                }`}
             />
             <div className={style.showpassword} onClick={handleTogglePassword}>
-              <ShowPassword />
+              {showPassword ? <ShowPassword /> : <HidePassword />}
             </div>
           </div>
         </FormField>
@@ -150,10 +149,10 @@ function LoginForm() {
       </form>
       <Button onClick={() => dataGoogle()} className={style.btnGoogle}>
         <div>
-          <img 
-          className={style.imgGoogle}
-          src={GooglePng} 
-          alt="GoogleLogo"
+          <img
+            className={style.imgGoogle}
+            src={GooglePng}
+            alt="GoogleLogo"
           />
         </div>
         Войти с помощью Google

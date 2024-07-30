@@ -11,6 +11,7 @@ import { CreateRegistrationForm, CreateRegistrationSchema } from "../../types";
 import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "../../api/Auth";
 import { queryClient } from "../../api/queryClient";
+import { HidePassword } from "../../assets/svg/HidePassword";
 
 function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -110,12 +111,11 @@ function RegisterForm() {
               placeholder="Пароль"
               type={showPassword ? "text" : "password"}
               {...register("password")}
-              className={`${style.input} ${
-                errors.password ? style.error : style.input
-              }`}
+              className={`${style.input} ${errors.password ? style.error : style.input
+                }`}
             />
             <div className={style.showpassword} onClick={handleTogglePassword}>
-              <ShowPassword />
+              {showPassword ? <HidePassword /> : <ShowPassword />}
             </div>
           </div>
         </FormField>
@@ -130,15 +130,14 @@ function RegisterForm() {
               placeholder="Пароль"
               type={showConfirmPassword ? "text" : "password"}
               {...register("confirmPassword")}
-              className={`${style.input} ${
-                errors.confirmPassword ? style.error : style.input
-              }`}
+              className={`${style.input} ${errors.confirmPassword ? style.error : style.input
+                }`}
             />
             <div
               className={style.showpassword}
               onClick={handleToggleConfirmPassword}
             >
-              <ShowPassword />
+              {showConfirmPassword ? <HidePassword /> : <ShowPassword />}
             </div>
           </div>
         </FormField>

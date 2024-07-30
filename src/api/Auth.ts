@@ -2,7 +2,6 @@ import axios from "axios";
 import {
   validateError,
   validateErrorConfirm,
-  validateErrorConfirmPass,
   validateErrorForgotEmail,
 } from "../helpers/validateResponse";
 import { UserType } from "../types";
@@ -92,7 +91,7 @@ export function forgotEmail(email: string): Promise<void> {
     },
     body: JSON.stringify({ email }),
   })
-    .then(validateErrorConfirm)
+    .then(validateErrorForgotEmail)
     .then(() => undefined);
 }
 
@@ -109,7 +108,7 @@ export function forgotCode(
     },
     body: JSON.stringify({ code, new_password1, new_password2, email }),
   })
-    .then(validateErrorConfirmPass)
+    .then(validateErrorConfirm)
     .then(() => undefined);
 }
 

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import { FormField } from "../../ui/FormField";
+import { FormField } from "../../ui/FormField"
 import { zodResolver } from "@hookform/resolvers/zod";
-import style from "./ForgotCodeForm.module.scss";
+import style from './ForgotCodeForm.module.scss'
 import { ForgotCodeScheme, ForgotCodeType } from "../../types";
 import { useCallback, useState } from "react";
 import ShowPassword from "../../assets/svg/ShowPassword/ShowPassword";
@@ -11,57 +11,59 @@ import { queryClient } from "../../api/queryClient";
 import { forgotCode } from "../../api/Auth";
 
 interface ForgotCodeFormProps {
-  email: string;
+  email:string
 }
 
-function ForgotCodeForm({ email }: ForgotCodeFormProps) {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+function ForgotCodeForm({email}: ForgotCodeFormProps) {
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<ForgotCodeType>({
-    resolver: zodResolver(ForgotCodeScheme),
-  });
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const ForgotCodeMutation = useMutation(
-    {
-      mutationFn: (data: {
-        email: string;
-        code: string;
-        password: string;
-        confirmPassword: string;
-      }) =>
-        forgotCode(data.code, data.password, data.confirmPassword, data.email),
-      onSuccess: () => {
-        reset();
-      },
-    },
-    queryClient
-  );
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        reset,
+      } = useForm<ForgotCodeType>({
+        resolver: zodResolver(ForgotCodeScheme),
+      });
 
-  const handleTogglePassword = useCallback(() => {
-    setShowPassword(!showPassword);
-  }, [showPassword]);
+      const ForgotCodeMutation = useMutation({
+        mutationFn: (data: {
+          email: string
+          code: string;
+          password: string;
+          confirmPassword: string;
+        }) => forgotCode(data.code, data.password, data.confirmPassword, data.email),
+        onSuccess: () => {
+          reset();
+        },
+      }, queryClient)
 
-  const handleToggleConfirmPassword = useCallback(() => {
-    setShowConfirmPassword(!showConfirmPassword);
-  }, [showConfirmPassword]);
 
-  if (ForgotCodeMutation.isSuccess) {
-    return <div className={style.accessRestored}>Доступ восстановлен</div>;
-  }
 
-  return (
-    <>
+      const handleTogglePassword = useCallback(() => {
+        setShowPassword(!showPassword);
+      }, [showPassword]);
+    
+      const handleToggleConfirmPassword = useCallback(() => {
+        setShowConfirmPassword(!showConfirmPassword);
+      }, [showConfirmPassword]);
+
+    if(ForgotCodeMutation.isSuccess) {
+        return (
+            <div className={style.accessRestored}>Доступ восстановлен</div>
+        )
+    }
+
+    return (
+      <>
       <form
         className={style.form}
-        onSubmit={handleSubmit(({ code, password, confirmPassword }) => {
-          ForgotCodeMutation.mutate({ code, password, confirmPassword, email });
-        })}
+        onSubmit={handleSubmit(({code, password, confirmPassword}) => {
+            ForgotCodeMutation.mutate({code, password, confirmPassword, email})
+        }
+        )}
       >
         <h2 className={style.forgotFormH2}>Восстановление пароля</h2>
         <FormField
@@ -78,10 +80,7 @@ function ForgotCodeForm({ email }: ForgotCodeFormProps) {
             className={errors.code ? style.error : ""}
           />
         </FormField>
-        <FormField
-          label="Придумайте новый пароль"
-          errorMessage={errors.password?.message}
-        >
+        <FormField label="Придумайте новый пароль" errorMessage={errors.password?.message}>
           <div className={style.regintput}>
             <input
               autoComplete="new-password"
@@ -122,12 +121,8 @@ function ForgotCodeForm({ email }: ForgotCodeFormProps) {
             </div>
           </div>
         </FormField>
-
-        {ForgotCodeMutation.error && (
-          <span className={style.sistemError}>
-            {ForgotCodeMutation.error.message}
-          </span>
-        )}
+        
+        {ForgotCodeMutation.error && <span className={style.sistemError}>{ForgotCodeMutation.error.message}</span>}
         <Button
           className={style.regbtn}
           type="submit"
@@ -137,8 +132,8 @@ function ForgotCodeForm({ email }: ForgotCodeFormProps) {
           Далее
         </Button>
       </form>
-    </>
-  );
+      </>  
+    )
 }
 
-export default ForgotCodeForm;
+export default ForgotCodeForm

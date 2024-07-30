@@ -13,6 +13,12 @@
   right: 5%;
 }
 
+.showPasswordSVG {
+  position: absolute;
+  top: 30%;
+  right: 5%;
+}
+
 .input {
   width: 100%;
   border-radius: 8px;
@@ -85,7 +91,7 @@ input.error {
   }
 }
 
-.customcheckinput:checked + .customchecktext::after {
+.customcheckinput:checked+.customchecktext::after {
   opacity: 1;
 }
 
