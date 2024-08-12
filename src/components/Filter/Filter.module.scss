@@ -1,0 +1,34 @@
+.filter {
+  height: 48px;
+  background-color: blue;
+  margin-bottom: 80px;
+}
+
+.container_filter {
+  width: 959px;
+  height: 48px;
+  border: solid 1px #F1F1F1;
+  border-radius: 50px;
+  margin-bottom: 80px;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+
+}
+
+.listContainer {
+  text-transform: capitalize;
+  width: 100%;
+}
+
+.textContainer {
+  padding: 16px 0;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+}
+
+.checkbox {
+  margin-left: auto;
+}

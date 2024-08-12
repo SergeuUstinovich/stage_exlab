@@ -6,8 +6,11 @@ import { verifyEMailScheme, verifyEMailType } from "../../types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { verifyEmail } from "../../api/Auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { queryClient } from "../../api/queryClient";
+import { useDispatch } from "react-redux";
+import { tokenActions } from "../../providers/StoreProvider/slice/tokenSlice";
+
 
 interface SuccesRegistProps {
   email: string;
@@ -16,7 +19,7 @@ interface SuccesRegistProps {
 function SuccesRegist({ email }: SuccesRegistProps) {
   const [succesVerify, setSuccesVerify] = useState(false);
   const [emailUser, setEmailUser] = useState(email);
-
+  const dispatch = useDispatch()
   const verifyEmailMutation = useMutation(
     {
       mutationFn: (data: { code: string; email: string }) =>
@@ -29,6 +32,15 @@ function SuccesRegist({ email }: SuccesRegistProps) {
     queryClient
   );
 
+  useEffect(() => {
+    if (verifyEmailMutation.data) {
+      const timeout = setTimeout(() => {
+        dispatch(tokenActions.initAuthData(verifyEmailMutation.data));
+      }, 1000)
+      return () => clearTimeout(timeout)
+    }
+
+  }, [verifyEmailMutation.data])
   const {
     register,
     handleSubmit,
@@ -79,9 +91,8 @@ function SuccesRegist({ email }: SuccesRegistProps) {
               placeholder="Код"
               type="text"
               {...register("code")}
-              className={`${errors.code ? style.error : ""} ${
-                style.labelSuccesCode
-              }`}
+              className={`${errors.code ? style.error : ""} ${style.labelSuccesCode
+                }`}
             />
           </FormField>
           <Button

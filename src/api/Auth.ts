@@ -27,7 +27,7 @@ export function registerUser(
     .then(validateError)
     .then(() => undefined);
 }
-export function verifyEmail(code: string, email: string): Promise<void> {
+export function verifyEmail(code: string, email: string) {
   return fetch(`${api_url}/auth/verify-email/`, {
     method: "POST",
     headers: {
@@ -36,7 +36,11 @@ export function verifyEmail(code: string, email: string): Promise<void> {
     body: JSON.stringify({ code, email }),
   })
     .then(validateError)
-    .then(() => undefined);
+    .then(async (response) => {
+      const obj = await response.json();
+      const token = obj.token;
+      return token;
+    });
 }
 
 export function login(email: string, password: string) {

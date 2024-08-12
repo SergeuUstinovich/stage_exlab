@@ -1,0 +1,43 @@
+.optionsContainer {
+  display: none;
+  position: absolute;
+  border-radius: 20px;
+  background-color: #F1F1F1;
+  padding: 16px;
+  z-index: 10;
+  font-size: 14px;
+  line-height: 1;
+  width: 100%;
+  max-width: 290px;
+}
+
+.optionsActive {
+  display: block;
+}
+
+.btnSelector {
+  border: none;
+  background-color: #F1F1F1;
+  padding: 13px 14px 13px 16px;
+  border-radius: 50px;
+  margin: 4px 0px 4px 3px;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+}
+
+.btnSVG {
+  margin-left: auto;
+}
+
+.selectorContainer {
+  position: relative;
+  width: 100%;
+  max-width: 290px;
+}
+
+.btnTitle {
+  text-transform: capitalize;
+}

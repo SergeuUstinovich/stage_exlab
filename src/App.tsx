@@ -7,7 +7,8 @@ import PrivateRoute from "./utils/PrivateRoute";
 
 const Layout = lazy(() => import("./pages/Layout/Layout"));
 const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
-const AboutPage = lazy(() => import("./components/AboutPage/AboutPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage/AboutPage"));
+const ServicesPage = lazy(() => import("./pages/Services/ServicesPage"));
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
         <Routes>
           <Route path={"/"} element={<Layout />}>
             <Route index element={<MainPage />} />
-            <Route path={"services"} element={<AboutPage />} />
+            <Route path={"services"} element={<ServicesPage />} />
+            <Route path={"aboutUs"} element={<AboutPage />} />
             <Route
               path={"profile"}
               element={

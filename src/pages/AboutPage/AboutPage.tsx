@@ -3,7 +3,9 @@ import './AboutPage.scss'
 
 function AboutPage() {
     return (
-        <></>
+        <>
+            привет
+        </>
     )
 }
 
