@@ -1,48 +1,37 @@
-import {
-  Field,
-  Label,
-  Listbox,
-  ListboxButton,
-  ListboxOption,
-  ListboxOptions
-} from '@headlessui/react';
-import { useState } from 'react';
+import Select from '../Select/Select';
+import { IOptionProps } from '../Select';
+import styles from './Filter.module.scss';
+import Separator from '../Separator/Separator';
 
-const people = [
-  { id: 1, name: 'Durward Reynolds' },
-  { id: 2, name: 'Kenton Towne' },
-  { id: 3, name: 'Therese Wunsch' },
-  { id: 4, name: 'Benedict Kessler' },
-  { id: 5, name: 'Katelyn Rohan' }
+const services: IOptionProps[] = [
+  { id: 1, value: 'Романтическое свидание' },
+  { id: 2, value: 'Гендер-пати' },
+  { id: 3, value: 'Свадьба' },
+  { id: 4, value: 'День рождения' },
+  { id: 5, value: 'Мальчишник' }
+];
+
+const city: IOptionProps[] = [
+  { id: 1, value: 'Минск' },
+  { id: 2, value: 'Брест' },
+  { id: 3, value: 'Гродно' },
+  { id: 4, value: 'Витебск' }
 ];
 
 function Filter() {
-  const [selectedPerson, setSelectedPerson] = useState(people[0]);
-
   return (
-    <form>
-      <Field>
-        <Label>Assignee:</Label>
-        <Listbox
-          name='assignee'
-          value={selectedPerson}
-          onChange={setSelectedPerson}
-        >
-          <ListboxButton>{selectedPerson.name}</ListboxButton>
-          <ListboxOptions anchor='bottom'>
-            {people.map((person) => (
-              <ListboxOption
-                key={person.id}
-                value={person}
-                className='data-[focus]:bg-blue-100'
-              >
-                {person.name}
-              </ListboxOption>
-            ))}
-          </ListboxOptions>
-        </Listbox>
-      </Field>
-      <button>Submit</button>
+    <form className={styles.filter}>
+      <Select
+        name='service'
+        defaultValue={{ id: 0, value: 'Услуга' }}
+        options={services}
+      />
+      <Separator />
+      <Select
+        name='city'
+        defaultValue={{ id: 0, value: 'Город' }}
+        options={city}
+      />
     </form>
   );
 }
