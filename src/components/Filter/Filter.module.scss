@@ -1,9 +1,20 @@
 .filter {
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 4px;
   height: 48px;
   background-color: var(--bg-color);
   border: 1px solid var(--color-switcher-bg);
   border-radius: 50px;
   margin-bottom: 80px;
+}
+
+.button {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border-radius: 50px;
+  background: var(--bgr-menu);
 }
