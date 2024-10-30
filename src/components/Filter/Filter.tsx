@@ -47,7 +47,7 @@ function Filter() {
         defaultValue={{ id: 0, value: 'Время' }}
         options={temp}
       />
-      <Button className={styles.button} type='submit'>
+      <Button className={styles.button} type='reset'>
         <img src='/src/assets/svg/search.svg' />
       </Button>
     </form>
