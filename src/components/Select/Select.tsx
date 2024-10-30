@@ -5,8 +5,8 @@ import {
   ListboxOptions
 } from '@headlessui/react';
 import { useState } from 'react';
-import { classNames } from '../../utils/classNames';
 import { useTheme } from '../../providers/ThemeContext/useTheme';
+import triangle from '../../assets/svg/triangle-down.svg';
 import styles from './Select.module.scss';
 
 export interface IOptionProps {
@@ -30,11 +30,7 @@ function Select(props: ISelectProps) {
       <Listbox name={name} value={optionValue} onChange={setOptionValue}>
         <ListboxButton className={styles['listbox-button']}>
           {optionValue.value}
-          <img
-            className={styles.triangle}
-            src='/src/assets/svg/triangle-down.svg'
-            alt='Треугольник'
-          />
+          <img className={styles.triangle} src={triangle} alt='Треугольник' />
         </ListboxButton>
         <ListboxOptions
           className={`${styles.options} ${theme}`}

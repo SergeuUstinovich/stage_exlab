@@ -2,6 +2,7 @@ import Select from '../Select/Select';
 import { IOptionProps } from '../Select';
 import { Button } from '../../ui/Button';
 import Separator from '../Separator/Separator';
+import search from '../../assets/svg/search.svg';
 import styles from './Filter.module.scss';
 
 const services: IOptionProps[] = [
@@ -48,7 +49,7 @@ function Filter() {
         options={temp}
       />
       <Button className={styles.button} type='reset'>
-        <img src='/src/assets/svg/search.svg' />
+        <img src={search} />
       </Button>
     </form>
   );
