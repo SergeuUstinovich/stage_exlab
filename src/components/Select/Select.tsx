@@ -47,7 +47,10 @@ function Select(props: ISelectProps) {
               value={option}
               className={styles.option}
             >
-              {option.value}
+              <div className={styles['option-content']}>
+                {option.value}
+                <div className={styles['checkbox']}></div>
+              </div>
             </ListboxOption>
           ))}
         </ListboxOptions>

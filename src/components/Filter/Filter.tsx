@@ -1,7 +1,8 @@
 import Select from '../Select/Select';
 import { IOptionProps } from '../Select';
-import styles from './Filter.module.scss';
+import { Button } from '../../ui/Button';
 import Separator from '../Separator/Separator';
+import styles from './Filter.module.scss';
 
 const services: IOptionProps[] = [
   { id: 1, value: 'Романтическое свидание' },
@@ -18,6 +19,8 @@ const city: IOptionProps[] = [
   { id: 4, value: 'Витебск' }
 ];
 
+const temp: IOptionProps[] = [{ id: 1, value: 'ничего нет' }];
+
 function Filter() {
   return (
     <form className={styles.filter}>
@@ -32,6 +35,21 @@ function Filter() {
         defaultValue={{ id: 0, value: 'Город' }}
         options={city}
       />
+      <Separator />
+      <Select
+        name='date'
+        defaultValue={{ id: 0, value: 'Дата' }}
+        options={temp}
+      />
+      <Separator />
+      <Select
+        name='time'
+        defaultValue={{ id: 0, value: 'Время' }}
+        options={temp}
+      />
+      <Button className={styles.button} type='submit'>
+        <img src='/src/assets/svg/search.svg' />
+      </Button>
     </form>
   );
 }
