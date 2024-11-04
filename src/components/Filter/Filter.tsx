@@ -4,6 +4,7 @@ import { Button } from '../../ui/Button';
 import Separator from '../Separator/Separator';
 import search from '../../assets/svg/search.svg';
 import styles from './Filter.module.scss';
+import FilterDate from '../FilterDate/FilterDate';
 
 const services: IOptionProps[] = [
   { id: 1, value: 'Романтическое свидание' },
@@ -24,34 +25,32 @@ const temp: IOptionProps[] = [{ id: 1, value: 'ничего нет' }];
 
 function Filter() {
   return (
-    <form className={styles.filter}>
-      <Select
-        name='service'
-        defaultValue={{ id: 0, value: 'Услуга' }}
-        options={services}
-      />
-      <Separator />
-      <Select
-        name='city'
-        defaultValue={{ id: 0, value: 'Город' }}
-        options={city}
-      />
-      <Separator />
-      <Select
-        name='date'
-        defaultValue={{ id: 0, value: 'Дата' }}
-        options={temp}
-      />
-      <Separator />
-      <Select
-        name='time'
-        defaultValue={{ id: 0, value: 'Время' }}
-        options={temp}
-      />
-      <Button className={styles.button} type='reset'>
-        <img src={search} />
-      </Button>
-    </form>
+    <>
+      <form className={styles.filter}>
+        <Select
+          name='service'
+          defaultValue={{ id: 0, value: 'Услуга' }}
+          options={services}
+        />
+        <Separator />
+        <Select
+          name='city'
+          defaultValue={{ id: 0, value: 'Город' }}
+          options={city}
+        />
+        <Separator />
+        <FilterDate />
+        <Separator />
+        <Select
+          name='time'
+          defaultValue={{ id: 0, value: 'Время' }}
+          options={temp}
+        />
+        <Button className={styles.button} type='reset'>
+          <img src={search} />
+        </Button>
+      </form>
+    </>
   );
 }
 
