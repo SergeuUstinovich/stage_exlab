@@ -30,6 +30,8 @@
 }
 
 .popper-content {
+  display: flex;
+  justify-content: center;
   z-index: var(--modal-z-index);
   background: var(--bg-color);
   border: 1px solid var(--color-switcher-bg);
@@ -43,8 +45,12 @@
 }
 
 .rdp-root {
+  --rdp-accent-color: var(--yellow);
+  --rdp-accent-background-color: var(--yellow);
+  --rdp-day-height: 34px;
+  --rdp-day-width: 34px;
 }
 
-.rdp-caption_label {
-  width: 100%;
+.rdp-selected {
+  background: var(--yellow);
 }
