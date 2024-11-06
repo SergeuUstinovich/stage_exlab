@@ -30,6 +30,8 @@
 }
 
 .popper-content {
+  display: flex;
+  justify-content: center;
   z-index: var(--modal-z-index);
   background: var(--bg-color);
   border: 1px solid var(--color-switcher-bg);
@@ -40,6 +42,10 @@
   font-size: 14px;
   line-height: 100%;
   color: var(--primary-color);
+}
+
+#react-day-picker-2::first-letter {
+  text-transform: uppercase;
 }
 
 .rdp-root {
