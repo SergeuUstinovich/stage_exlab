@@ -45,12 +45,13 @@
 }
 
 .rdp-root {
-  --rdp-accent-color: var(--yellow);
-  --rdp-accent-background-color: var(--yellow);
+  --rdp-font-family: 'OpenSans', Arial, sans-serif;
   --rdp-day-height: 34px;
   --rdp-day-width: 34px;
-}
-
-.rdp-selected {
-  background: var(--yellow);
+  --rdp-selected-border: 2px solid transparent;
+  --rdp-today-color: var(--yellow);
+  --rdp-nav_button-height: 16px;
+  --rdp-nav_button-width: 16px;
+  --rdp-nav-height: 16px;
+  --rdp-weekday-padding: 20px 0 10px 0;
 }

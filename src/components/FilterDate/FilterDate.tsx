@@ -11,6 +11,7 @@ import { useTheme } from '../../providers/ThemeContext/useTheme';
 // import dayPicker from 'react-day-picker/style.module.css';
 import 'react-day-picker/style.css';
 import styles from './FilterDate.module.scss';
+import './day-picker.css';
 
 function FilterDate() {
   const { theme } = useTheme();
