@@ -8,7 +8,6 @@ import {
 } from '../Popover/Popover.tsx';
 import triangle from '../../assets/svg/triangle-down.svg';
 import { useTheme } from '../../providers/ThemeContext/useTheme.ts';
-import 'react-day-picker/style.css';
 import styles from './FilterTime.module.scss';
 
 function FilterTime() {

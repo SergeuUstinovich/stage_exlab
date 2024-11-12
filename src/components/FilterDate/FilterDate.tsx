@@ -8,10 +8,6 @@ import {
   PopoverTrigger,
   PopoverContent
 } from '../Popover/Popover.tsx';
-
-import { Calendar } from '@/components/ui/calendar';
-import { ru } from 'date-fns/locale';
-
 import triangle from '../../assets/svg/triangle-down.svg';
 import { useTheme } from '../../providers/ThemeContext/useTheme';
 import 'react-day-picker/style.css';
@@ -20,7 +16,7 @@ import './day-picker.css';
 
 function FilterDate() {
   const { theme } = useTheme();
-  const [date, setDate] = useState<Date>();
+  const [selected, setSelected] = useState<Date>();
 
   return (
     <Popover>
@@ -40,9 +36,9 @@ function FilterDate() {
         <DayPicker
           className={`${styles['rdp-root']} ${theme}`}
           mode='single'
-          selected={date}
-          onSelect={setDate}
-          initialFocus
+          selected={selected}
+          onSelect={setSelected}
+          locale={ru}
         />
       </PopoverContent>
     </Popover>
