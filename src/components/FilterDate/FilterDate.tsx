@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import cn from 'classnames';
+import { useEffect, useState } from 'react';
+import { DayPicker } from 'react-day-picker';
 import { ru } from 'react-day-picker/locale';
+import { format } from 'date-fns';
 import {
   Popover,
   PopoverTrigger,
   PopoverContent
 } from '../Popover/Popover.tsx';
 import triangle from '../../assets/svg/triangle-down.svg';
-import { DayPicker } from 'react-day-picker';
 import { useTheme } from '../../providers/ThemeContext/useTheme';
-// import dayPicker from 'react-day-picker/style.module.css';
 import 'react-day-picker/style.css';
 import styles from './FilterDate.module.scss';
 import './day-picker.css';
@@ -19,8 +20,12 @@ function FilterDate() {
 
   return (
     <Popover>
-      <PopoverTrigger className={`${styles['popper-trigger']} ${theme}`}>
-        {selected ? `${selected.toLocaleDateString()}` : 'Дата'}
+      <PopoverTrigger
+        className={cn(styles['popper-trigger'], theme, {
+          [styles['selected']]: selected !== undefined
+        })}
+      >
+        {selected ? format(selected, 'dd MMMM yyyy', { locale: ru }) : 'Дата'}
         <img className={styles.triangle} src={triangle} />
       </PopoverTrigger>
       <PopoverContent
@@ -29,7 +34,6 @@ function FilterDate() {
         sideOffset={10}
       >
         <DayPicker
-          // classNames={dayPicker}
           className={`${styles['rdp-root']} ${theme}`}
           mode='single'
           selected={selected}

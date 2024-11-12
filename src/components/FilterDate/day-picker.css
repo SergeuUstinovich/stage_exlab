@@ -42,7 +42,17 @@
   color: var(--fill-color);
 }
 
+.rdp-day:hover {
+  background: var(--light-grey);
+  border-radius: 30px;
+}
+
 .rdp-selected {
+  border-radius: 30px;
+  background: var(--yellow);
+}
+
+.rdp-selected:hover {
   border-radius: 30px;
   background: var(--yellow);
 }

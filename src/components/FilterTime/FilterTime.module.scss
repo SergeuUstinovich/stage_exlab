@@ -43,20 +43,3 @@
   line-height: 100%;
   color: var(--primary-color);
 }
-
-.rdp-root {
-  --rdp-font-family: 'OpenSans', Arial, sans-serif;
-  --rdp-day-height: 34px;
-  --rdp-day-width: 34px;
-  --rdp-selected-border: 2px solid transparent;
-  --rdp-today-color: var(--yellow);
-  --rdp-nav_button-height: 16px;
-  --rdp-nav_button-width: 16px;
-  --rdp-nav-height: 16px;
-  --rdp-weekday-padding: 20px 0 10px 0;
-}
-
-.selected {
-  color: var(--br-color);
-  font-weight: 600;
-}

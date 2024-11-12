@@ -5,13 +5,11 @@ import Separator from '../Separator/Separator';
 import search from '../../assets/svg/search.svg';
 import styles from './Filter.module.scss';
 import FilterDate from '../FilterDate/FilterDate';
+import FilterTime from '../FilterTime/FilterTime';
 
 const services: IOptionProps[] = [
   { id: 1, value: 'Романтическое свидание' },
-  { id: 2, value: 'Гендер-пати' },
-  { id: 3, value: 'Свадьба' },
-  { id: 4, value: 'День рождения' },
-  { id: 5, value: 'Мальчишник' }
+  { id: 2, value: 'Гендер-пати' }
 ];
 
 const city: IOptionProps[] = [
@@ -20,8 +18,6 @@ const city: IOptionProps[] = [
   { id: 3, value: 'Гродно' },
   { id: 4, value: 'Витебск' }
 ];
-
-const temp: IOptionProps[] = [{ id: 1, value: 'ничего нет' }];
 
 function Filter() {
   return (
@@ -41,11 +37,7 @@ function Filter() {
         <Separator />
         <FilterDate />
         <Separator />
-        <Select
-          name='time'
-          defaultValue={{ id: 0, value: 'Время' }}
-          options={temp}
-        />
+        <FilterTime />
         <Button className={styles.button} type='reset'>
           <img src={search} />
         </Button>
