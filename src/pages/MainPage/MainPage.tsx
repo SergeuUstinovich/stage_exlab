@@ -10,6 +10,7 @@ import imgComm3 from '../../assets/img/comment_avatar3.png';
 import imgComm4 from '../../assets/img/comment_avatar4.png';
 import Partners from '../../components/Partners/Partners';
 import Filter from '../../components/Filter/Filter';
+import { useState } from 'react';
 
 const SliderAdvertis = [
   {
@@ -74,14 +75,36 @@ const arrComm = [
   }
 ];
 
+export interface IRestaurant {
+  id: number;
+  name: string;
+  description: string;
+  photo: Photo;
+  address: string;
+  comment: string;
+}
+
+export interface Photo {
+  src: string;
+  alt: string;
+}
+
 function MainPage() {
+  const [searchState, setSearchState] = useState<boolean>(false);
   return (
     <>
       <Filter />
-      <SlideAdvertising slider={SliderAdvertis} />
-      <Partners />
-      <InfinitiStr />
-      <SliderComments slider={arrComm} />
+
+      {searchState ? (
+        <div>Поиск</div>
+      ) : (
+        <>
+          <SlideAdvertising slider={SliderAdvertis} />
+          <Partners />
+          <InfinitiStr />
+          <SliderComments slider={arrComm} />
+        </>
+      )}
     </>
   );
 }

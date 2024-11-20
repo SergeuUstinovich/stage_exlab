@@ -12,6 +12,9 @@
   line-height: 100%;
   color: var(--option-color);
   cursor: pointer;
+  &.invalid {
+    background-color: var(--error);
+  }
   &[data-hover] {
     background-color: var(--color-switcher-bg);
   }

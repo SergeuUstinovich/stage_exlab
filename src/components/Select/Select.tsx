@@ -19,11 +19,12 @@ export interface ISelectProps {
   name: string;
   defaultValue: IOptionProps;
   options: IOptionProps[];
+  isValid?: boolean;
 }
 
 function Select(props: ISelectProps) {
   const { theme } = useTheme();
-  const { name, defaultValue, options } = props;
+  const { name, defaultValue, options, isValid } = props;
   const [optionValue, setOptionValue] = useState(defaultValue);
 
   return (
@@ -31,7 +32,8 @@ function Select(props: ISelectProps) {
       <Listbox name={name} value={optionValue} onChange={setOptionValue}>
         <ListboxButton
           className={cn(styles['listbox-button'], {
-            [styles.selected]: optionValue !== defaultValue
+            [styles.selected]: optionValue.id !== 0,
+            [styles.invalid]: !isValid
           })}
         >
           {optionValue.value}

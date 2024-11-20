@@ -1,5 +1,4 @@
 import cn from 'classnames';
-import { useEffect, useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import { ru } from 'react-day-picker/locale';
 import { format } from 'date-fns';
@@ -14,19 +13,27 @@ import 'react-day-picker/style.css';
 import styles from './FilterDate.module.scss';
 import './day-picker.css';
 
-function FilterDate() {
+export interface IFilterDateProps {
+  isValid: boolean;
+  selected: Date | undefined;
+  setSelected: React.Dispatch<React.SetStateAction<Date | undefined>>;
+}
+
+function FilterDate({ selected, setSelected, isValid }: IFilterDateProps) {
   const { theme } = useTheme();
-  const [selected, setSelected] = useState<Date>();
 
   return (
     <Popover>
-      <PopoverTrigger
-        className={cn(styles['popper-trigger'], theme, {
-          [styles['selected']]: selected !== undefined
-        })}
-      >
-        {selected ? format(selected, 'dd MMMM yyyy', { locale: ru }) : 'Дата'}
-        <img className={styles.triangle} src={triangle} />
+      <PopoverTrigger asChild>
+        <button
+          className={cn(styles['popper-trigger'], theme, {
+            [styles['selected']]: selected !== undefined,
+            [styles['invalid']]: !isValid
+          })}
+        >
+          {selected ? format(selected, 'dd MMMM yyyy', { locale: ru }) : 'Дата'}
+          <img className={styles.triangle} src={triangle} />
+        </button>
       </PopoverTrigger>
       <PopoverContent
         className={`${styles['popper-content']} ${theme}`}
@@ -39,6 +46,7 @@ function FilterDate() {
           selected={selected}
           onSelect={setSelected}
           locale={ru}
+          disabled={{ before: new Date() }}
         />
       </PopoverContent>
     </Popover>

@@ -12,6 +12,9 @@
   line-height: 100%;
   color: var(--primary-color);
   cursor: pointer;
+  &.invalid {
+    background-color: var(--error);
+  }
   &:hover {
     background-color: var(--color-switcher-bg);
   }
@@ -59,4 +62,8 @@
 .selected {
   color: var(--br-color);
   font-weight: 600;
+}
+
+.input-date {
+  display: none;
 }
