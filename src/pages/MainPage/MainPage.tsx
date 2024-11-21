@@ -1,79 +1,22 @@
-import InfinitiStr from '../../components/InfiniteStr/InfinitiStr';
-import SlideAdvertising from '../../components/SliderAdvertising/SlideAdvertising';
-import SliderComments from '../../components/SliderComments/SliderComments';
-import slideAdv1 from '../../assets/img/Swiper-slide1.jpg';
-import slideAdv2 from '../../assets/img/Swiper-slide2.jpg';
-import slideAdv3 from '../../assets/img/Swiper-slide3.jpg';
-import imgComm1 from '../../assets/img/comment_avatar1.png';
-import imgComm2 from '../../assets/img/comment_avatar2.png';
-import imgComm3 from '../../assets/img/comment_avatar3.png';
-import imgComm4 from '../../assets/img/comment_avatar4.png';
-import Partners from '../../components/Partners/Partners';
 import Filter from '../../components/Filter/Filter';
-import { useState } from 'react';
+import StartContent from './StartContent';
+import { useEffect, useState } from 'react';
+import { format } from 'date-fns';
+import { ru } from 'react-day-picker/locale';
 
-const SliderAdvertis = [
-  {
-    id: '1',
-    src: slideAdv1,
-    title: '',
-    colorBg: '#4F2A6E',
-    text: 'Только по четвергам романтический ужин в ресторане Радуга со скидкой 20%'
-  },
-  {
-    id: '2',
-    src: slideAdv2,
-    title: '',
-    colorBg: '#245083',
-    text: 'Акции на проведение гендер-пати по средам и четвергам'
-  },
-  {
-    id: '3',
-    src: slideAdv3,
-    title: '',
-    colorBg: '#352820',
-    text: 'Специальные предложения для зарегистрированных пользователей'
-  }
-];
+import axios, { AxiosError } from 'axios';
+import { LoaderPage } from '../../ui/Loader/LoaderPage';
 
-const arrComm = [
-  {
-    name: 'Роман',
-    time: '1 год',
-    raiting: 4,
-    year: 'апрель 2024',
-    textComm:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint repellat animi omnis culpa sit mollitia quaerat eaque error! Est doloribus modi praesentium vel, molestiae, quod inventore placeat ea omnis doloremque harum culpa quasi laudantium recusandae dolor voluptatum, tenetur beatae exercitationem similique numquam nobis ipsam suscipit accusantium. Tempore cumque exercitationem porro consectetur culpa atque sunt, quaerat, sint, hic nemo quidem dolorem explicabo natus quibusdam delectus necessitatibus voluptate. Sint quam eaque quisquam sed placeat tempore dolorem iste odio nulla, natus illo, iusto labore ratione aspernatur incidunt eius. Quibusdam, iste! Necessitatibus odit repellendus distinctio provident aut, numquam ut, eius consectetur accusantium aliquam illo.',
-    img: imgComm1
-  },
-  {
-    name: 'Валентина',
-    time: '3 месяца',
-    raiting: 4,
-    year: 'июнь 2024',
-    textComm:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint repellat animi omnis culpa sit mollitia quaerat eaque error! Est doloribus modi praesentium vel, molestiae, quod inventore placeat ea omnis doloremque harum culpa quasi laudantium recusandae dolor voluptatum, tenetur beatae exercitationem similique numquam nobis ipsam suscipit accusantium. Tempore cumque exercitationem porro consectetur culpa atque sunt, quaerat, sint, hic nemo quidem dolorem explicabo natus quibusdam delectus necessitatibus voluptate. Sint quam eaque quisquam sed placeat tempore dolorem iste odio nulla, natus illo, iusto labore ratione aspernatur incidunt eius. Quibusdam, iste! Necessitatibus odit repellendus distinctio provident aut, numquam ut, eius consectetur accusantium aliquam illo.',
-    img: imgComm2
-  },
-  {
-    name: 'Ксения',
-    time: '6 месяцев',
-    raiting: 5,
-    year: 'январь 2024',
-    textComm:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint repellat animi omnis culpa sit mollitia quaerat eaque error! Est doloribus modi praesentium vel, molestiae, quod inventore placeat ea omnis doloremque harum culpa quasi laudantium recusandae dolor voluptatum, tenetur beatae exercitationem similique numquam nobis ipsam suscipit accusantium. Tempore cumque exercitationem porro consectetur culpa atque sunt, quaerat, sint, hic nemo quidem dolorem explicabo natus quibusdam delectus necessitatibus voluptate. Sint quam eaque quisquam sed placeat tempore dolorem iste odio nulla, natus illo, iusto labore ratione aspernatur incidunt eius. Quibusdam, iste! Necessitatibus odit repellendus distinctio provident aut, numquam ut, eius consectetur accusantium aliquam illo.',
-    img: imgComm3
-  },
-  {
-    name: 'Василий',
-    time: '2 годa',
-    raiting: 4,
-    year: 'сентябрь 2023',
-    textComm:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint repellat animi omnis culpa sit mollitia quaerat eaque error! Est doloribus modi praesentium vel, molestiae, quod inventore placeat ea omnis doloremque harum culpa quasi laudantium recusandae dolor voluptatum, tenetur beatae exercitationem similique numquam nobis ipsam suscipit accusantium. Tempore cumque exercitationem porro consectetur culpa atque sunt, quaerat, sint, hic nemo quidem dolorem explicabo natus quibusdam delectus necessitatibus voluptate. Sint quam eaque quisquam sed placeat tempore dolorem iste odio nulla, natus illo, iusto labore ratione aspernatur incidunt eius. Quibusdam, iste! Necessitatibus odit repellendus distinctio provident aut, numquam ut, eius consectetur accusantium aliquam illo.',
-    img: imgComm4
-  }
-];
+const api_url =
+  import.meta.env.MODE === 'development'
+    ? '/api'
+    : import.meta.env.VITE_API_BASE_URL;
+
+const INITIAL_STATE = {
+  service: true,
+  city: true,
+  date: true
+};
 
 export interface IRestaurant {
   id: number;
@@ -89,22 +32,110 @@ export interface Photo {
   alt: string;
 }
 
+interface IGetRestaurant {
+  serviceId: number;
+  cityId: number;
+  dateTo: string;
+}
+
 function MainPage() {
-  const [searchState, setSearchState] = useState<boolean>(false);
+  const [restaurant, setRestaurant] = useState<IRestaurant[]>([]);
+  const [selected, setSelected] = useState<Date>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | undefined>();
+  const [formValidState, setFormValidState] = useState(INITIAL_STATE);
+  const [defaultState, setDefaultState] = useState<boolean>(true);
+
+  async function getRestaurant(getParam: IGetRestaurant) {
+    const { serviceId, cityId, dateTo } = getParam;
+
+    try {
+      setDefaultState(false);
+      setIsLoading(true);
+      const { data } = await axios.get<IRestaurant[]>(
+        `${api_url}/establishments/${cityId}/${serviceId}/${dateTo}/${dateTo}`
+      );
+      setRestaurant(data);
+      setIsLoading(false);
+    } catch (e) {
+      console.error(e);
+      if (e instanceof AxiosError) {
+        setError(e.message);
+      }
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    let timerId: number;
+    if (
+      !formValidState.service ||
+      !formValidState.city ||
+      !formValidState.date
+    ) {
+      timerId = setTimeout(() => {
+        setFormValidState(INITIAL_STATE);
+      }, 1000);
+    }
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [formValidState]);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const formValues = Object.fromEntries(formData);
+    let isFormValid = true;
+
+    if (formValues['service[value]'] === 'Услуга') {
+      setFormValidState((state) => ({ ...state, service: false }));
+      isFormValid = false;
+    } else {
+      setFormValidState((state) => ({ ...state, service: true }));
+    }
+
+    if (formValues['city[value]'] === 'Город') {
+      setFormValidState((state) => ({ ...state, city: false }));
+      isFormValid = false;
+    } else {
+      setFormValidState((state) => ({ ...state, city: true }));
+    }
+
+    if (!selected) {
+      setFormValidState((state) => ({ ...state, date: false }));
+      isFormValid = false;
+    } else {
+      setFormValidState((state) => ({ ...state, date: true }));
+    }
+
+    if (!isFormValid) {
+      return;
+    }
+
+    const serviceId: number = Number(formValues['service[id]']);
+    const cityId: number = Number(formValues['city[id]']);
+    const dateTo: string =
+      selected != undefined
+        ? format(selected, 'yyyy-mm-dd', { locale: ru })
+        : format(new Date(), 'yyyy-mm-dd', { locale: ru });
+
+    getRestaurant({ serviceId, cityId, dateTo });
+  };
+
   return (
     <>
-      <Filter />
-
-      {searchState ? (
-        <div>Поиск</div>
-      ) : (
-        <>
-          <SlideAdvertising slider={SliderAdvertis} />
-          <Partners />
-          <InfinitiStr />
-          <SliderComments slider={arrComm} />
-        </>
-      )}
+      <Filter
+        selected={selected}
+        setSelected={setSelected}
+        handleSubmit={handleSubmit}
+        formValidState={formValidState}
+      />
+      {defaultState && <StartContent />}
+      {isLoading && <LoaderPage />}
+      {error && <>{error}</>}
+      {!isLoading && restaurant.length > 0 && <div>что то загрузилось</div>}
+      {!isLoading && restaurant.length === 0 && <div>Ничего не найдено</div>}
     </>
   );
 }
