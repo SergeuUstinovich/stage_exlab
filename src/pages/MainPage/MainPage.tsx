@@ -3,9 +3,12 @@ import StartContent from './StartContent';
 import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import { ru } from 'react-day-picker/locale';
-
 import axios, { AxiosError } from 'axios';
 import { LoaderPage } from '../../ui/Loader/LoaderPage';
+import styles from './mainPage.module.scss';
+import { IRestaurantCardProps } from '../../components/RestaurantCard/RestaurantCard';
+import RestaurantsList from '../../components/RestaurantsList/RestaurantsList';
+import { restaurants } from './mocks/restaurant';
 
 const api_url =
   import.meta.env.MODE === 'development'
@@ -18,20 +21,6 @@ const INITIAL_STATE = {
   date: true
 };
 
-export interface IRestaurant {
-  id: number;
-  name: string;
-  description: string;
-  photo: Photo;
-  address: string;
-  comment: string;
-}
-
-export interface Photo {
-  src: string;
-  alt: string;
-}
-
 interface IGetRestaurant {
   serviceId: number;
   cityId: number;
@@ -39,7 +28,7 @@ interface IGetRestaurant {
 }
 
 function MainPage() {
-  const [restaurant, setRestaurant] = useState<IRestaurant[]>([]);
+  const [restaurant, setRestaurant] = useState<IRestaurantCardProps[]>([]);
   const [selected, setSelected] = useState<Date>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>();
@@ -47,23 +36,37 @@ function MainPage() {
   const [defaultState, setDefaultState] = useState<boolean>(true);
 
   async function getRestaurant(getParam: IGetRestaurant) {
-    const { serviceId, cityId, dateTo } = getParam;
+    // const { serviceId, cityId, dateTo } = getParam;
 
-    try {
-      setDefaultState(false);
-      setIsLoading(true);
-      const { data } = await axios.get<IRestaurant[]>(
-        `${api_url}/establishments/${cityId}/${serviceId}/${dateTo}/${dateTo}`
-      );
-      setRestaurant(data);
+    // try {
+    //   setDefaultState(false);
+    //   setIsLoading(true);
+    //   const { data } = await axios.get<IRestaurant[]>(
+    //     `${api_url}/establishments/${cityId}/${serviceId}/${dateTo}`
+    //   );
+    //   setRestaurant(data);
+    //   setIsLoading(false);
+    // } catch (e) {
+    //   console.error(e);
+    //   if (e instanceof AxiosError) {
+    //     setError(e.message);
+    //   }
+    //   setIsLoading(false);
+    // }
+
+    setDefaultState(false);
+    timerLoad(2);
+    setRestaurant(restaurants);
+  }
+
+  function timerLoad(x: number) {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
       setIsLoading(false);
-    } catch (e) {
-      console.error(e);
-      if (e instanceof AxiosError) {
-        setError(e.message);
-      }
-      setIsLoading(false);
-    }
+    }, x * 1000);
+    return () => {
+      clearTimeout(timer);
+    };
   }
 
   useEffect(() => {
@@ -132,10 +135,15 @@ function MainPage() {
         formValidState={formValidState}
       />
       {defaultState && <StartContent />}
-      {isLoading && <LoaderPage />}
       {error && <>{error}</>}
-      {!isLoading && restaurant.length > 0 && <div>что то загрузилось</div>}
-      {!isLoading && restaurant.length === 0 && <div>Ничего не найдено</div>}
+      {isLoading && (
+        <div className={styles.loader}>
+          <LoaderPage />
+        </div>
+      )}
+      {!defaultState && !isLoading && (
+        <RestaurantsList restaurants={restaurant} />
+      )}
     </>
   );
 }
