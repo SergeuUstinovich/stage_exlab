@@ -35,7 +35,7 @@ function Filter(filterProps: IFilterProps) {
   const { selected, setSelected, handleSubmit, formValidState } = filterProps;
 
   return (
-    <>
+    <div className={styles.container}>
       <form className={styles.filter} onSubmit={handleSubmit}>
         <Select
           name='service'
@@ -60,7 +60,7 @@ function Filter(filterProps: IFilterProps) {
           <img src={search} />
         </Button>
       </form>
-    </>
+    </div>
   );
 }
 
