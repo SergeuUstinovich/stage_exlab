@@ -2,7 +2,7 @@ import { Button } from '../../ui/Button';
 import RestaurantCard, {
   IRestaurantCardProps
 } from '../RestaurantCard/RestaurantCard';
-import MapImg from './mocks/Map.jpg';
+import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import styles from './RestaurantsList.module.scss';
 
 export interface IRestaurantsListProps {
@@ -25,7 +25,18 @@ function RestaurantsList(restaurantsListProps: IRestaurantsListProps) {
         </ul>
         <div className={styles.right}>
           <div className={styles.map}>
-            <img src={MapImg} alt='Карта' />
+            <YMaps>
+              <Map
+                className={styles.map}
+                defaultState={{
+                  center: [55.751574, 37.573856],
+                  zoom: 8
+                }}
+              >
+                <Placemark geometry={[55.684758, 37.738521]} />
+                <Placemark geometry={[55.9, 37.1]} />
+              </Map>
+            </YMaps>
           </div>
           <div className={styles.banner}>
             <div className={styles['banner-text']}>
