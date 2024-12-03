@@ -9,6 +9,7 @@ import styles from './mainPage.module.scss';
 import { IRestaurantCardProps } from '../../components/RestaurantCard/RestaurantCard';
 import RestaurantsList from '../../components/RestaurantsList/RestaurantsList';
 import { restaurants } from './mocks/restaurant';
+import { YMaps } from '@pbe/react-yandex-maps';
 
 const api_url =
   import.meta.env.MODE === 'development'
@@ -142,7 +143,9 @@ function MainPage() {
         </div>
       )}
       {!defaultState && !isLoading && (
-        <RestaurantsList restaurants={restaurant} />
+        <YMaps>
+          <RestaurantsList restaurants={restaurant} />
+        </YMaps>
       )}
     </>
   );
