@@ -9,6 +9,7 @@ import styles from './mainPage.module.scss';
 import { IRestaurantCardProps } from '../../components/RestaurantCard/RestaurantCard';
 import RestaurantsList from '../../components/RestaurantsList/RestaurantsList';
 import { restaurants } from './mocks/restaurant';
+import { city } from './mocks/city';
 
 const api_url =
   import.meta.env.MODE === 'development'
@@ -34,6 +35,7 @@ function MainPage() {
   const [error, setError] = useState<string | undefined>();
   const [formValidState, setFormValidState] = useState(INITIAL_STATE);
   const [defaultState, setDefaultState] = useState<boolean>(true);
+  const [cityId, setCityId] = useState<number>(0);
 
   async function getRestaurant(getParam: IGetRestaurant) {
     // const { serviceId, cityId, dateTo } = getParam;
@@ -118,6 +120,7 @@ function MainPage() {
 
     const serviceId: number = Number(formValues['service[id]']);
     const cityId: number = Number(formValues['city[id]']);
+    setCityId(cityId);
     const dateTo: string =
       selected != undefined
         ? format(selected, 'yyyy-mm-dd', { locale: ru })
@@ -125,7 +128,7 @@ function MainPage() {
 
     getRestaurant({ serviceId, cityId, dateTo });
   };
-
+  console.log(city[cityId]);
   return (
     <>
       <Filter
@@ -142,7 +145,7 @@ function MainPage() {
         </div>
       )}
       {!defaultState && !isLoading && (
-        <RestaurantsList restaurants={restaurant} />
+        <RestaurantsList restaurants={restaurant} city={city[cityId]} />
       )}
     </>
   );

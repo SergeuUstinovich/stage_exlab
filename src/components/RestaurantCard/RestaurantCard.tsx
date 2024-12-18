@@ -4,6 +4,7 @@ import CapIcon from '../../assets/svg/CapIcon/CapIcon';
 import MapPoint from '../../assets/svg/MapPoint/MapPoint';
 import OpeningHours from '../../assets/svg/OpeningHours/OpeningHours';
 import styles from './RestaurantCard.module.scss';
+import { LngLat } from '@yandex/ymaps3-types';
 
 export interface Photo {
   src: string;
@@ -21,6 +22,7 @@ export interface IRestaurantCardProps {
   hotOffer?: string;
   priceTo?: string;
   photo: Photo;
+  cords: LngLat;
 }
 
 function RestaurantCard(restaurant: IRestaurantCardProps) {

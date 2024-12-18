@@ -1,16 +1,18 @@
+import { ICity } from '../../pages/MainPage/mocks/city';
 import { Button } from '../../ui/Button';
+import Map from '../Map/Map';
 import RestaurantCard, {
   IRestaurantCardProps
 } from '../RestaurantCard/RestaurantCard';
-import MapImg from './mocks/Map.jpg';
 import styles from './RestaurantsList.module.scss';
 
 export interface IRestaurantsListProps {
   restaurants: IRestaurantCardProps[];
+  city: ICity;
 }
 
 function RestaurantsList(restaurantsListProps: IRestaurantsListProps) {
-  const { restaurants } = restaurantsListProps;
+  const { restaurants, city } = restaurantsListProps;
 
   return (
     <>
@@ -25,7 +27,7 @@ function RestaurantsList(restaurantsListProps: IRestaurantsListProps) {
         </ul>
         <div className={styles.right}>
           <div className={styles.map}>
-            <img src={MapImg} alt='Карта' />
+            <Map city={city} />
           </div>
           <div className={styles.banner}>
             <div className={styles['banner-text']}>
