@@ -12,7 +12,7 @@ export const restaurants: IRestaurantCardProps[] = [
       src: 'src/pages/MainPage/mocks/img/drujba.jpg',
       alt: 'Фото ресторана'
     },
-    cords: [52.082934228259575, 23.698253254089312]
+    cords: [23.698253254089312, 52.082934228259575]
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ export const restaurants: IRestaurantCardProps[] = [
       src: 'src/pages/MainPage/mocks/img/drujba.jpg',
       alt: 'Фото ресторана'
     },
-    cords: [52.08452190379407, 23.659042016390373]
+    cords: [23.659042016390373, 52.08452190379407]
   },
   {
     id: 3,
@@ -38,6 +38,6 @@ export const restaurants: IRestaurantCardProps[] = [
       src: 'src/pages/MainPage/mocks/img/drujba.jpg',
       alt: 'Фото ресторана'
     },
-    cords: [52.14156598641073, 23.719370261553323]
+    cords: [23.641374, 52.121912]
   }
 ];

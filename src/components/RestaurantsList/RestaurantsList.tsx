@@ -27,7 +27,7 @@ function RestaurantsList(restaurantsListProps: IRestaurantsListProps) {
         </ul>
         <div className={styles.right}>
           <div className={styles.map}>
-            <Map city={city} />
+            <Map city={city} restaurants={restaurants} />
           </div>
           <div className={styles.banner}>
             <div className={styles['banner-text']}>

@@ -128,7 +128,6 @@ function MainPage() {
 
     getRestaurant({ serviceId, cityId, dateTo });
   };
-  console.log(city[cityId]);
   return (
     <>
       <Filter
