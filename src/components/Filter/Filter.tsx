@@ -5,9 +5,6 @@ import Separator from '../Separator/Separator';
 import search from '../../assets/svg/search.svg';
 import styles from './Filter.module.scss';
 import FilterDate from '../FilterDate/FilterDate';
-import { useEffect, useState } from 'react';
-import { format } from 'date-fns';
-import { ru } from 'react-day-picker/locale';
 
 const services: IOptionProps[] = [
   { id: 1, value: 'Романтическое свидание' },
@@ -21,75 +18,24 @@ const city: IOptionProps[] = [
   { id: 4, value: 'Витебск' }
 ];
 
-export interface IFilterProps {
-  date: string;
-  cityId: number;
-  serviceId: number;
+export interface IFormValidState {
+  service: boolean;
+  city: boolean;
+  date: boolean;
 }
 
-const INITIAL_STATE = {
-  service: true,
-  city: true,
-  date: true
-};
+export interface IFilterProps {
+  selected: Date | undefined;
+  setSelected: React.Dispatch<React.SetStateAction<Date | undefined>>;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  formValidState: IFormValidState;
+}
 
-function Filter() {
-  const [selected, setSelected] = useState<Date>();
-  const [formValidState, setFormValidState] = useState(INITIAL_STATE);
-
-  useEffect(() => {
-    let timerId: number;
-    if (
-      !formValidState.service ||
-      !formValidState.city ||
-      !formValidState.date
-    ) {
-      timerId = setTimeout(() => {
-        setFormValidState(INITIAL_STATE);
-      }, 1000);
-    }
-    return () => {
-      clearTimeout(timerId);
-    };
-  }, [formValidState]);
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const formValues = Object.fromEntries(formData);
-    let isFormValid = true;
-
-    if (formValues['service[value]'] === 'Услуга') {
-      setFormValidState((state) => ({ ...state, service: false }));
-      isFormValid = false;
-    } else {
-      setFormValidState((state) => ({ ...state, service: true }));
-    }
-
-    if (formValues['city[value]'] === 'Город') {
-      setFormValidState((state) => ({ ...state, city: false }));
-      isFormValid = false;
-    } else {
-      setFormValidState((state) => ({ ...state, city: true }));
-    }
-
-    if (!selected) {
-      setFormValidState((state) => ({ ...state, date: false }));
-      isFormValid = false;
-    } else {
-      setFormValidState((state) => ({ ...state, date: true }));
-    }
-
-    if (!isFormValid) {
-      return;
-    }
-
-    console.log(formValues);
-    console.log(selected && format(selected, 'yyyy-mm-dd', { locale: ru }));
-  };
+function Filter(filterProps: IFilterProps) {
+  const { selected, setSelected, handleSubmit, formValidState } = filterProps;
 
   return (
-    <>
+    <div className={styles.container}>
       <form className={styles.filter} onSubmit={handleSubmit}>
         <Select
           name='service'
@@ -114,7 +60,7 @@ function Filter() {
           <img src={search} />
         </Button>
       </form>
-    </>
+    </div>
   );
 }
 

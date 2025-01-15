@@ -1,7 +1,13 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
 .filter {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 972px;
   padding: 4px;
   height: 48px;
   background-color: var(--bg-color);
