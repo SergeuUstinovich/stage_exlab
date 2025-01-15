@@ -8,12 +8,8 @@ import { LoaderPage } from '../../ui/Loader/LoaderPage';
 import styles from './mainPage.module.scss';
 import { IRestaurantCardProps } from '../../components/RestaurantCard/RestaurantCard';
 import RestaurantsList from '../../components/RestaurantsList/RestaurantsList';
-import { restaurants } from './mocks/restaurant';
 
-const api_url =
-  import.meta.env.MODE === 'development'
-    ? '/api'
-    : import.meta.env.VITE_API_BASE_URL;
+const api_url = import.meta.env.VITE_API_BASE_URL;
 
 const INITIAL_STATE = {
   service: true,
@@ -36,37 +32,23 @@ function MainPage() {
   const [defaultState, setDefaultState] = useState<boolean>(true);
 
   async function getRestaurant(getParam: IGetRestaurant) {
-    // const { serviceId, cityId, dateTo } = getParam;
+    const { serviceId, cityId, dateTo } = getParam;
 
-    // try {
-    //   setDefaultState(false);
-    //   setIsLoading(true);
-    //   const { data } = await axios.get<IRestaurant[]>(
-    //     `${api_url}/establishments/${cityId}/${serviceId}/${dateTo}`
-    //   );
-    //   setRestaurant(data);
-    //   setIsLoading(false);
-    // } catch (e) {
-    //   console.error(e);
-    //   if (e instanceof AxiosError) {
-    //     setError(e.message);
-    //   }
-    //   setIsLoading(false);
-    // }
-
-    setDefaultState(false);
-    timerLoad(2);
-    setRestaurant(restaurants);
-  }
-
-  function timerLoad(x: number) {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
+    try {
+      setDefaultState(false);
+      setIsLoading(true);
+      const { data } = await axios.get<IRestaurantCardProps[]>(
+        `${api_url}/api/establishments/${cityId}/${serviceId}/${dateTo}`
+      );
+      setRestaurant(data);
       setIsLoading(false);
-    }, x * 1000);
-    return () => {
-      clearTimeout(timer);
-    };
+    } catch (e) {
+      console.error(e);
+      if (e instanceof AxiosError) {
+        setError(e.message);
+      }
+      setIsLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -120,8 +102,8 @@ function MainPage() {
     const cityId: number = Number(formValues['city[id]']);
     const dateTo: string =
       selected != undefined
-        ? format(selected, 'yyyy-mm-dd', { locale: ru })
-        : format(new Date(), 'yyyy-mm-dd', { locale: ru });
+        ? format(selected, 'yyyy-MM-dd', { locale: ru })
+        : format(new Date(), 'yyyy-MM-dd', { locale: ru });
 
     getRestaurant({ serviceId, cityId, dateTo });
   };

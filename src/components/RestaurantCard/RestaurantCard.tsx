@@ -20,6 +20,14 @@ export interface IRestaurantCardProps {
   cuisine?: string;
   hotOffer?: string;
   priceTo?: string;
+  is_active: boolean;
+  publish: string;
+  start_date: string;
+  total_tables: number;
+  opening_time: string;
+  closing_time: string;
+  service: number;
+  city: number;
   photo: Photo;
 }
 
