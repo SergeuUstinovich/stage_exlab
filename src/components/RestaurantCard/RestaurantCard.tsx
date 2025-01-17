@@ -44,13 +44,11 @@ function RestaurantCard(restaurant: IRestaurantCardProps) {
         <div className={styles['service-description']}>
           <div className={styles['address-wrapper']}>
             <div className={styles['address']}>
-              <MapPoint /> <span>{restaurant.address}</span>
+              <MapPoint className={styles['map-point']} />{' '}
+              <span>{restaurant.address}</span>
             </div>
             <div className={styles['address-distance']}>
               <span>1 км от центра</span>
-              <Link className={styles['address-link-to-map']} to={'/services'}>
-                Показать на карте
-              </Link>
             </div>
           </div>
           <div className={styles['opening-hours']}>

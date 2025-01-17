@@ -56,6 +56,10 @@
   text-decoration: underline;
 }
 
+.map-point {
+  flex-shrink: 0;
+}
+
 .opening-hours {
   display: flex;
   align-items: center;

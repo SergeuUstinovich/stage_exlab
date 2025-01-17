@@ -23,7 +23,7 @@ body {
 :root {
   //z-index
   --modal-z-index: 10;
-  --bg--slider: #4F2A6E;
+  --bg--slider: #4f2a6e;
   --swiper-pagination-bullet-horizontal-gap: 10px;
   // // Цвета из Фигмы
   --overlay-color: rgba(217 217 217 / 80%);
@@ -36,6 +36,7 @@ body {
   --error: #d51a52;
   --black: #000;
   --light-color: #484848;
+  --brown: #a47053;
 }
 
 img {
@@ -64,17 +65,16 @@ ul {
 }
 
 .app,
-.app_modal{
+.app_modal {
   background: var(--bg-color);
   color: var(--primary-color);
-  
 }
 .svgColors path {
   stroke: var(--stroke-color);
 }
 
 .svgColor path {
-  fill: var(--fill-color)
+  fill: var(--fill-color);
 }
 
 .container {
@@ -96,7 +96,3 @@ ul {
     padding: 8px;
   }
 }
-
-
-
-
