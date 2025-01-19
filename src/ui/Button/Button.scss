@@ -5,18 +5,18 @@
   background-color: transparent;
   cursor: pointer;
   color: var(--primary-color);
-  
+
   &:disabled {
     background-color: var(--light-grey);
     opacity: 0.5;
     border-color: var(--grey);
   }
 
-  &[data-kind="secondary"] {
-    background-color: var(--secondary);
+  &[data-kind='secondary'] {
+    background-color: var(--light-corporate-yellow);
 
     &:hover {
-      background-color: var(--secondary-hover);
+      background-color: var(--sorporate-yellow);
     }
   }
 }
