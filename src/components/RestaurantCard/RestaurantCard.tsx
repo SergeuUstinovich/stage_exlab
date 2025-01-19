@@ -4,6 +4,7 @@ import CapIcon from '../../assets/svg/CapIcon/CapIcon';
 import MapPoint from '../../assets/svg/MapPoint/MapPoint';
 import OpeningHours from '../../assets/svg/OpeningHours/OpeningHours';
 import styles from './RestaurantCard.module.scss';
+import { Raiting } from '../../ui/Raiting';
 
 export interface Photo {
   src: string;
@@ -28,13 +29,21 @@ export interface IRestaurantCardProps {
   closing_time: string;
   service: number;
   city: number;
+  new?: boolean;
+  raiting?: 1 | 2 | 3 | 4 | 5;
   photo: Photo;
 }
 
 function RestaurantCard(restaurant: IRestaurantCardProps) {
   return (
     <div className={styles['service-card']}>
-      <h3 className={styles['service-title']}>{restaurant.name}</h3>
+      <div className={styles['service-header']}>
+        <div className={styles['wrapper-title']}>
+          <h3 className={styles['service-title']}>{restaurant.name}</h3>
+          {restaurant.raiting && <Raiting raiting={restaurant.raiting} />}
+        </div>
+        {restaurant.new && <div className={styles['new']}>Новинка</div>}
+      </div>
       <div className={styles['card-wrapper']}>
         <img
           className={styles['service-preview']}
@@ -44,13 +53,11 @@ function RestaurantCard(restaurant: IRestaurantCardProps) {
         <div className={styles['service-description']}>
           <div className={styles['address-wrapper']}>
             <div className={styles['address']}>
-              <MapPoint /> <span>{restaurant.address}</span>
+              <MapPoint className={styles['map-point']} />{' '}
+              <span>{restaurant.address}</span>
             </div>
             <div className={styles['address-distance']}>
               <span>1 км от центра</span>
-              <Link className={styles['address-link-to-map']} to={'/services'}>
-                Показать на карте
-              </Link>
             </div>
           </div>
           <div className={styles['opening-hours']}>
@@ -78,7 +85,11 @@ function RestaurantCard(restaurant: IRestaurantCardProps) {
           <div className={styles['service-booking-price']}>
             От&nbsp;{restaurant.priceTo}&nbsp;руб.
           </div>
-          <Button className={styles['service-booking-btn']}>
+          <Button
+            className={styles['service-booking-btn']}
+            kind='secondary'
+            type='button'
+          >
             Забронировать
           </Button>
         </div>

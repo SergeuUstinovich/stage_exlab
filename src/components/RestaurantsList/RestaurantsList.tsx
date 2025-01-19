@@ -2,7 +2,6 @@ import { Button } from '../../ui/Button';
 import RestaurantCard, {
   IRestaurantCardProps
 } from '../RestaurantCard/RestaurantCard';
-import MapImg from './mocks/Map.jpg';
 import styles from './RestaurantsList.module.scss';
 
 export interface IRestaurantsListProps {
@@ -24,9 +23,6 @@ function RestaurantsList(restaurantsListProps: IRestaurantsListProps) {
           ))}
         </ul>
         <div className={styles.right}>
-          <div className={styles.map}>
-            <img src={MapImg} alt='Карта' />
-          </div>
           <div className={styles.banner}>
             <div className={styles['banner-text']}>
               Специальные предложения для зарегистрированных пользователей
