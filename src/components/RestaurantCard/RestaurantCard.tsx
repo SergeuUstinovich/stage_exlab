@@ -5,6 +5,7 @@ import MapPoint from '../../assets/svg/MapPoint/MapPoint';
 import OpeningHours from '../../assets/svg/OpeningHours/OpeningHours';
 import styles from './RestaurantCard.module.scss';
 import { Raiting } from '../../ui/Raiting';
+import { openingHours } from '../../helpers/openingHours';
 
 export interface Photo {
   src: string;
@@ -64,7 +65,9 @@ function RestaurantCard(restaurant: IRestaurantCardProps) {
             <OpeningHours />{' '}
             <div className={styles['opening-hours-wrapper']}>
               <span>Режим работы</span>&nbsp;
-              <span>{restaurant.openingHours}</span>
+              <span>
+                {openingHours(restaurant.opening_time, restaurant.closing_time)}
+              </span>
             </div>
           </div>
           <div className={styles['cuisine-wrapper']}>

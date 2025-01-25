@@ -47,5 +47,9 @@
     padding: 8px 28px;
     border-radius: 12px;
     background-color: var(--btn-bg);
+    &:hover {
+      border: 2px solid var(--yellow);
+      padding: 7px 27px;
+    }
   }
 }
