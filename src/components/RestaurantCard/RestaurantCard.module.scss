@@ -123,6 +123,10 @@
   line-height: 143%;
   color: var(--black);
   margin-bottom: 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .hot-offer {
