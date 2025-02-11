@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../../ui/Button/Button';
 import CapIcon from '../../assets/svg/CapIcon/CapIcon';
 import MapPoint from '../../assets/svg/MapPoint/MapPoint';
@@ -35,27 +35,33 @@ export interface IRestaurantCardProps {
   photo: Photo;
 }
 
-function RestaurantCard(restaurant: IRestaurantCardProps) {
+function RestaurantCard(restaurantCard: IRestaurantCardProps) {
+  const navigate = useNavigate();
+  function handleClick() {
+    navigate(`/restaurant/${restaurantCard.id}`);
+  }
   return (
     <div className={styles['service-card']}>
       <div className={styles['service-header']}>
         <div className={styles['wrapper-title']}>
-          <h3 className={styles['service-title']}>{restaurant.name}</h3>
-          {restaurant.raiting && <Raiting raiting={restaurant.raiting} />}
+          <h3 className={styles['service-title']}>{restaurantCard.name}</h3>
+          {restaurantCard.raiting && (
+            <Raiting raiting={restaurantCard.raiting} />
+          )}
         </div>
-        {restaurant.new && <div className={styles['new']}>Новинка</div>}
+        {restaurantCard.new && <div className={styles['new']}>Новинка</div>}
       </div>
       <div className={styles['card-wrapper']}>
         <img
           className={styles['service-preview']}
-          src={restaurant.photo.src}
-          alt={restaurant.photo.alt}
+          src={restaurantCard.photo.src}
+          alt={restaurantCard.photo.alt}
         />
         <div className={styles['service-description']}>
           <div className={styles['address-wrapper']}>
             <div className={styles['address']}>
               <MapPoint className={styles['map-point']} />{' '}
-              <span>{restaurant.address}</span>
+              <span>{restaurantCard.address}</span>
             </div>
             <div className={styles['address-distance']}>
               <span>1 км от центра</span>
@@ -66,7 +72,10 @@ function RestaurantCard(restaurant: IRestaurantCardProps) {
             <div className={styles['opening-hours-wrapper']}>
               <span>Режим работы</span>&nbsp;
               <span>
-                {openingHours(restaurant.opening_time, restaurant.closing_time)}
+                {openingHours(
+                  restaurantCard.opening_time,
+                  restaurantCard.closing_time
+                )}
               </span>
             </div>
           </div>
@@ -74,24 +83,25 @@ function RestaurantCard(restaurant: IRestaurantCardProps) {
             <CapIcon />{' '}
             <div>
               <span>Кухня:</span>&nbsp;
-              <span>{restaurant.cuisine}</span>
+              <span>{restaurantCard.cuisine}</span>
             </div>
           </div>
           <p className={styles['restaurant-description']}>
-            {restaurant.description}
+            {restaurantCard.description}
           </p>
-          {restaurant.hotOffer && (
-            <p className={styles['hot-offer']}>{restaurant.hotOffer}</p>
+          {restaurantCard.hotOffer && (
+            <p className={styles['hot-offer']}>{restaurantCard.hotOffer}</p>
           )}
         </div>
         <div className={styles['service-booking']}>
           <div className={styles['service-booking-price']}>
-            От&nbsp;{restaurant.priceTo}&nbsp;руб.
+            От&nbsp;{restaurantCard.priceTo}&nbsp;руб.
           </div>
           <Button
             className={styles['service-booking-btn']}
             kind='secondary'
             type='button'
+            onClick={handleClick}
           >
             Забронировать
           </Button>

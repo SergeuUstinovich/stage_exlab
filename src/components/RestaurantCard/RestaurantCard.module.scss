@@ -71,6 +71,10 @@
   font-size: 16px;
   line-height: 150%;
   color: var(--dark-grey);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 
 .address-distance {

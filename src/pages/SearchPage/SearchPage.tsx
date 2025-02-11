@@ -11,11 +11,11 @@ import { useSearchParams } from 'react-router-dom';
 
 const api_url = import.meta.env.VITE_API_BASE_URL;
 
-const INITIAL_STATE = {
-  service: true,
-  city: true,
-  date: true
-};
+// const INITIAL_STATE = {
+//   service: true,
+//   city: true,
+//   date: true
+// };
 
 interface IGetRestaurant {
   serviceId: number;
@@ -29,7 +29,7 @@ function SearchPage() {
   const [selected, setSelected] = useState<Date>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>();
-  const [formValidState, setFormValidState] = useState(INITIAL_STATE);
+  // const [formValidState, setFormValidState] = useState(INITIAL_STATE);
 
   const serviceId = Number(searchParam.get('serviceId'));
   const cityId = Number(searchParam.get('cityId'));
@@ -58,76 +58,77 @@ function SearchPage() {
     if (serviceId && cityId && dateTo) {
       setSelected(new Date(dateTo));
       getRestaurant({ serviceId, cityId, dateTo });
+      console.log('трям');
     }
   }, []);
 
-  useEffect(() => {
-    let timerId: number;
-    if (
-      !formValidState.service ||
-      !formValidState.city ||
-      !formValidState.date
-    ) {
-      timerId = setTimeout(() => {
-        setFormValidState(INITIAL_STATE);
-      }, 1000);
-    }
-    return () => {
-      clearTimeout(timerId);
-    };
-  }, [formValidState]);
+  // useEffect(() => {
+  //   let timerId: number;
+  //   if (
+  //     !formValidState.service ||
+  //     !formValidState.city ||
+  //     !formValidState.date
+  //   ) {
+  //     timerId = setTimeout(() => {
+  //       setFormValidState(INITIAL_STATE);
+  //     }, 1000);
+  //   }
+  //   return () => {
+  //     clearTimeout(timerId);
+  //   };
+  // }, [formValidState]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const formValues = Object.fromEntries(formData);
-    let isFormValid = true;
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   const formData = new FormData(e.currentTarget);
+  //   const formValues = Object.fromEntries(formData);
+  //   let isFormValid = true;
 
-    if (formValues['service[value]'] === 'Услуга') {
-      setFormValidState((state) => ({ ...state, service: false }));
-      isFormValid = false;
-    } else {
-      setFormValidState((state) => ({ ...state, service: true }));
-    }
+  //   if (formValues['service[value]'] === 'Услуга') {
+  //     setFormValidState((state) => ({ ...state, service: false }));
+  //     isFormValid = false;
+  //   } else {
+  //     setFormValidState((state) => ({ ...state, service: true }));
+  //   }
 
-    if (formValues['city[value]'] === 'Город') {
-      setFormValidState((state) => ({ ...state, city: false }));
-      isFormValid = false;
-    } else {
-      setFormValidState((state) => ({ ...state, city: true }));
-    }
+  //   if (formValues['city[value]'] === 'Город') {
+  //     setFormValidState((state) => ({ ...state, city: false }));
+  //     isFormValid = false;
+  //   } else {
+  //     setFormValidState((state) => ({ ...state, city: true }));
+  //   }
 
-    if (!selected) {
-      setFormValidState((state) => ({ ...state, date: false }));
-      isFormValid = false;
-    } else {
-      setFormValidState((state) => ({ ...state, date: true }));
-    }
+  //   if (!selected) {
+  //     setFormValidState((state) => ({ ...state, date: false }));
+  //     isFormValid = false;
+  //   } else {
+  //     setFormValidState((state) => ({ ...state, date: true }));
+  //   }
 
-    if (!isFormValid) {
-      return;
-    }
+  //   if (!isFormValid) {
+  //     return;
+  //   }
 
-    const serviceId: number = Number(formValues['service[id]']);
-    const cityId: number = Number(formValues['city[id]']);
-    const dateTo: string =
-      selected != undefined
-        ? format(selected, 'yyyy-MM-dd', { locale: ru })
-        : format(new Date(), 'yyyy-MM-dd', { locale: ru });
+  //   const serviceId: number = Number(formValues['service[id]']);
+  //   const cityId: number = Number(formValues['city[id]']);
+  //   const dateTo: string =
+  //     selected != undefined
+  //       ? format(selected, 'yyyy-MM-dd', { locale: ru })
+  //       : format(new Date(), 'yyyy-MM-dd', { locale: ru });
 
-    setSearchParam(`serviceId=${serviceId}&cityId=${cityId}&dateTo=${dateTo}`);
-    getRestaurant({ serviceId, cityId, dateTo });
-  };
+  //   setSearchParam(`serviceId=${serviceId}&cityId=${cityId}&dateTo=${dateTo}`);
+  //   getRestaurant({ serviceId, cityId, dateTo });
+  // };
 
   return (
     <>
       <Filter
-        selected={selected}
-        setSelected={setSelected}
-        handleSubmit={handleSubmit}
-        formValidState={formValidState}
-        serviceId={serviceId}
-        cityId={cityId}
+      // selected={selected}
+      // setSelected={setSelected}
+      // handleSubmit={handleSubmit}
+      // formValidState={formValidState}
+      // serviceId={serviceId}
+      // cityId={cityId}
       />
       {error && <>{error}</>}
       {isLoading && (
