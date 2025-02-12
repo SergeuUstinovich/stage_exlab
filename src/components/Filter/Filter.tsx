@@ -5,6 +5,11 @@ import Separator from '../Separator/Separator';
 import searchSvg from '../../assets/svg/search.svg';
 import styles from './Filter.module.scss';
 import FilterDate from '../FilterDate/FilterDate';
+import { useEffect, useState } from 'react';
+import { format } from 'date-fns';
+import { ru } from 'react-day-picker/locale';
+import { useNavigate } from 'react-router';
+import { useSearchParams } from 'react-router-dom';
 
 const services: IOptionProps[] = [
   { id: 1, value: 'Романтическое свидание' },
@@ -18,6 +23,12 @@ const city: IOptionProps[] = [
   { id: 4, value: 'Витебск' }
 ];
 
+const INITIAL_STATE = {
+  service: true,
+  city: true,
+  date: true
+};
+
 export interface IFormValidState {
   service: boolean;
   city: boolean;
@@ -25,23 +36,83 @@ export interface IFormValidState {
 }
 
 export interface IFilterProps {
-  serviceId?: number;
-  cityId?: number;
-  selected: Date | undefined;
-  setSelected: React.Dispatch<React.SetStateAction<Date | undefined>>;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  formValidState: IFormValidState;
+  // serviceId?: number;
+  // cityId?: number;
+  // selected: Date | undefined;
+  // setSelected: React.Dispatch<React.SetStateAction<Date | undefined>>;
+  // handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  // formValidState: IFormValidState;
 }
 
-function Filter(filterProps: IFilterProps) {
-  const {
-    serviceId,
-    cityId,
-    selected,
-    setSelected,
-    handleSubmit,
-    formValidState
-  } = filterProps;
+function Filter() {
+  // const { serviceId, cityId, selected, setSelected } = filterProps;
+  const navigate = useNavigate();
+  const [searchParam, setSearchParam] = useSearchParams();
+  const [formValidState, setFormValidState] = useState(INITIAL_STATE);
+  const [selected, setSelected] = useState<Date>();
+
+  const serviceId = Number(searchParam.get('serviceId'));
+  const cityId = Number(searchParam.get('cityId'));
+  const dateTo = searchParam.get('dateTo');
+
+  useEffect(() => {
+    let timerId: number;
+    if (
+      !formValidState.service ||
+      !formValidState.city ||
+      !formValidState.date
+    ) {
+      timerId = setTimeout(() => {
+        setFormValidState(INITIAL_STATE);
+      }, 1000);
+    }
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [formValidState]);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const formValues = Object.fromEntries(formData);
+    let isFormValid = true;
+
+    if (formValues['service[value]'] === 'Услуга') {
+      setFormValidState((state) => ({ ...state, service: false }));
+      isFormValid = false;
+    } else {
+      setFormValidState((state) => ({ ...state, service: true }));
+    }
+
+    if (formValues['city[value]'] === 'Город') {
+      setFormValidState((state) => ({ ...state, city: false }));
+      isFormValid = false;
+    } else {
+      setFormValidState((state) => ({ ...state, city: true }));
+    }
+
+    if (!selected) {
+      setFormValidState((state) => ({ ...state, date: false }));
+      isFormValid = false;
+    } else {
+      setFormValidState((state) => ({ ...state, date: true }));
+    }
+
+    if (!isFormValid) {
+      return;
+    }
+
+    const serviceId: number = Number(formValues['service[id]']);
+    const cityId: number = Number(formValues['city[id]']);
+    const dateTo: string =
+      selected != undefined
+        ? format(selected, 'yyyy-MM-dd', { locale: ru })
+        : format(new Date(), 'yyyy-MM-dd', { locale: ru });
+
+    navigate(
+      `/search?serviceId=${serviceId}&cityId=${cityId}&dateTo=${dateTo}`
+    );
+  };
 
   function findService(element: IOptionProps) {
     return element.id === serviceId;
@@ -60,6 +131,12 @@ function Filter(filterProps: IFilterProps) {
   if (citySelected === undefined || citySelected === 0) {
     citySelected = { id: 0, value: 'Город' };
   }
+
+  useEffect(() => {
+    if (dateTo != null) {
+      setSelected(new Date(dateTo));
+    }
+  }, []);
 
   return (
     <div className={styles.container}>
