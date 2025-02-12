@@ -132,6 +132,12 @@ function Filter() {
     citySelected = { id: 0, value: 'Город' };
   }
 
+  useEffect(() => {
+    if (dateTo != null) {
+      setSelected(new Date(dateTo));
+    }
+  }, []);
+
   return (
     <div className={styles.container}>
       <form className={styles.filter} onSubmit={handleSubmit}>
