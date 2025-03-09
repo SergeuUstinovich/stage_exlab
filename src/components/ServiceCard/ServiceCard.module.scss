@@ -1,0 +1,80 @@
+.service-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 310px;
+  height: 100%;
+  border: 1px solid var(--grey);
+  border-radius: 16px;
+  padding: 15px 10px;
+}
+
+.title {
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--black);
+}
+
+.menu {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 143%;
+  color: var(--dark-grey);
+  margin-bottom: 10px;
+}
+
+.image {
+  margin-bottom: 10px;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: var(--black);
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.price__label {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--brown);
+}
+
+.price__amount {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 130%;
+  color: var(--black);
+}
+
+.price__currency {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 150%;
+  color: var(--black);
+}
+
+.btn {
+  width: 100%;
+  border-radius: 12px;
+  padding: 8px 28px;
+}
+
+.btn__label {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 114%;
+  text-align: center;
+  color: var(--white);
+}

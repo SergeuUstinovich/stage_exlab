@@ -5,8 +5,12 @@ import MapPoint from '../../assets/svg/MapPoint/MapPoint';
 import OpeningHours from '../../assets/svg/OpeningHours/OpeningHours';
 import { Raiting } from '../../ui/Raiting';
 import { openingHours } from '../../helpers/openingHours';
+import ServiceCard, { IServiceCardProps } from '../ServiceCard/ServiceCard';
+
 import styles from './Restaurant.module.scss';
+
 import { restaurant } from './mocks/restaurant';
+import ServicesList from '../ServicesList/ServicesList';
 
 export interface Photo {
   src: string;
@@ -23,6 +27,9 @@ export interface IRestaurantProps {
   opening_time: string;
   closing_time: string;
   photos: Photo[];
+  menu: IServiceCardProps[];
+  flowers: IServiceCardProps[];
+  decor: IServiceCardProps[];
 }
 
 function Restaurant() {
@@ -56,10 +63,12 @@ function Restaurant() {
                     className={styles['restaurant__foto--foto-3']}
                   />
                 )}
-                <Button
-                  className={styles['restaurant__foto-btn']}
-                  type='button'
-                >{`+ ${restaurant.photos.length - 3} фотографий`}</Button>
+                {restaurant.photos.length - 3 > 0 && (
+                  <Button
+                    className={styles['restaurant__foto-btn']}
+                    type='button'
+                  >{`+ ${restaurant.photos.length - 3} фотографий`}</Button>
+                )}
               </div>
 
               <div className={styles['restaurant__info-wrapper']}>
@@ -111,17 +120,25 @@ function Restaurant() {
               {restaurant.description}
             </p>
 
-            <h2 className={styles['restaurant__menu-section']}>
-              Выберите доступные варианты меню
-            </h2>
+            <section className={styles['menu-section']}>
+              <h2 className={styles['h2-title']}>
+                Выберите доступные варианты меню
+              </h2>
+              <ServicesList cards={restaurant.menu} />
+            </section>
 
-            <h2 className={styles['restaurant__services-section']}>
-              Выберите дополнительные услуги
-            </h2>
+            <section className={styles['services']}>
+              <h2 className={styles['h2-title']}>Добавьте к заказу</h2>
+              <div className={styles['flowers-sections']}>
+                <h3 className={styles['h3-title']}>Цветы</h3>
+                <ServicesList cards={restaurant.flowers} />
+              </div>
 
-            <h2 className={styles['restaurant__decor-section']}>
-              Праздничное оформление
-            </h2>
+              <div className={styles['decor-sections']}>
+                <h3 className={styles['h3-title']}>Праздничное оформление</h3>
+                <ServicesList cards={restaurant.decor} />
+              </div>
+            </section>
           </div>
           <div className={styles['restaurant__right-panel']}></div>
         </div>
