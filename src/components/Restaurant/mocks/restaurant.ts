@@ -33,6 +33,10 @@ export const restaurant: IRestaurantProps = {
     {
       src: img3,
       alt: 'фото3 ресторана'
+    },
+    {
+      src: img3,
+      alt: 'фото3 ресторана'
     }
   ],
   menu: [

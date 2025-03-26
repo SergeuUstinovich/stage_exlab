@@ -1,3 +1,102 @@
+.link-back {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  color: var(--dark-grey);
+}
+
+.restaurant__title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 130%;
+  color: var(--black);
+}
+
+.address-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.address {
+  display: flex;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  gap: 10px;
+  color: var(--dark-grey);
+}
+
+.distance-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 143%;
+  color: var(--brown);
+}
+
+.restaurant__map-view {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 143%;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--brown);
+}
+
+.restaurant__foto {
+  display: flex;
+  gap: 20px;
+}
+
+.restaurant__foto--foto-1 {
+  width: 530px;
+  height: 420px;
+}
+
+.restaurant__foto--foto-2 {
+  width: 310px;
+  height: 200px;
+}
+
+.restaurant__foto-others {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.restaurant__info {
+  display: flex;
+  gap: 30px;
+}
+
+.opening-hours {
+  display: flex;
+  gap: 10px;
+}
+
+.cuisine-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.restaurant__foto-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 50%;
+  transform: translateX(50%);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 143%;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  text-align: center;
+  color: var(--white);
+}
+
 .restaurant__description {
   margin-bottom: 40px;
   max-width: 970px;

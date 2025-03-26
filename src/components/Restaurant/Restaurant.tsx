@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../ui/Button/Button';
 import CapIcon from '../../assets/svg/CapIcon/CapIcon';
 import MapPoint from '../../assets/svg/MapPoint/MapPoint';
@@ -33,10 +33,38 @@ export interface IRestaurantProps {
 }
 
 function Restaurant() {
+  const navigate = useNavigate();
   return (
     <>
       <div className={styles['restaurant']}>
+        <a
+          className={styles['link-back']}
+          href='#'
+          onClick={(e) => {
+            e.preventDefault();
+            navigate(-1);
+          }}
+        >
+          Вернуться к поиску
+        </a>
+
         <h1 className={styles['restaurant__title']}>{restaurant.title}</h1>
+
+        <div className={styles['address-wrapper']}>
+          <div className={styles['address']}>
+            <MapPoint className={styles['map-point']} />{' '}
+            <span>{restaurant.address}</span>
+          </div>
+          <div className={styles['distance-wrapper']}>
+            <div className={styles['address-distance']}>
+              <span>1 км от центра</span>
+            </div>
+            <Button className={styles['restaurant__map-view']} type='button'>
+              Показать на карте
+            </Button>
+          </div>
+        </div>
+
         <div className={styles['restaurant__content-wrapper']}>
           <div className={styles['restaurant__content']}>
             <div className={styles['restaurant__foto']}>
@@ -60,7 +88,7 @@ function Restaurant() {
                   <img
                     src={restaurant.photos[2].src}
                     alt={restaurant.photos[2].alt}
-                    className={styles['restaurant__foto--foto-3']}
+                    className={styles['restaurant__foto--foto-2']}
                   />
                 )}
                 {restaurant.photos.length - 3 > 0 && (
@@ -70,48 +98,27 @@ function Restaurant() {
                   >{`+ ${restaurant.photos.length - 3} фотографий`}</Button>
                 )}
               </div>
+            </div>
 
-              <div className={styles['restaurant__info-wrapper']}>
-                <h3 className={styles['restaurant__info-title']}>
-                  Расположение
-                </h3>
-                <div className={styles['restaurant__info']}>
-                  <div className={styles['address-wrapper']}>
-                    <div className={styles['address']}>
-                      <MapPoint className={styles['map-point']} />{' '}
-                      <span>{restaurant.address}</span>
-                    </div>
-                    <div className={styles['address-distance']}>
-                      <span>1 км от центра</span>
-                    </div>
-                    <Button
-                      className={styles['restaurant__map-view']}
-                      type='button'
-                    >
-                      Показать на карте
-                    </Button>
-                  </div>
+            <div className={styles['restaurant__info']}>
+              <div className={styles['opening-hours']}>
+                <OpeningHours />{' '}
+                <div className={styles['opening-hours-wrapper']}>
+                  <span>Режим работы</span>&nbsp;
+                  <span>
+                    {openingHours(
+                      restaurant.opening_time,
+                      restaurant.closing_time
+                    )}
+                  </span>
+                </div>
+              </div>
 
-                  <div className={styles['opening-hours']}>
-                    <OpeningHours />{' '}
-                    <div className={styles['opening-hours-wrapper']}>
-                      <span>Режим работы</span>&nbsp;
-                      <span>
-                        {openingHours(
-                          restaurant.opening_time,
-                          restaurant.closing_time
-                        )}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className={styles['cuisine-wrapper']}>
-                    <CapIcon />{' '}
-                    <div>
-                      <span>Кухня:</span>&nbsp;
-                      <span>{restaurant.cuisine}</span>
-                    </div>
-                  </div>
+              <div className={styles['cuisine-wrapper']}>
+                <CapIcon />{' '}
+                <div>
+                  <span>Кухня:</span>&nbsp;
+                  <span>{restaurant.cuisine}</span>
                 </div>
               </div>
             </div>
