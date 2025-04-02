@@ -1,4 +1,5 @@
 import { Button } from '../../ui/Button';
+import CounterButton from '../CounterButton/CounterButton';
 import { Photo } from '../RestaurantCard';
 import styles from './ServiceCard.module.scss';
 
@@ -32,9 +33,7 @@ function ServiceCard(props: IServiceCardProps) {
           <span className={styles['price__currency']}> руб.</span>
         </div>
       </div>
-      <Button className={styles['btn']} kind='secondary'>
-        <span className={styles['btn__label']}>Выбрать</span>
-      </Button>
+      <CounterButton />
     </div>
   );
 }
